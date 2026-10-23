@@ -1,7 +1,7 @@
 # Training
 
 Course for the team, from zero, one lesson a week: `lessons/COURSE-OUTLINE.md` (draft plan and glossary). Lesson 1 slides are
-an Artifact (Slides). Planned markdown guides below are the earlier list; not written yet:
+`lessons/01-the-map/lesson-01-a.html` and `lesson-01-b.html` (self-contained; the older hosted Artifact shows the retired v0.1). Design rules for every lesson and presentation: `lessons/_design/README.md`. Planned markdown guides below are the earlier list; not written yet:
 1. Working rules in five minutes (from `CLAUDE.md` and `policy/`).
 2. The loop: requirement → cases → manual pass → readiness → test → review → CI (`docs/schemes/02-workflow.md`).
 3. Mobile run checklist (`docs/schemes/06-mobile-run.md`).

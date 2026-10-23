@@ -1,6 +1,7 @@
 # Colors for training presentations: specification (DRAFT)
 
-Status: DRAFT v0.1, 2026-10-14. Not approved. Approver: the AI QA Process Lead.
+Status: DRAFT v0.2, 2026-10-23. Not approved. Approver: the AI QA Process Lead.
+Decision (the author, 2026-10-23): this Paper/Amber palette is the course palette. The Slate design of lesson 1 v0.1 is archived (`01-the-map/_archive-v0.1/`) and the animation gallery is recoloured to this palette. Values live in `../_design/tokens.css` and `../_design/tokens.json`; this spec explains them. Audit: `2026-10-23-design-system-audit.md`.
 Source: the `:root` variables of `training/lessons/01-the-map/lesson-01-a.html` and `lesson-01-b.html` (same values in both). Contrast ratios were computed on 2026-10-14 with the WCAG 2 relative-luminance formula; they were not checked in a rendering tool. How the existing slides actually use each color was NOT audited: the "Role" column is an inference from the variable names.
 
 ## 1. Palette (lesson 1)
@@ -20,6 +21,8 @@ Source: the `:root` variables of `training/lessons/01-the-map/lesson-01-a.html` 
 | `--leaf` | `#4E7A3A` | second accent: lighter fills |
 | `--green-tint` | `#E4EDDD` | second accent background |
 | `--line` | `#D9CDB0` | rules and borders |
+| `--red-text` | `#8A2A1A` | status red: text and lines (added 2026-10-23, from the mockups) |
+| `--red-tint` | `#F3D9D1` | status red: background (added 2026-10-23) |
 
 Fonts: IBM Plex Sans (text), IBM Plex Mono (code, chips), embedded in the file. Stage 1920x1080.
 
@@ -36,6 +39,8 @@ Fonts: IBM Plex Sans (text), IBM Plex Mono (code, chips), embedded in the file. 
 | `--amber-text` on `--amber-tint` | 4.3 |
 | `--amber` on `--paper` | 2.1 |
 | `--line` on `--paper` | 1.4 |
+| `--red-text` on `--paper` | 7.8 (computed 2026-10-23) |
+| `--red-text` on `--red-tint` | 6.5 (computed 2026-10-23) |
 
 ## 3. Rules (PROPOSAL)
 
@@ -50,7 +55,7 @@ Fonts: IBM Plex Sans (text), IBM Plex Mono (code, chips), embedded in the file. 
 
 ## 4. Open points
 
-- A second palette exists in `training/lessons/_template/animations/gallery.html` (`#FBF5EA`, `#2B1D14`, `#A93E17`, `#C98A1B`, `#5E6B2E`). It differs from lesson 1. Decide which one is official and whether the gallery moves to it.
+- RESOLVED 2026-10-23: the gallery's "Maple" palette was replaced by this palette (see its README).
 - What amber and green mean in the slides (for example amber = caution, green = ok) is not written anywhere; decide before assigning meaning.
 - Whether rules 2 and 5 are applied correctly in the existing slides is NOT checked.
 
@@ -68,7 +73,16 @@ Answers the second open point above. Applied in `training/lessons/_mockups/diagr
 | Thick `--ink` outline | a human step or gate | the step name |
 
 - Amber is not a brand or role colour: do not use it for "the assistant" or for a term name. In the mockups that was fixed on lessons 1, 4, 6, 10, 12 and bonus B.
-- Red is NOT in the lesson 1 palette (section 1). The mockup page uses a provisional red pair (tint `#F3D9D1`, text `#8A2A1A` in light mode). Its contrast was NOT computed; compute it and decide the official values before it goes onto a slide.
+- Red is in the palette since 2026-10-23 (section 1): `--red-text` `#8A2A1A`, `--red-tint` `#F3D9D1`, contrast 7.8:1 on `--paper` and 6.5:1 on its tint (section 2, WCAG 2 formula, not a rendering tool). The mockup's dark-mode pair (`#F0A898` on `#3A1F19`) is not part of the palette: there is no dark variant (rule 8).
 - Approver: the AI QA Process Lead. Not approved.
 
-Provenance: ai-generated, Sonnet 5.5, 2026-10-14; human-confirmed: pending.
+## 6. Beyond colour (added 2026-10-23)
+
+- Tokens: `../_design/tokens.json` is the source of truth (colours of section 1, fonts, type scale, radius, stage 1920x1080); `tokens.css` is its `:root`; `check_tokens.py` fails on drift.
+- Type scale (12 steps): 24, 28, 32, 36, 40, 44, 48, 56, 76, 88, 104, 128 px as `--fs-label` ... `--fs-display`. Lesson 1 was moved onto it by rounding every size down by at most 4 px (22 px went up to 24), so no line grows and no title wraps; checked by screenshots of all 23 slides before and after.
+- Radius: `--r-s` 6 px, `--r-m` 16 px, `--r-l` 20 px, `--r-pill`; circles stay `50%`.
+- Component names: `eyebrow`, `title`, `lead`, `card`, `card-label`, `chip`, `numbered-item`, `step-number`, `footer` (lesson 1: `kick` became `eyebrow`, `lab` became `card-label`, `ccard` became `card`).
+- Diagrams (mermaid): the status classes `ok`, `draft`, `fail`, `off`, `gate` in `../_design/README.md` use these colours with `--ink` labels (small text), always next to the status word.
+- How to build a new lesson or presentation: `../_design/README.md`.
+
+Provenance: ai-generated, Sonnet 5.5, 2026-10-14; sections 1, 2, 4, 5 updated and section 6 added 2026-10-23 in a cloud session (ai-generated); human-confirmed: pending.

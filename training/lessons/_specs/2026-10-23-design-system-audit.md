@@ -64,3 +64,20 @@ Single source of tokens 0/20 (four palettes, copies in three formats); token ado
 2. One tokens file for colours (with the red pair), type scale and radius, read by the decks, slides, mockup and the cheatsheet builder (issues 3, 4, 6, 7).
 3. Write the component inventory above into the colours spec (or a sibling spec) and use those names for new work (issue 5).
 4. Small fixes: record the red contrast in spec section 5, update the gallery README, reduced-motion check for the slide viewer (issues 7, 2, 8).
+
+## Applied 2026-10-23 (the owner chose A, Paper/Amber, and asked to fix all 9 actions)
+
+| # | What was done | Checked |
+|---|---|---|
+| 1 | Slate lesson 1 v0.1 (`slides/`, `deck.json`) moved to `01-the-map/_archive-v0.1/` with a SUPERSEDED note; lesson and lessons READMEs point to `lesson-01-a/b.html`; the hosted deck is marked as the old version | references searched with `git grep` |
+| 2 | Colours spec records the decision; gallery recoloured from "Maple" to the palette (its one text use of the accent became `--amber-text`); gallery README updated | `check_tokens.py`: no colour outside the palette |
+| 3 | Red pair in the palette and contrast table (7.8:1 on paper, 6.5:1 on its tint) | computed, WCAG 2 formula |
+| 4 | `_design/tokens.json` + `tokens.css`; decks carry every token; the cheatsheet builder reads the JSON; `check_tokens.py` checks decks, mockup, gallery, builder and the CSS copy | check clean; a deliberately broken copy fails; builder palette values identical (the full build was not run here: PyMuPDF and macOS fonts absent) |
+| 5 | Type scale of 12 steps (24-128 px); 27 deck sizes rounded down by at most 4 px (22 up to 24); the control bar and notes panel keep their own sizes. The first try (8 steps, nearest size) made a title wrap on B6, so the rule became "round down" | screenshots of all 23 slides before and after, compared by pixel difference and by eye: no overflow, no new wrap |
+| 6 | Radius tokens `--r-s` 6, `--r-m` 16, `--r-l` 20, `--r-pill`; circles and the decorative leaf unchanged | same screenshots |
+| 7 | Classes `kick`, `lab`, `ccard` renamed to `eyebrow`, `card-label`, `card` in the four lesson-1 files; the mockup keeps its names until it is next edited | the deck script does not use these names (searched) |
+| 8 | `portfolio/README.md` says the portfolio is outside the course design system | - |
+| 9 | Status classes for mermaid defined in `_design/README.md` and applied to the three nodes that carry a status word (07 OPTIONAL: `off`; 09 evals NOT RUN: `draft`) | rendered with mermaid-cli 11.4.0; GitHub's renderer NOT TESTED |
+
+Also fixed while checking: the mockup's terminal illustration used four colours outside the palette; it now uses `--ink` with `--green-tint`, `--amber-tint` and `--card` text (contrast 12.9 to 15.8:1). The `-lecturer` files got the same CSS changes and were not screenshot-compared separately.
+Where the rules for future lessons live: `_design/README.md`, `_specs/2026-10-14-colors-design.md` section 6, `../COURSE-WORKING-RULES.md` section 2, `README.md` of the lessons folder, `../README.md`.

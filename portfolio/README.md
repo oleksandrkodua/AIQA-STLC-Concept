@@ -1,5 +1,7 @@
 # Portfolio
 
+Design: these are personal documents of the author with their own look (Deck Display and Deck Mono fonts, slate and teal). They are outside the course design system (`training/lessons/_design/`) on purpose; do not copy their colours or fonts into lessons.
+
 | File | What it is |
 |---|---|
 | [`Oleksandr_Kukhtinov_AI_QA_One_Pager.html`](Oleksandr_Kukhtinov_AI_QA_One_Pager.html) | one page: background, what I built with Claude Code, who did what, honest status. Open in a browser. |

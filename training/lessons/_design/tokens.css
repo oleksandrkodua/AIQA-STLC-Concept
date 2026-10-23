@@ -1,0 +1,37 @@
+/* Course design tokens (Paper/Amber). Generated from tokens.json; edit tokens.json, then copy this :root into a deck.
+   Explained in ../_specs/2026-10-14-colors-design.md and README.md here. Stage 1920x1080. Light only. */
+:root{
+  --paper:#F9F3E5;
+  --card:#FFFBF0;
+  --band:#F1E7CF;
+  --ground:#E6DABB;
+  --ink:#231F1A;
+  --muted:#4A4339;
+  --amber:#E0A030;
+  --amber-text:#9A5B0A;
+  --amber-tint:#F6E3B8;
+  --forest:#1E4A2E;
+  --leaf:#4E7A3A;
+  --green-tint:#E4EDDD;
+  --line:#D9CDB0;
+  --red-text:#8A2A1A;
+  --red-tint:#F3D9D1;
+  --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  --fs-label:24px;
+  --fs-small:28px;
+  --fs-body-s:32px;
+  --fs-card:36px;
+  --fs-body:40px;
+  --fs-body-l:44px;
+  --fs-lead:48px;
+  --fs-stat:56px;
+  --fs-title-s:76px;
+  --fs-title:88px;
+  --fs-title-l:104px;
+  --fs-display:128px;
+  --r-s:6px;
+  --r-m:16px;
+  --r-l:20px;
+  --r-pill:999px;
+}

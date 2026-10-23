@@ -25,7 +25,7 @@ Documentation pages used so far: `commands`, `desktop`, `vs-code`, `hooks-guide`
 
 - Each lesson slide needs its own layout and its own effect from `lessons/_template/animations` (A1-A10, B1-B8; `RANKING.md`). Fifteen copies of one card template was rejected.
 - Deliver visuals as files in the repository or as a published artifact, not as inline widgets in the chat (declined by the course owner).
-- Palette: `lessons/_specs/2026-10-14-colors-design.md` (DRAFT): paper `#F9F3E5`, ink `#231F1A`, amber `#E0A030`, forest `#1E4A2E`, IBM Plex Sans and Mono.
+- Design (decided by the course owner 2026-10-23): one design for every lesson and course presentation, Paper/Amber. Tokens (colours, type scale, radius) in `lessons/_design/tokens.json` and `tokens.css`; rules and the checklist before sharing in `lessons/_design/README.md`; why the colours are what they are in `lessons/_specs/2026-10-14-colors-design.md`. Lesson files: self-contained `lesson-NN-a.html` and `lesson-NN-b.html`, 1920x1080, IBM Plex Sans and Mono embedded. Run `python3 training/lessons/_design/check_tokens.py` before sharing. The Slate design (lesson 1 v0.1) and the "Maple" palette are retired.
 - Meaning of colour (proposal, not approved): green = in use, confirmed; amber = draft, not run, attention; red = unverified, blocked, failed; dashed grey = not used; thick ink outline = a human step or gate. Meaning is never carried by colour alone: pair it with a word or a mark.
 - The last frame of every effect must read without motion (a PDF shows only that). Animations loop (about every 7 seconds) and need a Replay control and a way to play them when reduced motion is on.
 - Slide text is English. Chat replies follow the language of the person writing.
