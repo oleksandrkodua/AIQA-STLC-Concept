@@ -66,14 +66,14 @@ First time here or on a new machine: run `/onboarding-check` (tools, MCP, access
 
 | Skill | Use it for | Status |
 |---|---|---|
-| `/analyze-requirements` | gaps, ambiguities, risks, testability, missing states and permissions | pilot |
-| `/create-test-cases` | cases from approved requirements (web checklist, mobile Xray) | existing |
-| `/automation-readiness-assessment` | should this case be automated now | existing |
-| `/create-playwright-test`, `/review-playwright-test` | web automation: implement, review | existing |
+| `/analyze-requirements` | gaps, ambiguities, risks, testability, missing states and permissions | pilot; DRAFT, evals NOT RUN |
+| `/create-test-cases` | cases from approved requirements (web checklist, mobile Xray) | DRAFT, evals NOT RUN |
+| `/automation-readiness-assessment` | should this case be automated now | DRAFT, evals NOT RUN |
+| `/create-playwright-test`, `/review-playwright-test` | web automation: implement, review | DRAFT, evals NOT RUN |
 | `/create-mobile-test`, `/review-mobile-test` | mobile automation (DRAFT, optional) | draft |
 | `/xray-test-create` | create approved cases in Xray (dry run first) | draft |
 | `/exploratory-testing-web`, `-mobile`, `/update-test-status`, `/bug-report`, `/qa-reporting`, `/ci-failure-analysis`, `/ci-fix` | stages 4, 6, 7, 8, 12, 13 | SKELETON, ON HOLD |
-| `/onboarding-check` | start-up checklist | SKELETON |
+| `/onboarding-check`; `/handoff`, `/feedback`, `/feedback-triage` | start-up checklist; session handoff; AI feedback loop | SKELETON; DRAFT |
 
 Web and mobile skills are optional: use only those whose automation project is registered above.
 Reserved, not in the build: design-check, test-plan-and-regression. Workflow skills and routines

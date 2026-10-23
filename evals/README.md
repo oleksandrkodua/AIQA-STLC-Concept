@@ -1,6 +1,6 @@
 # Evals
 
-STATUS: plan + first logic tests. Skills' evals: NOT RUN. Hook firing: NOT RUN.
+STATUS: plan + first logic tests. Skills' evals: NOT RUN, except `feedback-triage` (partly run 2026-10-23, bar NOT met; see `docs/HANDOFF-cloud.md`). Hook firing: NOT RUN.
 
 Principle: a skill, hook or agent is "working" only after its evals ran and the result is
 recorded. Write the PASS and FAIL criteria before the run. INCONCLUSIVE (setup broken) is
@@ -14,7 +14,7 @@ A grader or a task that fails every run is first suspected of being broken (R-15
 
 | # | Layer | What | Where | Status |
 |---|---|---|---|---|
-| 1 | Skill evals | 3 prompts per skill with written expectations; run 3× each | `.claude/skills/<skill>/evals/evals.json` | written for 7 skills; NOT RUN |
+| 1 | Skill evals | 3 prompts per skill with written expectations; run 3× each | `.claude/skills/<skill>/evals/evals.json` | written for 17 skills (all but `exploratory-testing-web` and `-mobile`); NOT RUN, except `feedback-triage` (partly run, bar NOT met) |
 | 2 | Skill selection | 10+ prompts without a slash; the expected skill must load every time | `evals/skill-selection.md` | written; NOT RUN |
 | 3 | Hook logic tests | scripts decide as specified for fixed inputs | `evals/hooks/run_hook_tests.py`, `run_runcheck_tests.py` | PASS 20/20 and 9/9 on 2026-10-07 (sandbox) |
 | 4 | Hook firing tests | Claude Code actually invokes the hook and honors the decision | `evals/hooks-firing.md` | NOT RUN |

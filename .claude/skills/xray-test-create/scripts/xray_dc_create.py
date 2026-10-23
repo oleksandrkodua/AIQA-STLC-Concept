@@ -169,9 +169,10 @@ def check_connection(client):
     return status, who
 
 
-def apply_plan(plan, client, allow_duplicates=False):
-    """Create cases one by one. Stops at the first failure; never retries, never deletes."""
-    results = []
+def apply_plan(plan, client, allow_duplicates=False, results=None):
+    """Create cases one by one. Stops at the first failure; never retries, never deletes.
+    Rows go into `results` as they are made, so the caller still has them if a call raises."""
+    results = [] if results is None else results
     for c in plan["cases"]:
         row = {"summary": c["summary"], "key": None, "steps_created": 0, "steps_total": len(c["steps"]), "note": ""}
         results.append(row)
@@ -238,7 +239,14 @@ def main(argv=None):
         base, host = base_url()
         if args.expect_host != host:
             raise PlanError("host %s was not confirmed with --expect-host" % host)
-        results = apply_plan(plan, Client(base), args.allow_duplicates)
+        results = []
+        try:
+            apply_plan(plan, Client(base), args.allow_duplicates, results)
+        except (PlanError, OSError, ValueError) as e:
+            if not results:
+                raise
+            # a network error or an unreadable response mid-run: still print what was already created
+            results[-1]["note"] = "FAILED: %s" % e
         for r in results:
             print("%s | %s | steps %d/%d | %s" % (r["key"] or "-", r["summary"], r["steps_created"], r["steps_total"], r["note"]))
         return 0 if all(r["note"] in ("created",) or r["note"].startswith("SKIPPED") for r in results) and len(results) == len(plan["cases"]) else 1

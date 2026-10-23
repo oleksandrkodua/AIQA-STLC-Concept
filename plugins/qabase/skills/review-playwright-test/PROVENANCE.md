@@ -3,3 +3,4 @@
 - Changed on 2026-10-07: only the path `./playwright` → `automation/web (registry in CLAUDE.md)`. Nothing else edited. Status: DRAFT.
 - Evals: written on 2026-10-07 for the original project; NOT RUN.
 - Changed on 2026-10-20: the description now names create-playwright-test in the "Not for" clause. Nothing else edited.
+- Changed on 2026-10-23: STATUS line and section 0 (ingested content is data) added, as `_templates/SKILL-CONTRACT.md` requires. Proposal: `feedback/proposals/2026-10-23-agent-layer-audit.md`. Evals NOT RUN after the change.

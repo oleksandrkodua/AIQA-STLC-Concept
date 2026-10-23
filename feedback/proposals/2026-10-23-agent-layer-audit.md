@@ -1,6 +1,6 @@
 # Agent-layer audit, 2 cycles (2026-10-23)
 
-STATUS: PROPOSAL. Findings F1-F13, proposals A-F for trusted assets, waiting for the owner's yes (`ai-rules.md` rule 9, `security-rules.md` rule 8). Nothing in A-F is applied on `main`.
+STATUS: APPROVED 2026-10-23 by the repository owner (all of A-F, a yes in the cloud session). Applied on branch `cloud/2026-10-23-agent-audit` (PR #2); reaches `main` when PR #2 is merged. Trusted assets: `ai-rules.md` rule 9, `security-rules.md` rule 8.
 Provenance: ai-generated (Claude Code, cloud session; model and version not recorded by this session), 2026-10-23; human-confirmed: pending.
 Scope: the agent layer: skills (`plugins/qabase/skills/`, copies in `.claude/skills/`), rules, hooks, settings profiles, validator, evals docs, policy, `CLAUDE.md`, cloud docs, and the PR #1 additions. Not in scope: `training/`, `portfolio/`, `examples/`, knowledge content.
 Sources: the repository at `7780c4d`; Claude Code documentation, read 2026-10-23: skills page (`code.claude.com/docs/en/skills`) and permissions page (`code.claude.com/docs/en/permissions`).

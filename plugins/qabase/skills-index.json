@@ -47,7 +47,7 @@
     "create-test-cases"
    ],
    "command": "/qabase:analyze-requirements",
-   "maturity": "unmarked",
+   "maturity": "draft",
    "description": "QA review of a written requirement, user story, acceptance criteria or code change before test design. Finds gaps, ambiguities, solution-shaped wording, missing states, permissions and scope boundaries, testability problems, hidden assumptions and related areas at risk, then gives a READY TO TEST verdict with the blocking questions first. Use it whenever someone asks whether a story is ready to test, wants requirements or acceptance criteria reviewed, is about to write test cases, or a requirement changes, even if they never say \"analyze\". Also for Ukrainian or Russian phrasing such as \"проаналізуй вимоги\" or \"чи готова історія до тестування\". Not for deciding whether a product idea is worth building, and not for writing test cases or automation."
   },
   {
@@ -67,7 +67,7 @@
    ],
    "then": [],
    "command": "/qabase:create-test-cases",
-   "maturity": "unmarked",
+   "maturity": "draft",
    "description": "Draft test cases from an approved requirement, user story, acceptance criteria, bug fix or change, in the field structure of the project's test management system (TMS). Builds a coverage matrix first, designs the oracle separately from the scenario, then returns cases for a human to review and save. Use it whenever someone asks for test cases, test scenarios, checks or coverage for a story, a change or a bug fix, or wants to see what should be tested, even if they never say \"test cases\". Also for Ukrainian or Russian phrasing such as \"напиши тест-кейси\", \"розпиши перевірки\" or \"покрытие для истории\". Not for reviewing a raw requirement (use analyze-requirements), not for deciding what to automate (use automation-readiness-assessment), not for writing Playwright code, and not for evaluating an LLM feature."
   },
   {
@@ -245,7 +245,7 @@
     "review-playwright-test"
    ],
    "command": "/qabase:create-playwright-test",
-   "maturity": "unmarked",
+   "maturity": "draft",
    "description": "Implement an approved automation candidate as a Playwright test, following the project's Playwright rules. Use after a test case has passed automation readiness assessment and a human has approved automating it. Not for mobile tests (use create-mobile-test), not for reviewing a test (use review-playwright-test), not for deciding whether to automate (use automation-readiness-assessment)."
   },
   {
@@ -281,7 +281,7 @@
    ],
    "then": [],
    "command": "/qabase:review-playwright-test",
-   "maturity": "unmarked",
+   "maturity": "draft",
    "description": "First-pass review of new or changed Playwright test code before a human approves the pull request. Checks that the test proves what its case says, would fail if the behavior broke, is deterministic and does not stub what it verifies, and flags AI-generated smells, scope creep and weakened assertions. Use it on any diff under the Playwright project, whether written by hand, drafted by a skill or produced by an agent, and whenever someone asks to review, audit or sanity-check a test or asks whether a test is any good. Also for Ukrainian or Russian phrasing such as \"переглянь тест\" or \"проревʼюй playwright\". Not for writing tests (use create-playwright-test), deciding whether a case should exist, or judging product behavior."
   },
   {

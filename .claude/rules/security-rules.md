@@ -10,7 +10,7 @@
 | Status | DRAFT — not approved |
 | Review date | not set |
 | Sources | A layered architecture design (security and trusted-asset sections); rules from earlier QA tooling (adapted; validity for a given employer UNCONFIRMED); rule 7: `decisions/PROPOSAL-security-rule-7-2026-10-23.md` |
-| Change history | v0.1 created 2026-10-07; neutral base 2026-10-20; rule 7 rewritten and approved 2026-10-23 by Oleksandr Kukhtinov (repository owner, acting as QA Lead) |
+| Change history | v0.1 created 2026-10-07; neutral base 2026-10-20; rule 7 rewritten and approved 2026-10-23 by Oleksandr Kukhtinov (repository owner, acting as QA Lead); rule 8 lists `plugins/qabase/**`, approved 2026-10-23 by the same (proposal `feedback/proposals/2026-10-23-agent-layer-audit.md`) |
 
 ## Environments
 
@@ -39,8 +39,8 @@
 
 ## Trusted-asset protection
 
-8. Edits to CLAUDE.md, `.claude/**`, `policy/**` and `evals/**` require explicit human
-   approval ("ask", not "allow").
+8. Edits to CLAUDE.md, `.claude/**`, `plugins/qabase/**`, `policy/**` and `evals/**` require
+   explicit human approval ("ask", not "allow").
 9. Never force-push, rewrite shared history, delete branches or tags, run migrations or
    deploys, or touch shared environments. Destructive local commands are named and confirmed
    first.
