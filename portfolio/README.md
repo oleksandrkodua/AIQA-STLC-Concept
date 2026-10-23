@@ -8,13 +8,13 @@
 
 ## Status
 
-- State of the described system: August 2026. The case study is anonymized (client name, internal domains and Slack channel names replaced); architecture, counts and gaps are unedited. ASSUMPTION: anonymization confirmed by the author, not independently checked.
+- State of the described system: October 2026. The per-item statuses were re-reviewed by the author on 2026-10-23, except two items kept as they were: PowerShell tooling on Windows (still not verified) and the evidence every run leaves behind (screenshots, network log, app version: described in the case study, no run log kept here). The case study is anonymized (client name, internal domains and Slack channel names replaced); architecture, counts and gaps are unedited. ASSUMPTION: anonymization confirmed by the author, not independently checked.
 - The documents describe an earlier, separate system. This repository is a neutral base that reuses its approach; it is not that system, and its numbers do not carry over.
 - Statements by the author, 2026-10-23 (ASSUMPTION: no run log is kept in this repository):
   - the mobile suites (24 smoke checks on Android: 17 as guest, 7 signed in; the same 24 on iOS) and the six diagnostic skills were re-run after the package was restructured;
   - the web suite still only opens the site; 24 smoke checks are planned;
   - bug creation and test-case creation in Xray are implemented as skills and have not yet been run against a live tracker.
-- The per-item status is on slide 11 of the case study; the documents are dated "as of August 2026" and carry that date on purpose.
+- The per-item status is on slide 11 of the case study; the documents are dated "as of October 2026".
 - Cleared for AI-assisted testing roles, not for pure SDET roles.
 - The phone number was removed from the one-page copy in this repository.
 - Publication permission from the employer: confirmed by the author (not documented here).
