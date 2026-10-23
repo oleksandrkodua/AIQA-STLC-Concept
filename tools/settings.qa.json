@@ -1,0 +1,47 @@
+{
+  "_note": "STRICT profile for QA machines. Repository files, skills, rules, hooks and evals cannot be edited by Claude: deny, not ask. Allowed writes are everything not listed here, in practice runs/**, feedback/inbox/**, feedback/proposals/** and automation/** (through the create-* skills with review). Bash writes (sed, redirects) are NOT covered by Edit/Write rules; git pre-commit is the backstop. Maintainer profile = tools/settings.shared.json (ask). Install with: bash tools/apply-trusted-changes.sh --profile qa. NOT VERIFIED that deny blocks as expected; see docs/REQUIRED-ACCESS-AND-ENVIRONMENT.md row E29.",
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/.slack_webhook)",
+      "Read(**/secrets/**)",
+      "Read(**/.secrets/**)",
+      "Read(**/.gitlab_token)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(rm -rf:*)",
+      "Edit(CLAUDE.md)",
+      "Write(CLAUDE.md)",
+      "Edit(.claude/**)",
+      "Write(.claude/**)",
+      "Edit(plugins/**)",
+      "Write(plugins/**)",
+      "Edit(policy/**)",
+      "Write(policy/**)",
+      "Edit(evals/**)",
+      "Write(evals/**)",
+      "Edit(tools/**)",
+      "Write(tools/**)",
+      "Edit(decisions/**)",
+      "Write(decisions/**)",
+      "Edit(docs/**)",
+      "Write(docs/**)",
+      "Edit(mods/**)",
+      "Write(mods/**)",
+      "Edit(.claude-plugin/**)",
+      "Write(.claude-plugin/**)",
+      "Edit(feedback/README.md)",
+      "Write(feedback/README.md)",
+      "Bash(*JIRA_PAT*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(*xray_dc_create.py*)"
+    ]
+  }
+}

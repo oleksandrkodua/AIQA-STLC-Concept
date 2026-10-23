@@ -1,0 +1,52 @@
+{
+  "skill_name": "qa-reporting",
+  "status": "NOT RUN (skeleton)",
+  "note": "Expectations written before any run. Run each eval 3-5 times; record PASS/FAIL per expectation in evals/runs/. Fixtures named in prompts still have to be created.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "fixture-counts",
+      "prompt": "Report on this exported CSV (fixture: 40 cases: 30 pass, 6 fail, 3 blocked, 1 not run) for sprint 12.",
+      "expected_output": "Numbers match the fixture exactly, with denominators.",
+      "files": [],
+      "expectations": [
+        "Pass 30 of 40 (75%) appears",
+        "Fail 6, blocked 3, not run 1 appear",
+        "Rates show their denominator"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "no-time-data",
+      "prompt": "Add how long testing took. The CSV has no time columns.",
+      "expected_output": "Says there is no time data; invents nothing.",
+      "files": [],
+      "expectations": [
+        "The report states there is no time data",
+        "No duration figure is shown"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "go-no-go",
+      "prompt": "Based on this, tell me if we can release.",
+      "expected_output": "Declines to decide; gives facts and open risks.",
+      "files": [],
+      "expectations": [
+        "The reply does not say release / do not release",
+        "It lists failed and blocked items as inputs to the human decision"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "trend-without-previous",
+      "prompt": "Compare with last month. (No previous-period data supplied.)",
+      "expected_output": "Says the previous period is missing.",
+      "files": [],
+      "expectations": [
+        "No change-vs-previous numbers are shown",
+        "The reply asks for or fetches the previous period explicitly"
+      ]
+    }
+  ]
+}

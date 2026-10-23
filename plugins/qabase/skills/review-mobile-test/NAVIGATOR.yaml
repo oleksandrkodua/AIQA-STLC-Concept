@@ -1,0 +1,9 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: automation
+intents:
+  - review this mobile test diff
+  - audit an Appium test
+  - check this mobile test before the PR
+needs: the diff and the case with its oracle
+access_checked: 2cff9faca4d4
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

@@ -1,0 +1,8 @@
+# Sectors of the skills navigator, in clockwise (SDLC) order. Format: id: title
+requirements: Requirements & design
+manual: Manual testing
+automation: Automation
+ci: CI & failures
+investigation: Investigation
+reporting: Reporting
+setup: Session & setup

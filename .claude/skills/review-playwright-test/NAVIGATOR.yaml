@@ -1,0 +1,9 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: automation
+intents:
+  - review this Playwright diff
+  - is this web test any good
+  - audit a new Playwright test before the PR
+needs: the full diff and the case it covers
+access_checked: 02c3ead3b44d
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

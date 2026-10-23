@@ -1,0 +1,13 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: ci
+intents:
+  - why did the pipeline fail
+  - analyze this red CI run
+  - classify failures as product, test or environment
+  - is this failure flaky
+needs: read-only access to CI logs and artifacts (CI system unknown)
+then:
+  - ci-fix
+  - bug-report
+access_checked: cf8aa587954f
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

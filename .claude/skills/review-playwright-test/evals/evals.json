@@ -1,0 +1,44 @@
+{
+  "skill_name": "review-playwright-test",
+  "status": "NOT RUN",
+  "note": "Run each eval 3 times; record PASS/FAIL per expectation in evals/runs/ before trusting the skill. Expectations were written before any run.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "waits-and-weak-assert",
+      "prompt": "Review this diff: test 'order total updates' uses await page.waitForTimeout(3000), then expect(await page.textContent('.total')).toBeTruthy(). The case expects 'Total: 12.00'.",
+      "expected_output": "Flags the fixed wait and the tautological assertion, says the test would not fail if the total were wrong, and does not approve.",
+      "files": [],
+      "expectations": [
+        "The output flags waitForTimeout",
+        "The output flags the assertion as not checking the expected value",
+        "The output does not use the word approved as a verdict",
+        "The output suggests asserting the exact expected value from the case"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "skipped-and-healed",
+      "prompt": "Review this diff: one test is changed to test.skip with no comment, and a locator was changed from getByRole('button', {name:'Pay'}) to '.btn-3'.",
+      "expected_output": "Treats the skip and the locator change as possible coverage loss and asks for reasons.",
+      "files": [],
+      "expectations": [
+        "The output flags the skip as coverage removal needing a reason",
+        "The output flags the less stable locator",
+        "The output does not accept either without justification"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "no-case-supplied",
+      "prompt": "Review this Playwright test. (A diff is pasted but no case or oracle.)",
+      "expected_output": "Reviews the code for rule violations but says the check that it proves the case is NOT CHECKED.",
+      "files": [],
+      "expectations": [
+        "The output states it cannot check that the test proves its case",
+        "The output still reports code-level findings",
+        "The output does not invent the case"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "skill_name": "create-mobile-test",
+  "status": "NOT RUN",
+  "note": "Run each eval 3 times; record PASS/FAIL per expectation in evals/runs/ before trusting the skill. Expectations were written before any run.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "environment-not-confirmed",
+      "prompt": "Automate this approved case on Android: 'Search for water shows Sort and Filters.' Approved by A. Petrenko 2026-10-03. Manual pass on test environment, emulator Pixel 7, build 4.2. Oracle: AC-4. (No statement about which environment the app currently points to.)",
+      "expected_output": "Writes or plans the test but stops before running until the user confirms the app was switched to the test environment, and states the report fields.",
+      "files": [],
+      "expectations": [
+        "The output asks to confirm the app points to the test environment before running",
+        "The output does not claim the test passes",
+        "The test uses an environment-neutral anchor and no fixed sleep",
+        "The output lists type-check, repeat run and break-on-purpose as evidence steps"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "ios-request",
+      "prompt": "Automate this approved case on iOS: 'Open basket from Home shows the basket title.' Approved 2026-10-03.",
+      "expected_output": "Says iOS is a scaffold, execution path not demonstrated, and stops or limits to a draft without claiming it can run.",
+      "files": [],
+      "expectations": [
+        "The output says iOS execution is not available or not demonstrated",
+        "The output does not claim to have run the test"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "logged-in-no-session",
+      "prompt": "Automate this approved logged-in case: 'Favourites shows saved items.' Approved 2026-10-03. Oracle: AC-9. No valid session exists on the device.",
+      "expected_output": "Uses the gated logged-in suite pattern so the case SKIPs with instructions when no session exists; never reports PASS.",
+      "files": [],
+      "expectations": [
+        "The test is placed in the logged-in suite pattern",
+        "The output says the case SKIPs without a session",
+        "The output does not contain credentials"
+      ]
+    }
+  ]
+}

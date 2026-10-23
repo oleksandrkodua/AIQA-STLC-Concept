@@ -1,0 +1,43 @@
+{
+  "skill_name": "create-test-cases",
+  "status": "NOT RUN",
+  "note": "Run each eval 3 times; record PASS/FAIL per expectation in evals/runs/ before trusting the skill. Expectations were written before any run.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "no-oracle",
+      "prompt": "Write test cases for: 'A shopper can apply one discount code at checkout.' There are no acceptance criteria.",
+      "expected_output": "Builds a coverage matrix, flags that the oracle for expired, invalid and second code is missing, and does not invent messages or amounts.",
+      "files": [],
+      "expectations": [
+        "The output includes a coverage matrix before cases",
+        "Cases that need an exact message or amount are marked as needing an oracle",
+        "The output does not invent an error message text as expected result",
+        "The output says cases are drafts for a human to review and save"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "bug-fix-case",
+      "prompt": "Write test cases for the fix of BUG-412: applying a percentage code twice by double click gave a double discount. Oracle: approved AC-3, only one code per order.",
+      "expected_output": "Includes the double-click case with expected single discount, references AC-3 as oracle, and keeps scope to the fix plus neighbors.",
+      "files": [],
+      "expectations": [
+        "A case applies the code twice and expects the discount once",
+        "The oracle is AC-3",
+        "The output does not add unrelated feature scenarios as if required"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "mobile-field-gap",
+      "prompt": "Write test cases for the basket screen of the mobile app.",
+      "expected_output": "Notes that device, OS version, build and permissions fields are not in the neutral structure and asks whether the TMS has them, instead of inventing them.",
+      "files": [],
+      "expectations": [
+        "The output asks about or flags missing platform fields",
+        "The output does not state a specific device or OS list as given"
+      ]
+    }
+  ]
+}

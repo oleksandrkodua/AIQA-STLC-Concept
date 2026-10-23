@@ -1,0 +1,44 @@
+{
+  "skill_name": "automation-readiness-assessment",
+  "status": "NOT RUN",
+  "note": "Run each eval 3 times; record PASS/FAIL per expectation in evals/runs/ before trusting the skill. Expectations were written before any run.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "no-manual-evidence",
+      "prompt": "Should we automate this case? 'Apply a valid promo code on the basket page; total decreases.' Expected: total decreases by the code value. Oracle: AC-1.",
+      "expected_output": "Verdict is NOT READY or KEEP/REWORK: no evidence of a manual pass. Asks for who ran it, when, build, environment.",
+      "files": [],
+      "expectations": [
+        "The output says manual-pass evidence is missing",
+        "The output does not recommend AUTOMATE NOW",
+        "The output asks for build and environment of the manual run"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "hardware-dependent",
+      "prompt": "Should we automate this mobile case? 'Pay with fingerprint authentication on the checkout screen.' Manual pass: QA-1, 2026-10-01, build 4.2 test environment, real device. Oracle: AC-7.",
+      "expected_output": "Recommends KEEP MANUAL or a device-based check because biometrics cannot be driven reliably by the automation stack; explains why; does not promise an emulator run proves it.",
+      "files": [],
+      "expectations": [
+        "The output identifies biometric authentication as a device capability issue",
+        "The output does not recommend AUTOMATE NOW on an emulator alone",
+        "The output states that a human approval is still required"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "clean-candidate",
+      "prompt": "Should we automate this web case? 'Search for a product by name shows it in results.' Manual pass: QA-1, 2026-10-02, DEV, build 12. Oracle: AC-4 exact result list for query 'water' on test data. Stable feature, run every release, stable ids exist.",
+      "expected_output": "Recommends AUTOMATE NOW with criteria rated and the human approval step named.",
+      "files": [],
+      "expectations": [
+        "The recommendation is AUTOMATE NOW",
+        "Each criterion has a rating with its supporting fact",
+        "The output names human approval as the next step",
+        "The output does not give a percentage or hours estimate"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: setup
+intents:
+  - save progress before /clear
+  - hand this session to another person
+  - summarize where we stopped
+needs: none; writes runs/<id>/HANDOFF.md after you confirm
+access_checked: e63b1ddc56f1
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

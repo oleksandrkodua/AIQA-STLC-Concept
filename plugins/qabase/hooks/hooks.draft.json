@@ -1,0 +1,21 @@
+{
+  "_note": "DRAFT, INACTIVE. A plugin loads only hooks/hooks.json. Rename to hooks.json after QA Lead approval AND after the firing tests pass (`evals/hooks-firing.md`). Scripts are unmodified copies of .claude/hooks; their TRUSTED path list covers `plugins/qabase/`.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Read|Edit|Write|MultiEdit|NotebookEdit|Glob|Grep|WebFetch",
+        "hooks": [ { "type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/deny_prod_and_secrets.py\"" } ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit|Bash",
+        "hooks": [ { "type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/protect_trusted_assets.py\"" } ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [ { "type": "command", "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/qa_gate.py\"" } ]
+      }
+    ]
+  }
+}

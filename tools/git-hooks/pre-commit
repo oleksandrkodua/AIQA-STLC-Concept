@@ -1,0 +1,21 @@
+#!/bin/sh
+# pre-commit: run the repository checks before a commit is created.
+# Install once per clone: sh tools/install-git-hooks.sh   (sets core.hooksPath)
+# Works with the Git Bash that ships with Git for Windows. Tries python3, python, py -3.
+ROOT="$(git rev-parse --show-toplevel)" || exit 1
+cd "$ROOT" || exit 1
+if command -v python3 >/dev/null 2>&1; then PY="python3"
+elif command -v python >/dev/null 2>&1; then PY="python"
+elif command -v py >/dev/null 2>&1; then PY="py -3"
+else
+  echo "pre-commit: no Python found (tried python3, python, py). The checks did NOT run." >&2
+  echo "Commit blocked. Install Python, or run the checks yourself and commit with --no-verify (your decision, not silent)." >&2
+  exit 1
+fi
+if ! OUT="$($PY evals/validate_repo.py 2>&1)"; then
+  echo "$OUT" | grep -E "^FAIL|passed" >&2
+  echo "" >&2
+  echo "pre-commit: repository checks failed. Fix the FAIL lines above, then commit again." >&2
+  exit 1
+fi
+exit 0

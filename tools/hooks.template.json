@@ -1,0 +1,21 @@
+{
+  "_note": "Per-machine hooks. __PY__ is replaced by apply-trusted-changes.sh with the Python launcher that actually runs on this machine (python3, py -3 or python). Written to .claude/settings.local.json (not committed). NOT VERIFIED that hooks fire; run the firing test in /onboarding-check.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Read|Edit|Write|MultiEdit|NotebookEdit|Glob|Grep|WebFetch",
+        "hooks": [ { "type": "command", "command": "__PY__ \"$CLAUDE_PROJECT_DIR/.claude/hooks/deny_prod_and_secrets.py\"" } ]
+      },
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit|Bash",
+        "hooks": [ { "type": "command", "command": "__PY__ \"$CLAUDE_PROJECT_DIR/.claude/hooks/protect_trusted_assets.py\"" } ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [ { "type": "command", "command": "__PY__ \"$CLAUDE_PROJECT_DIR/.claude/hooks/qa_gate.py\"" } ]
+      }
+    ]
+  }
+}

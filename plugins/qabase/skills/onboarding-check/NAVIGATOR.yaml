@@ -1,0 +1,10 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: setup
+intents:
+  - check my setup
+  - first time in this project
+  - something is not installed
+  - check that hooks and permissions work
+needs: none
+access_checked: fce9a519487c
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

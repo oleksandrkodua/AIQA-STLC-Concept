@@ -1,0 +1,12 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: requirements
+intents:
+  - is this story ready to test
+  - review the acceptance criteria
+  - find gaps or ambiguities in a requirement
+  - a requirement changed, what is at risk
+needs: the full requirement text with its version or date
+then:
+  - create-test-cases
+access_checked: 77f03719c425
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

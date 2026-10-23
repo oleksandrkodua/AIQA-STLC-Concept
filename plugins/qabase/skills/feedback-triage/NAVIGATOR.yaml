@@ -1,0 +1,9 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: setup
+intents:
+  - go through the feedback inbox
+  - turn feedback into change proposals
+  - decide what feedback becomes a rule or eval
+needs: none; reads feedback/inbox/, writes feedback/proposals/ after you confirm
+access_checked: 766a2fbb2041
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

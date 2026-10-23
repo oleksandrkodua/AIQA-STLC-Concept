@@ -1,0 +1,12 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: manual
+intents:
+  - file a bug
+  - write up this defect with reproducible steps
+  - check for duplicates before reporting
+  - I found a defect while testing, report it
+needs: Jira MCP (search, create, attach)
+then:
+  - update-test-status
+access_checked: 213defedbe26
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

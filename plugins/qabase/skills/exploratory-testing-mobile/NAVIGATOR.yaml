@@ -1,0 +1,12 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: manual
+intents:
+  - explore a mobile feature
+  - write a charter for iOS or Android
+  - session-test the mobile app
+  - run a time-boxed exploratory session on a device
+needs: a device or emulator and the build id; writes a note file in runs/; no Jira
+then:
+  - bug-report
+access_checked: cf9260632703
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

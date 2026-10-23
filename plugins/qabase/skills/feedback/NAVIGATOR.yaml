@@ -1,0 +1,9 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: setup
+intents:
+  - report that the AI got something wrong
+  - turn my correction into a feedback entry
+  - report a problem with a skill, rule or hook
+needs: none; writes feedback/inbox/ after you confirm
+access_checked: a8d4a3a54510
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

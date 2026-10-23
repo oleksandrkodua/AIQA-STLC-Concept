@@ -1,0 +1,12 @@
+{
+  "name": "qabase-marketplace",
+  "description": "DRAFT - AI-assisted QA plugin, a neutral base for a QA team (web and mobile optional). Not approved.",
+  "owner": { "name": "QA base (draft)" },
+  "plugins": [
+    {
+      "name": "qabase",
+      "source": "./plugins/qabase",
+      "description": "QA skills: requirements analysis, test cases, exploratory testing, bug reports, reporting, automation, CI triage. DRAFT."
+    }
+  ]
+}

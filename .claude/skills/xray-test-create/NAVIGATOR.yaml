@@ -1,0 +1,12 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: manual
+intents:
+  - create the approved test cases in Xray
+  - put these test cases into Jira
+  - save the cases to the test management system
+  - залей кейсы в Xray
+needs: approved test case drafts; Xray Server/DC; JIRA_BASE_URL and JIRA_PAT in the environment set by the human
+then:
+  - update-test-status
+access_checked: a3de33419b27
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

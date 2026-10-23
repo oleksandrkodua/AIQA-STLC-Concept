@@ -1,0 +1,41 @@
+{
+  "project": "DEMO",
+  "cases": [
+    {
+      "summary": "Promo code: a valid code lowers the basket total by its percentage",
+      "description": "Covers AC-101-1. Oracle: the percentage printed on the promo code record, applied to the basket subtotal before delivery (product answer Q1).",
+      "labels": ["demo-shop", "promo-code"],
+      "steps": [
+        {"step": "Add products worth 40.00 to the basket", "data": "code SAVE10 (10 percent), active", "result": "Basket subtotal shows 40.00"},
+        {"step": "Enter SAVE10 and press Apply", "data": "SAVE10", "result": "Discount line shows -4.00 and the subtotal shows 36.00"}
+      ]
+    },
+    {
+      "summary": "Promo code: an expired code is rejected with a message",
+      "description": "Covers AC-101-2. Oracle: the expiry date on the promo code record.",
+      "labels": ["demo-shop", "promo-code"],
+      "steps": [
+        {"step": "Add any product to the basket", "data": "code OLD20, expired yesterday", "result": "Basket shows the product"},
+        {"step": "Enter OLD20 and press Apply", "data": "OLD20", "result": "Message says the code has expired; the total does not change"}
+      ]
+    },
+    {
+      "summary": "Promo code: a second code is not stacked on the first",
+      "description": "Covers AC-101-3. Oracle: product answer Q3 (one code per order; the second is refused).",
+      "labels": ["demo-shop", "promo-code"],
+      "steps": [
+        {"step": "Apply SAVE10 to a basket worth 40.00", "data": "SAVE10", "result": "Subtotal shows 36.00"},
+        {"step": "Enter a second valid code and press Apply", "data": "WELCOME5, active", "result": "Message says only one code can be used; the subtotal stays 36.00"}
+      ]
+    },
+    {
+      "summary": "Promo code: the code is not case sensitive",
+      "description": "Covers AC-101-4. Oracle: product answer Q4 (codes are not case sensitive).",
+      "labels": ["demo-shop", "promo-code"],
+      "steps": [
+        {"step": "Add products worth 40.00 to the basket", "data": "code SAVE10, active", "result": "Basket subtotal shows 40.00"},
+        {"step": "Enter save10 in lower case and press Apply", "data": "save10", "result": "The code is accepted and the subtotal shows 36.00"}
+      ]
+    }
+  ]
+}

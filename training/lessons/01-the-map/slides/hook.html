@@ -1,0 +1,12 @@
+<section id="hook" data-transition="fade" data-section="Control and proof: hooks, permissions, evals, MCP, plugins." style="background:#F6F4EE;color:#16202B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:16px"><p style="font-size:24px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C8431D">Control and proof · 11 of 14</p><h2 style="font-size:64px;font-weight:600;line-height:1.1">Hook</h2></div>
+<p style="font-size:40px;line-height:1.3">A command that runs on an event, before or after an action, and can block it.</p>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;padding:40px;border:1px solid #DDD8CB;border-radius:16px"><p style="font-size:24px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#C8431D">Analogy</p><p style="font-size:28px;line-height:1.4">A turnstile at the entrance: it does not ask the model, it just stops you.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;padding:40px;border:1px solid #DDD8CB;border-radius:16px"><p style="font-size:24px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#1F7A70">In our project</p><p style="font-size:28px;line-height:1.4">.claude/hooks/ . Draft: not proven to fire yet.</p></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#FFFDF8;padding:40px;border:1px solid #DDD8CB;border-radius:16px"><p style="font-size:24px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#5B6670">Common mistake</p><p style="font-size:28px;line-height:1.4">Assuming a hook catches everything. Lesson 7 shows what it does not stop.</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:900px;font-size:24px;color:#5B6670">Lesson 1 · The map: what is what</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#5B6670">16</p>
+<aside>Key contrast: a prompt rule is a request; a hook is code that runs regardless of what the model decides. Be explicit that our hooks are drafts (an open item): until we run the firing tests, we teach how it will work, not how it works.</aside>
+</section>

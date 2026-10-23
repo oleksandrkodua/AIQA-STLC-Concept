@@ -1,0 +1,19 @@
+runs/*
+!runs/README.md
+!runs/QA-RUN.template.md
+node_modules/
+.env
+.env.*
+!.env.example
+evidence/
+*.log
+evals/runs/
+
+.claude/settings.local.json
+.claude/*.proposed
+
+# Local junk, never commit
+_to_delete/
+.fuse_hidden*
+~$*
+.DS_Store

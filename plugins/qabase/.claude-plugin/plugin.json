@@ -1,0 +1,12 @@
+{
+  "name": "qabase",
+  "displayName": "QA base",
+  "version": "0.1.0",
+  "description": "AI-assisted QA skills, a neutral base for a QA team; web and mobile are optional (DRAFT, not approved).",
+  "keywords": [
+    "qa",
+    "testing",
+    "playwright",
+    "appium"
+  ]
+}

@@ -1,0 +1,13 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: automation
+intents:
+  - should we automate this case
+  - what goes into the regression suite
+  - review the regression backlog
+  - is this case worth automating now or later
+needs: the full case with its oracle and evidence of a manual pass; target web or mobile
+then:
+  - create-playwright-test
+  - create-mobile-test
+access_checked: f7a735d9afa8
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

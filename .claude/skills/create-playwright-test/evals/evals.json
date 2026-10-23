@@ -1,0 +1,48 @@
+{
+  "skill_name": "create-playwright-test",
+  "evals": [
+    {
+      "id": 1,
+      "name": "approved-case-with-existing-helpers",
+      "prompt": "Automate this approved case as a Playwright test.\n\nCASE: Expired discount code is rejected\nApproved for automation by: A. Petrenko, 2026-09-28\nPreconditions: a shopper has one item in the cart; the code SAVE10 is expired.\nSteps: 1. Open the cart. 2. Enter SAVE10. 3. Click Apply.\nExpected: the message 'This code has expired' is shown; the order total is unchanged; no discount line appears.\nOracle: approved AC-2.\n\nThe repo already has automation/web/fixtures/cart.ts exporting addItem(page, sku) and a page object CartPage with applyCode(code), totalText() and discountLine(). The test environment is https://shop.test.example.",
+      "expected_output": "A test that reuses the existing fixture and page object instead of inventing new ones, asserts the exact message, asserts the total is unchanged and that no discount line is present, uses no fixed waits, contains no credentials, and does not claim it passes. The output lists the evidence steps still to run: type-check, repeat run, and breaking the test on purpose.",
+      "files": [],
+      "expectations": [
+        "The test uses addItem and CartPage.applyCode rather than redefining them",
+        "The test asserts the exact text 'This code has expired'",
+        "The test asserts the total is unchanged",
+        "The test asserts no discount line is present",
+        "The test contains no waitForTimeout or fixed sleep",
+        "The output does not state that the test passes, or names the command that produced that result",
+        "The output includes or asks for a type-check, a repeated run, and a break-on-purpose check"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "case-without-expected-result",
+      "prompt": "Automate this approved case.\n\nCASE: User can check out\nApproved for automation by: A. Petrenko, 2026-09-28\nSteps: add an item to the cart, click Checkout, pay with the test card.",
+      "expected_output": "The skill stops and sends the case back: it has no expected result and no oracle, so there is nothing to assert. It does not invent an expectation such as an order confirmation number or a specific page.",
+      "files": [],
+      "expectations": [
+        "The output says the case has no expected result or oracle",
+        "The output stops or sends the case back instead of writing a full test",
+        "The output does not invent a specific expected message, page or number as if it came from the case",
+        "The output names what is needed from the case owner"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "regression-test-for-fixed-defect",
+      "prompt": "Write a regression test for a fixed defect.\n\nBUG-412: applying a percentage discount code twice, by double-clicking Apply, produced a double discount. Fixed in build 2.4.1. Build 2.4.0 still has the defect and is available on https://shop-240.test.example. Expected after the fix: the discount is applied once. Oracle: approved AC-3 (only one code per order). Existing page object CartPage has applyCode(code) and discountLine().",
+      "expected_output": "A test that applies the code twice and asserts the discount is applied once. The output asks for or plans a run against build 2.4.0 to show the test fails there, and then passes on 2.4.1. It does not use a fixed wait to hide the double-click race and does not claim the regression is verified without that run.",
+      "files": [],
+      "expectations": [
+        "The test applies the code twice, by double-click or two applications",
+        "The test asserts the discount is applied exactly once",
+        "The output plans or requires a run against build 2.4.0 showing the test fails",
+        "The output does not describe the regression as verified without that run",
+        "The test contains no fixed wait"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# One lowercase hostname per line. Lines starting with # are ignored.
+# EMPTY ON PURPOSE: the real production hostnames are UNKNOWN until Discovery (Discovery item 5).
+# While this file is empty the hook blocks no host. Do not treat prod-protection as active.

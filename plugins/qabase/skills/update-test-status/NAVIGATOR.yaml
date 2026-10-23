@@ -1,0 +1,12 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: manual
+intents:
+  - mark these cases passed or failed
+  - update a test execution
+  - record manual test results
+  - mark cases blocked or not run
+needs: Jira MCP with write access to the status of the named cases
+then:
+  - bug-report
+access_checked: 923f394f3724
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

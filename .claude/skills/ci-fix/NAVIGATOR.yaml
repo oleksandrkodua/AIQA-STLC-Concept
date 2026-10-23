@@ -1,0 +1,12 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: ci
+intents:
+  - fix this test defect from the analysis
+  - propose a reviewable diff for a failing automated test
+  - fix a failing test after the analysis was accepted
+needs: an accepted analysis that classified a test defect; local test run against DEV after confirmation
+then:
+  - review-playwright-test
+  - review-mobile-test
+access_checked: db2e6e0f07e2
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

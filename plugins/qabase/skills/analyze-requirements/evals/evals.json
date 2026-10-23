@@ -1,0 +1,73 @@
+{
+ "skill_name": "analyze-requirements",
+ "status": "NOT RUN",
+ "note": "Run each eval 3 times; record PASS/FAIL per expectation in evals/runs/ before trusting the skill. Expectations were written before any run.",
+ "evals": [
+  {
+   "id": 1,
+   "name": "vague-quantifier-story",
+   "prompt": "Analyze this story: 'As a shopper I want the basket to load quickly and show all my items so I can check out. Large baskets should work too.' Acceptance criteria: none.",
+   "expected_output": "READY TO TEST is no or partially. The skill quotes 'quickly' and 'large' as vague, notes that acceptance criteria are absent and does not invent them, lists missing states (empty basket, item unavailable, error) and asks named roles questions.",
+   "files": [],
+   "expectations": [
+    "The output quotes 'quickly' or 'large' as unquantified",
+    "The output says acceptance criteria are absent and does not write invented ones as requirements",
+    "The output lists at least one missing state such as empty basket or error",
+    "Assumptions are in their own section and marked not verified",
+    "The output does not state a specific load time or basket size as a requirement"
+   ]
+  },
+  {
+   "id": 2,
+   "name": "title-only",
+   "prompt": "Is this story ready to test? 'Improve delivery slot selection'.",
+   "expected_output": "The skill refuses to analyze a title alone and asks for the full text.",
+   "files": [],
+   "expectations": [
+    "The output says the text is insufficient",
+    "The output asks for the full requirement and acceptance criteria",
+    "The output does not produce findings about slot behavior"
+   ]
+  },
+  {
+   "id": 3,
+   "name": "ukrainian-trigger",
+   "prompt": "Проаналізуй вимоги перед тестуванням: 'Користувач може змінити адресу доставки до моменту підтвердження замовлення.'",
+   "expected_output": "Selected without a slash command. Finds the undefined point 'confirmation', permissions, what happens after confirmation, and slot/price recalculation as questions, not as facts.",
+   "files": [],
+   "expectations": [
+    "The skill analyze-requirements is the one that loads",
+    "The output asks what exactly 'confirmation' means",
+    "The output raises what happens to slot or price when the address changes as a question or risk",
+    "Nothing is stated as system behavior without being quoted from the text"
+   ]
+  },
+  {
+   "id": 4,
+   "name": "ac-ids-and-brief",
+   "prompt": "Analyze this story and give me a brief: 'As a shopper I can choose a delivery slot at checkout. Slots after the cut-off time are not available.' (A human is present and will answer questions.)",
+   "expected_output": "AC table with numbered ids, types and origin; at least one non-happy criterion marked INFERRED with a question, not an answer; questions asked one at a time; a DRAFT brief that is not marked approved.",
+   "files": [],
+   "expectations": [
+    "The output has an acceptance criteria table with ids of the form AC-<label>-n and a type for each row",
+    "At least one row is a non-happy type (empty, limit, permission or failure) or the output says why none was found",
+    "Every criterion the text does not state is marked INFERRED and appears as a question, not as a stated rule",
+    "The output asks at most one question per message in the interview step",
+    "The brief status is DRAFT and nothing is marked approved by Claude",
+    "The output does not state the cut-off time or the slot length as a requirement"
+   ]
+  },
+  {
+   "id": 5,
+   "name": "brief-unattended",
+   "prompt": "(Scheduled run, no human present.) Analyze: 'Customers can change the delivery address until the order is confirmed.' Produce the brief.",
+   "expected_output": "No questions put to the user; every question is carried into the brief as open; brief DRAFT.",
+   "files": [],
+   "expectations": [
+    "The output does not wait for an answer or ask the user a question mid-run",
+    "The brief lists the open questions with an owner each",
+    "The brief status is DRAFT"
+   ]
+  }
+ ]
+}

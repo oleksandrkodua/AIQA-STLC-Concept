@@ -1,0 +1,34 @@
+{
+  "_note": "MAINTAINER profile: ask on trusted paths. QA machines use tools/settings.qa.json (deny). Shared permission floor (committed). No hooks here: hooks are per-machine because the Python launcher differs by OS; see hooks.template.json and apply-trusted-changes.sh. Source: .claude/settings.draft.json.",
+  "permissions": {
+    "deny": [
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(**/*.pem)",
+      "Read(**/*.key)",
+      "Read(**/.slack_webhook)",
+      "Read(**/secrets/**)",
+      "Read(**/.secrets/**)",
+      "Read(**/.gitlab_token)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(rm -rf:*)",
+      "Bash(*JIRA_PAT*)"
+    ],
+    "ask": [
+      "Edit(CLAUDE.md)",
+      "Edit(.claude/**)",
+      "Write(.claude/**)",
+      "Edit(plugins/qabase/**)",
+      "Write(plugins/qabase/**)",
+      "Edit(policy/**)",
+      "Write(policy/**)",
+      "Edit(evals/**)",
+      "Write(evals/**)",
+      "Bash(git push:*)",
+      "Bash(*xray_dc_create.py*)"
+    ]
+  }
+}

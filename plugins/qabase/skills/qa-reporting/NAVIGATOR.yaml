@@ -1,0 +1,9 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: reporting
+intents:
+  - build a QA report for a manager
+  - sprint test summary
+  - trend versus last month
+needs: Jira MCP, read-only
+access_checked: 434e45207ef1
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

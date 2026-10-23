@@ -1,0 +1,12 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: manual
+intents:
+  - explore a web feature
+  - write a charter for the web shop
+  - session-test a web flow
+  - run a time-boxed exploratory session on the website
+needs: a charter or feature to explore; writes a note file in runs/; no Jira; no Chrome automation
+then:
+  - bug-report
+access_checked: eeaa7667eea0
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

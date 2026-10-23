@@ -1,0 +1,41 @@
+{
+  "skill_name": "review-mobile-test",
+  "status": "NOT RUN",
+  "note": "Run each eval 3 times; record PASS/FAIL per expectation in evals/runs/ before trusting the skill. Expectations were written before any run.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "emulator-as-device",
+      "prompt": "Review this mobile test report: finding 'checkout button is unresponsive on small phones', evidence: resized emulator. The diff adds an assertion and a 5 second sleep.",
+      "expected_output": "Flags the sleep and says the emulator-only evidence cannot confirm a device finding; asks for hardware check; does not approve.",
+      "files": [],
+      "expectations": [
+        "The output flags the fixed sleep",
+        "The output says emulator-only evidence caps confidence and needs a device check",
+        "The output does not approve"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "skip-counted-as-pass",
+      "prompt": "Review this diff: the logged-in suite now reports its 8 cases as passed when no session exists, because the gate was changed to return early.",
+      "expected_output": "Flags that SKIP is now reported as PASS and treats it as coverage loss and misreporting.",
+      "files": [],
+      "expectations": [
+        "The output flags SKIP being reported as PASS",
+        "The output marks the verdict CHANGES NEEDED or BLOCKED"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "allowlist-widened",
+      "prompt": "Review this diff: three failing tests are fixed by adding '/api/*' to the network error allowlist with no comment.",
+      "expected_output": "Flags the widened allowlist as hiding failures and asks for a reason per entry.",
+      "files": [],
+      "expectations": [
+        "The output flags the allowlist widening",
+        "The output asks for a reason per entry or narrower patterns"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+#!/bin/bash
+# pre-push: stop a push that would publish what must stay local.
+# Install: sh tools/install-git-hooks.sh (core.hooksPath = tools/git-hooks). Bypass only with --no-verify (your decision, not silent).
+# Blocks: any ref that is not a branch or a tag (refs/time-machine/*, refs/archive/*); a pushed tip whose tree contains conference
+# speaker names, the earlier client's name, a phone number, a token or a private key.
+# Limits: it checks the tree of each pushed tip, not every commit in between; a pattern list is a floor, not a guarantee.
+# The words below are split with quotes so that this file does not contain them itself.
+NAMES='(^|[^A-Za-z0-9])(Mo''mot|Tel''tov|Sulim''ovsk|Didk''ovsk|Ch''ub|Kurk''otov)'
+BLOCK='[Oo][Cc][Aa][Dd][Oo]|38093''1151990|ghp_[A-Za-z0-9]{20,}|xox[bp]-[A-Za-z0-9-]{10,}|Bearer [A-Za-z0-9._-]{30,}|BEGIN [A-Z ]*PRIVATE KEY'
+ZERO=0000000000000000000000000000000000000000
+fail=0
+while read -r local_ref local_sha remote_ref remote_sha; do
+  [ "$local_sha" = "$ZERO" ] && continue            # a deletion on the remote: not our concern here
+  case "$remote_ref" in refs/heads/*|refs/tags/*) ;; *) echo "pre-push: refusing to push '$remote_ref' (only branches and tags)" >&2; fail=1; continue;; esac
+  case "$local_ref"  in refs/heads/*|refs/tags/*) ;; *) echo "pre-push: refusing to push local ref '$local_ref'" >&2; fail=1; continue;; esac
+  tmp="$(mktemp "${TMPDIR:-/tmp}/prepush.XXXXXX")"
+  while IFS= read -r -d '' f; do
+    git show "$local_sha:$f" > "$tmp" 2>/dev/null || continue
+    h="$(awk 'length($0) < 1000' "$tmp" | grep -InoE "$NAMES|$BLOCK" 2>/dev/null | head -1)"
+    [ -n "$h" ] && { echo "pre-push: blocked pattern in $f ($h)" >&2; fail=1; }
+  done < <(git ls-tree -r -z --name-only "$local_sha")
+  rm -f "$tmp"
+done
+[ "$fail" = 0 ] || { echo "pre-push: push stopped. Nothing was sent." >&2; exit 1; }
+exit 0

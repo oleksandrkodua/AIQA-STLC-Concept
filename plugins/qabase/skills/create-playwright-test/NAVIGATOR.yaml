@@ -1,0 +1,11 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: automation
+intents:
+  - automate this approved case on web
+  - write a Playwright test
+  - implement the approved web candidate
+needs: an approved case, who approved it and when; a non-production environment
+then:
+  - review-playwright-test
+access_checked: 58f431a2b24d
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents

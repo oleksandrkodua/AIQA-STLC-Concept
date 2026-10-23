@@ -1,0 +1,424 @@
+{
+ "generated_from": "plugins/qabase/skills/*/NAVIGATOR.yaml and SKILL.md; do not edit by hand",
+ "sectors": [
+  {
+   "id": "requirements",
+   "title": "Requirements & design"
+  },
+  {
+   "id": "manual",
+   "title": "Manual testing"
+  },
+  {
+   "id": "automation",
+   "title": "Automation"
+  },
+  {
+   "id": "ci",
+   "title": "CI & failures"
+  },
+  {
+   "id": "investigation",
+   "title": "Investigation"
+  },
+  {
+   "id": "reporting",
+   "title": "Reporting"
+  },
+  {
+   "id": "setup",
+   "title": "Session & setup"
+  }
+ ],
+ "skills": [
+  {
+   "name": "analyze-requirements",
+   "sector": "requirements",
+   "intents": [
+    "is this story ready to test",
+    "review the acceptance criteria",
+    "find gaps or ambiguities in a requirement",
+    "a requirement changed, what is at risk"
+   ],
+   "phrases": [],
+   "needs": "the full requirement text with its version or date",
+   "not_for": [],
+   "then": [
+    "create-test-cases"
+   ],
+   "command": "/qabase:analyze-requirements",
+   "maturity": "unmarked",
+   "description": "QA review of a written requirement, user story, acceptance criteria or code change before test design. Finds gaps, ambiguities, solution-shaped wording, missing states, permissions and scope boundaries, testability problems, hidden assumptions and related areas at risk, then gives a READY TO TEST verdict with the blocking questions first. Use it whenever someone asks whether a story is ready to test, wants requirements or acceptance criteria reviewed, is about to write test cases, or a requirement changes, even if they never say \"analyze\". Also for Ukrainian or Russian phrasing such as \"проаналізуй вимоги\" or \"чи готова історія до тестування\". Not for deciding whether a product idea is worth building, and not for writing test cases or automation."
+  },
+  {
+   "name": "create-test-cases",
+   "sector": "requirements",
+   "intents": [
+    "write test cases for an approved story",
+    "what should be tested for this story",
+    "coverage matrix for a change or bug fix",
+    "draft test scenarios from acceptance criteria"
+   ],
+   "phrases": [],
+   "needs": "an approved requirement; the test management field structure (from Discovery)",
+   "not_for": [
+    "analyze-requirements",
+    "automation-readiness-assessment"
+   ],
+   "then": [],
+   "command": "/qabase:create-test-cases",
+   "maturity": "unmarked",
+   "description": "Draft test cases from an approved requirement, user story, acceptance criteria, bug fix or change, in the field structure of the project's test management system (TMS). Builds a coverage matrix first, designs the oracle separately from the scenario, then returns cases for a human to review and save. Use it whenever someone asks for test cases, test scenarios, checks or coverage for a story, a change or a bug fix, or wants to see what should be tested, even if they never say \"test cases\". Also for Ukrainian or Russian phrasing such as \"напиши тест-кейси\", \"розпиши перевірки\" or \"покрытие для истории\". Not for reviewing a raw requirement (use analyze-requirements), not for deciding what to automate (use automation-readiness-assessment), not for writing Playwright code, and not for evaluating an LLM feature."
+  },
+  {
+   "name": "bug-report",
+   "sector": "manual",
+   "intents": [
+    "file a bug",
+    "write up this defect with reproducible steps",
+    "check for duplicates before reporting",
+    "I found a defect while testing, report it"
+   ],
+   "phrases": [],
+   "needs": "Jira MCP (search, create, attach)",
+   "not_for": [
+    "update-test-status"
+   ],
+   "then": [
+    "update-test-status"
+   ],
+   "command": "/qabase:bug-report",
+   "maturity": "skeleton",
+   "description": "Prepare a complete, reproducible bug report in the project's Jira fields (project, type, assignee, fix version, priority, severity, environment, evidence), check for duplicates, and create it only after the human confirms. Use whenever a defect is found or reported ('заведи баг', 'оформи баг', 'create a bug', 'это баг') during exploratory, regression, design check or a failed case. Not for deciding whether something is a defect without evidence, not for fixing it, not for status updates (use update-test-status)."
+  },
+  {
+   "name": "exploratory-testing-mobile",
+   "sector": "manual",
+   "intents": [
+    "explore a mobile feature",
+    "write a charter for iOS or Android",
+    "session-test the mobile app",
+    "run a time-boxed exploratory session on a device"
+   ],
+   "phrases": [],
+   "needs": "a device or emulator and the build id; writes a note file in runs/; no Jira",
+   "not_for": [
+    "bug-report",
+    "exploratory-testing-web"
+   ],
+   "then": [
+    "bug-report"
+   ],
+   "command": "/qabase:exploratory-testing-mobile",
+   "maturity": "skeleton",
+   "description": "Plan and run a time-boxed exploratory testing session on the iOS and Android apps (charter, heuristics, device and build identity, notes, findings) and hand defects to bug-report. Use when asked to explore, charter or session-test a mobile app feature. Not for the web shop (use exploratory-testing-web), not for scripted case execution, not for filing bugs (use bug-report)."
+  },
+  {
+   "name": "exploratory-testing-web",
+   "sector": "manual",
+   "intents": [
+    "explore a web feature",
+    "write a charter for the web shop",
+    "session-test a web flow",
+    "run a time-boxed exploratory session on the website"
+   ],
+   "phrases": [],
+   "needs": "a charter or feature to explore; writes a note file in runs/; no Jira; no Chrome automation",
+   "not_for": [
+    "bug-report",
+    "exploratory-testing-mobile"
+   ],
+   "then": [
+    "bug-report"
+   ],
+   "command": "/qabase:exploratory-testing-web",
+   "maturity": "skeleton",
+   "description": "Plan and run a time-boxed exploratory testing session on the WEB shop (charter, heuristics, notes, findings) and hand defects to bug-report. Use when asked to explore, charter or session-test a web feature or flow. Not for the mobile apps (use exploratory-testing-mobile), not for scripted case execution, not for filing bugs (use bug-report)."
+  },
+  {
+   "name": "update-test-status",
+   "sector": "manual",
+   "intents": [
+    "mark these cases passed or failed",
+    "update a test execution",
+    "record manual test results",
+    "mark cases blocked or not run"
+   ],
+   "phrases": [],
+   "needs": "Jira MCP with write access to the status of the named cases",
+   "not_for": [
+    "bug-report",
+    "create-test-cases",
+    "qa-reporting"
+   ],
+   "then": [
+    "bug-report"
+   ],
+   "command": "/qabase:update-test-status",
+   "maturity": "skeleton",
+   "description": "Record manual test results (pass, fail, blocked, not run) against test cases in Jira/Xray (mobile) or checklists (web) from results the tester supplies, via a previewed change plan the human confirms. Use when someone says 'проставь статусы', 'update test execution', 'mark these cases as passed/failed'. Not for deciding whether a case passed, not for creating cases (use create-test-cases), not for bug creation (use bug-report), not for reports (use qa-reporting)."
+  },
+  {
+   "name": "xray-test-create",
+   "sector": "manual",
+   "intents": [
+    "create the approved test cases in Xray",
+    "put these test cases into Jira",
+    "save the cases to the test management system",
+    "залей кейсы в Xray"
+   ],
+   "phrases": [],
+   "needs": "approved test case drafts; Xray Server/DC; JIRA_BASE_URL and JIRA_PAT in the environment set by the human",
+   "not_for": [
+    "bug-report",
+    "create-test-cases",
+    "update-test-status"
+   ],
+   "then": [
+    "update-test-status"
+   ],
+   "command": "/qabase:xray-test-create",
+   "maturity": "draft",
+   "description": "Create human-approved test cases as Test issues with manual steps in Jira with the Xray Server/Data Center plugin, through a dry-run-first script that uses the user's personal access token from the environment. Use after create-test-cases when the human says the drafts are approved and asks to put them into Xray ('create these in Xray', 'залей кейсы в Xray', 'save the cases to the TMS'). Not for drafting or designing cases (use create-test-cases), not for recording results (use update-test-status), not for bugs (use bug-report), not for Xray Cloud."
+  },
+  {
+   "name": "automation-readiness-assessment",
+   "sector": "automation",
+   "intents": [
+    "should we automate this case",
+    "what goes into the regression suite",
+    "review the regression backlog",
+    "is this case worth automating now or later"
+   ],
+   "phrases": [],
+   "needs": "the full case with its oracle and evidence of a manual pass; target web or mobile",
+   "not_for": [
+    "create-mobile-test",
+    "create-playwright-test",
+    "create-test-cases"
+   ],
+   "then": [
+    "create-playwright-test",
+    "create-mobile-test"
+   ],
+   "command": "/qabase:automation-readiness-assessment",
+   "maturity": "draft",
+   "description": "Assess whether a test case should be automated now, later, or stay manual, for web or mobile, and say why. Weighs repeat value, risk, stability of the feature, testability, oracle clarity, data and device needs, and maintenance cost, and requires the case to have passed a manual run first. Use whenever someone asks \"should we automate this\", \"is this case worth automating\", \"what goes into the regression suite\", or reviews a regression backlog, even if they never say \"readiness\". Also for Ukrainian or Russian phrasing such as \"чи автоматизувати цей кейс\" or \"что автоматизировать в регрессии\". Not for writing the automated test (use create-playwright-test or create-mobile-test) and not for writing cases (use create-test-cases)."
+  },
+  {
+   "name": "create-mobile-test",
+   "sector": "automation",
+   "intents": [
+    "automate this approved case on mobile",
+    "write an Appium or WebdriverIO test",
+    "implement the approved mobile candidate"
+   ],
+   "phrases": [],
+   "needs": "an approved case, approver and date, manual-pass evidence; Android (iOS is a scaffold only); test environment confirmed",
+   "not_for": [
+    "automation-readiness-assessment",
+    "create-playwright-test"
+   ],
+   "then": [
+    "review-mobile-test"
+   ],
+   "command": "/qabase:create-mobile-test",
+   "maturity": "draft",
+   "description": "Implement an approved mobile automation candidate as a WebdriverIO + Appium test (Android now, iOS scaffold) following the project's mobile rules, after confirming the app points to the test environment. Use after a case passed automation readiness assessment and a human approved automating it, or when asked to write an Appium, WebdriverIO or mobile regression test. Also for Ukrainian or Russian phrasing such as \"напиши мобільний тест\" or \"автоматизуй кейс в Appium\". Not for web tests (use create-playwright-test), not for deciding what to automate (use automation-readiness-assessment), and not for running a regression as a verdict."
+  },
+  {
+   "name": "create-playwright-test",
+   "sector": "automation",
+   "intents": [
+    "automate this approved case on web",
+    "write a Playwright test",
+    "implement the approved web candidate"
+   ],
+   "phrases": [],
+   "needs": "an approved case, who approved it and when; a non-production environment",
+   "not_for": [
+    "automation-readiness-assessment",
+    "create-mobile-test",
+    "review-playwright-test"
+   ],
+   "then": [
+    "review-playwright-test"
+   ],
+   "command": "/qabase:create-playwright-test",
+   "maturity": "unmarked",
+   "description": "Implement an approved automation candidate as a Playwright test, following the project's Playwright rules. Use after a test case has passed automation readiness assessment and a human has approved automating it. Not for mobile tests (use create-mobile-test), not for reviewing a test (use review-playwright-test), not for deciding whether to automate (use automation-readiness-assessment)."
+  },
+  {
+   "name": "review-mobile-test",
+   "sector": "automation",
+   "intents": [
+    "review this mobile test diff",
+    "audit an Appium test",
+    "check this mobile test before the PR"
+   ],
+   "phrases": [],
+   "needs": "the diff and the case with its oracle",
+   "not_for": [
+    "review-playwright-test"
+   ],
+   "then": [],
+   "command": "/qabase:review-mobile-test",
+   "maturity": "draft",
+   "description": "First-pass review of new or changed WebdriverIO + Appium mobile test code before a human approves the pull request. Checks that the test proves what its case says, fails when behavior breaks, uses the right environment and anchors, does not hide SKIP as PASS, and flags emulator-only evidence, hardcoded waits, weakened assertions and secrets. Use on any diff under the mobile automation project or when asked to review, audit or sanity-check a mobile test. Also for Ukrainian or Russian phrasing such as \"переглянь мобільний тест\". Not for web tests (use review-playwright-test), not for writing tests, and not for judging product behavior."
+  },
+  {
+   "name": "review-playwright-test",
+   "sector": "automation",
+   "intents": [
+    "review this Playwright diff",
+    "is this web test any good",
+    "audit a new Playwright test before the PR"
+   ],
+   "phrases": [],
+   "needs": "the full diff and the case it covers",
+   "not_for": [
+    "create-playwright-test"
+   ],
+   "then": [],
+   "command": "/qabase:review-playwright-test",
+   "maturity": "unmarked",
+   "description": "First-pass review of new or changed Playwright test code before a human approves the pull request. Checks that the test proves what its case says, would fail if the behavior broke, is deterministic and does not stub what it verifies, and flags AI-generated smells, scope creep and weakened assertions. Use it on any diff under the Playwright project, whether written by hand, drafted by a skill or produced by an agent, and whenever someone asks to review, audit or sanity-check a test or asks whether a test is any good. Also for Ukrainian or Russian phrasing such as \"переглянь тест\" or \"проревʼюй playwright\". Not for writing tests (use create-playwright-test), deciding whether a case should exist, or judging product behavior."
+  },
+  {
+   "name": "ci-failure-analysis",
+   "sector": "ci",
+   "intents": [
+    "why did the pipeline fail",
+    "analyze this red CI run",
+    "classify failures as product, test or environment",
+    "is this failure flaky"
+   ],
+   "phrases": [],
+   "needs": "read-only access to CI logs and artifacts (CI system unknown)",
+   "not_for": [
+    "bug-report",
+    "ci-fix"
+   ],
+   "then": [
+    "ci-fix",
+    "bug-report"
+   ],
+   "command": "/qabase:ci-failure-analysis",
+   "maturity": "skeleton",
+   "description": "Analyze failed CI runs of the automation suites (Playwright web, Appium mobile): classify each failure as product defect, test defect, environment/infrastructure, flaky or unknown, with evidence and confidence, and hand off. Use when a CI run is red, when asked 'why did the pipeline fail', 'разбери падения CI', 'проанализируй прогон'. Not for fixing tests (use ci-fix), not for filing bugs (use bug-report), not for setting up CI."
+  },
+  {
+   "name": "ci-fix",
+   "sector": "ci",
+   "intents": [
+    "fix this test defect from the analysis",
+    "propose a reviewable diff for a failing automated test",
+    "fix a failing test after the analysis was accepted"
+   ],
+   "phrases": [],
+   "needs": "an accepted analysis that classified a test defect; local test run against DEV after confirmation",
+   "not_for": [
+    "bug-report"
+   ],
+   "then": [
+    "review-playwright-test",
+    "review-mobile-test"
+   ],
+   "command": "/qabase:ci-fix",
+   "maturity": "skeleton",
+   "description": "Propose a fix, as a reviewable diff, for a TEST defect found by ci-failure-analysis in the Playwright or Appium automation code, under human supervision. Use after a human accepted an analysis that classified a failure as a test defect, or when asked 'почини упавший автотест'. Not for product defects (use bug-report), never weakens assertions to get green, never pushes or merges."
+  },
+  {
+   "name": "qa-reporting",
+   "sector": "reporting",
+   "intents": [
+    "build a QA report for a manager",
+    "sprint test summary",
+    "trend versus last month"
+   ],
+   "phrases": [],
+   "needs": "Jira MCP, read-only",
+   "not_for": [
+    "update-test-status"
+   ],
+   "then": [],
+   "command": "/qabase:qa-reporting",
+   "maturity": "skeleton",
+   "description": "Build a manager-facing QA report from Jira/Xray data for a story, test execution, sprint or period: statuses, charts, time spent where recorded, and change versus the previous period (last month, last 3 months). Use when asked for a test report, status summary, QA dashboard, trend or 'отчёт для менеджера'. Not for deciding release go/no-go, not for changing any status (use update-test-status), not for finding defects."
+  },
+  {
+   "name": "feedback",
+   "sector": "setup",
+   "intents": [
+    "report that the AI got something wrong",
+    "turn my correction into a feedback entry",
+    "report a problem with a skill, rule or hook"
+   ],
+   "phrases": [],
+   "needs": "none; writes feedback/inbox/ after you confirm",
+   "not_for": [
+    "feedback-triage",
+    "handoff",
+    "qa-reporting"
+   ],
+   "then": [],
+   "command": "/qabase:feedback",
+   "maturity": "draft",
+   "description": "Draft a feedback entry when the AI got something wrong or the process hit friction, so a person can confirm it and send it to the AI QA Process Lead. Writes feedback/inbox/<date>-<slug>.md after the person says yes, then prints the message text to forward. Use when the person corrected your output, a verification step FAILED, a hook blocked or asked, or the same result was rejected twice; or when asked to report a problem with a skill, rule or hook. Never edits skills, rules, hooks or any repository file. Not for stakeholder reports (qa-reporting), not for session notes (handoff), not for reviewing the inbox (feedback-triage)."
+  },
+  {
+   "name": "feedback-triage",
+   "sector": "setup",
+   "intents": [
+    "go through the feedback inbox",
+    "turn feedback into change proposals",
+    "decide what feedback becomes a rule or eval"
+   ],
+   "phrases": [],
+   "needs": "none; reads feedback/inbox/, writes feedback/proposals/ after you confirm",
+   "not_for": [
+    "feedback",
+    "qa-reporting"
+   ],
+   "then": [],
+   "command": "/qabase:feedback-triage",
+   "maturity": "draft",
+   "description": "Read the feedback inbox, group entries, and propose what to do with each group, then write change proposals (exact old and new text plus a candidate eval) into feedback/proposals/ for the AI QA Process Lead to review. Use when the lead wants to go through feedback/inbox, decide what becomes a rule, skill, hook or eval change, or prepare proposals. Read-only on everything except feedback/proposals/; never applies a change. Not for creating an entry (feedback), not for stakeholder reports (qa-reporting)."
+  },
+  {
+   "name": "handoff",
+   "sector": "setup",
+   "intents": [
+    "save progress before /clear",
+    "hand this session to another person",
+    "summarize where we stopped"
+   ],
+   "phrases": [],
+   "needs": "none; writes runs/<id>/HANDOFF.md after you confirm",
+   "not_for": [
+    "qa-reporting"
+   ],
+   "then": [],
+   "command": "/qabase:handoff",
+   "maturity": "draft",
+   "description": "Package the state of the current session into a file so a fresh session can continue without this chat. Writes runs/<id>/HANDOFF.md with goal, decisions, acceptance criteria, progress, open tasks, pending questions, what is NOT verified and what must not be reverted, then gives the opening prompt for the new chat. Use when the context is filling up (project setting: around 50% and again at 60%), before /clear, when switching to another person or machine, or when asked to hand off, save progress or summarize where we stopped. Manual trigger. Not a stakeholder report (qa-reporting), not a commit."
+  },
+  {
+   "name": "onboarding-check",
+   "sector": "setup",
+   "intents": [
+    "check my setup",
+    "first time in this project",
+    "something is not installed",
+    "check that hooks and permissions work"
+   ],
+   "phrases": [],
+   "needs": "none",
+   "not_for": [],
+   "then": [],
+   "command": "/qabase:onboarding-check",
+   "maturity": "skeleton",
+   "description": "First-open guide and checklist for a new user of this project - checks the local tools, hooks, MCP connections and access listed in docs/REQUIRED-ACCESS-AND-ENVIRONMENT.md (Part E); for each FAIL it explains what the item is and why it is needed, gives the install command for the detected OS (macOS or Windows), waits, re-checks, and records PASS in a local progress file. Use when someone opens this folder in Claude Code or VS Code for the first time, on a new machine, or when a tool or access seems broken ('check my setup', 'onboarding', 'how do I install', 'can I run this'). Never runs installers, logs in, or touches credentials. Not for production."
+  }
+ ]
+}

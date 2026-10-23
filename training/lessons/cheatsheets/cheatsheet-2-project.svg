@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1123" height="794" viewBox="0 0 1123 794">
+<rect x="0.0" y="0.0" width="1123.0" height="794.0" rx="0" fill="#F9F3E5"/>
+<text x="36.0" y="66.0" font-family="Helvetica, Arial, sans-serif" font-size="28" font-weight="700" fill="#231F1A" text-anchor="start">QA AI base: project cheat sheet</text>
+<text x="36.0" y="90.0" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#4A4339" text-anchor="start">Cheat sheet 2 of 6. PLACEHOLDER: fill in when the setup is finished. Facts below are from CLAUDE.md; blanks are UNKNOWN until Discovery.</text>
+<line x1="36.0" y1="102.0" x2="1087.0" y2="102.0" stroke="#E0A030" stroke-width="2"/>
+<rect x="1023.9" y="50.0" width="63.1" height="17.0" rx="3" fill="none" stroke="#4A4339" stroke-width="1" stroke-dasharray="3 2"/>
+<text x="1030.9" y="62.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#4A4339" text-anchor="start">NOT USED</text>
+<rect x="944.4" y="50.0" width="71.5" height="17.0" rx="3" fill="#F3D9D1" stroke="#8A2A1A" stroke-width="1"/>
+<text x="951.4" y="62.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#8A2A1A" text-anchor="start">UNVERIFIED</text>
+<rect x="838.9" y="50.0" width="97.5" height="17.0" rx="3" fill="#F6E3B8" stroke="#E0A030" stroke-width="1"/>
+<text x="845.9" y="62.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#9A5B0A" text-anchor="start">DRAFT / NOT RUN</text>
+<rect x="785.3" y="50.0" width="45.6" height="17.0" rx="3" fill="#E4EDDD" stroke="#4E7A3A" stroke-width="1"/>
+<text x="792.3" y="62.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#1E4A2E" text-anchor="start">IN USE</text>
+<text x="36.0" y="130.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#231F1A" text-anchor="start">Where things live</text>
+<rect x="36.0" y="146.0" width="340.0" height="44.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="46.0" y="164.0" font-family="Courier New, Courier, monospace" font-size="10.5" fill="#231F1A" text-anchor="start">CLAUDE.md</text>
+<text x="46.0" y="180.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">Always-on rules, skill table</text>
+<rect x="319.7" y="159.0" width="46.3" height="17.0" rx="3" fill="#F6E3B8" stroke="#E0A030" stroke-width="1"/>
+<text x="326.7" y="171.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#9A5B0A" text-anchor="start">DRAFT</text>
+<rect x="36.0" y="196.0" width="340.0" height="44.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="46.0" y="214.0" font-family="Courier New, Courier, monospace" font-size="10.5" fill="#231F1A" text-anchor="start">.claude/rules/</text>
+<text x="46.0" y="230.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">security, QA, AI + web and mobile rules</text>
+<rect x="319.7" y="209.0" width="46.3" height="17.0" rx="3" fill="#F6E3B8" stroke="#E0A030" stroke-width="1"/>
+<text x="326.7" y="221.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#9A5B0A" text-anchor="start">DRAFT</text>
+<rect x="36.0" y="246.0" width="340.0" height="44.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="46.0" y="264.0" font-family="Courier New, Courier, monospace" font-size="10.5" fill="#231F1A" text-anchor="start">.claude/skills/</text>
+<text x="46.0" y="280.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">Copies of plugins/qabase/skills</text>
+<rect x="319.7" y="259.0" width="46.3" height="17.0" rx="3" fill="#F6E3B8" stroke="#E0A030" stroke-width="1"/>
+<text x="326.7" y="271.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#9A5B0A" text-anchor="start">DRAFT</text>
+<rect x="36.0" y="296.0" width="340.0" height="44.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="46.0" y="314.0" font-family="Courier New, Courier, monospace" font-size="10.5" fill="#231F1A" text-anchor="start">.claude/hooks/</text>
+<text x="46.0" y="330.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">Hook specs and scripts</text>
+<rect x="294.5" y="309.0" width="71.5" height="17.0" rx="3" fill="#F6E3B8" stroke="#E0A030" stroke-width="1"/>
+<text x="301.5" y="321.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#9A5B0A" text-anchor="start">NOT ACTIVE</text>
+<rect x="36.0" y="346.0" width="340.0" height="44.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="46.0" y="364.0" font-family="Courier New, Courier, monospace" font-size="10.5" fill="#231F1A" text-anchor="start">.claude/settings.draft.json</text>
+<text x="46.0" y="380.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">Permissions draft</text>
+<rect x="294.5" y="359.0" width="71.5" height="17.0" rx="3" fill="#F6E3B8" stroke="#E0A030" stroke-width="1"/>
+<text x="301.5" y="371.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#9A5B0A" text-anchor="start">NOT ACTIVE</text>
+<rect x="36.0" y="396.0" width="340.0" height="44.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="46.0" y="414.0" font-family="Courier New, Courier, monospace" font-size="10.5" fill="#231F1A" text-anchor="start">.mcp.json</text>
+<text x="46.0" y="430.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">Approved MCP servers</text>
+<rect x="319.4" y="409.0" width="46.6" height="17.0" rx="3" fill="#F6E3B8" stroke="#E0A030" stroke-width="1"/>
+<text x="326.4" y="421.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#9A5B0A" text-anchor="start">EMPTY</text>
+<rect x="36.0" y="446.0" width="340.0" height="44.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="46.0" y="464.0" font-family="Courier New, Courier, monospace" font-size="10.5" fill="#231F1A" text-anchor="start">evals/</text>
+<text x="46.0" y="480.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">Acceptance checks</text>
+<rect x="308.6" y="459.0" width="57.4" height="17.0" rx="3" fill="#F6E3B8" stroke="#E0A030" stroke-width="1"/>
+<text x="315.6" y="471.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#9A5B0A" text-anchor="start">NOT RUN</text>
+<rect x="36.0" y="496.0" width="340.0" height="44.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="46.0" y="514.0" font-family="Courier New, Courier, monospace" font-size="10.5" fill="#231F1A" text-anchor="start">automation/web</text>
+<text x="46.0" y="530.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">Playwright (optional)</text>
+<rect x="302.9" y="509.0" width="63.1" height="17.0" rx="3" fill="none" stroke="#4A4339" stroke-width="1" stroke-dasharray="3 2"/>
+<text x="309.9" y="521.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#4A4339" text-anchor="start">OPTIONAL</text>
+<rect x="36.0" y="546.0" width="340.0" height="44.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="46.0" y="564.0" font-family="Courier New, Courier, monospace" font-size="10.5" fill="#231F1A" text-anchor="start">automation/mobile</text>
+<text x="46.0" y="580.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">WebdriverIO + Appium (optional)</text>
+<rect x="302.9" y="559.0" width="63.1" height="17.0" rx="3" fill="none" stroke="#4A4339" stroke-width="1" stroke-dasharray="3 2"/>
+<text x="309.9" y="571.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#4A4339" text-anchor="start">OPTIONAL</text>
+<rect x="36.0" y="596.0" width="340.0" height="44.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="46.0" y="614.0" font-family="Courier New, Courier, monospace" font-size="10.5" fill="#231F1A" text-anchor="start">automation/api</text>
+<text x="46.0" y="630.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">The project's choice (optional)</text>
+<rect x="302.9" y="609.0" width="63.1" height="17.0" rx="3" fill="none" stroke="#4A4339" stroke-width="1" stroke-dasharray="3 2"/>
+<text x="309.9" y="621.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#4A4339" text-anchor="start">OPTIONAL</text>
+<text x="400.0" y="130.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#231F1A" text-anchor="start">The chain: Claude, human, deterministic</text>
+<rect x="400.0" y="146.0" width="108.3" height="17.0" rx="3" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="407.0" y="158.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#4A4339" text-anchor="start">C  Claude with a skill</text>
+<rect x="550.0" y="146.0" width="79.4" height="17.0" rx="3" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="557.0" y="158.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#4A4339" text-anchor="start">H  human gate</text>
+<rect x="550.0" y="146.0" width="79.4" height="17.0" rx="3" fill="none" stroke="#231F1A" stroke-width="2"/>
+<rect x="650.0" y="146.0" width="49.8" height="17.0" rx="3" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="657.0" y="158.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#4A4339" text-anchor="start">D  no AI</text>
+<rect x="414.0" y="176.0" width="316.0" height="34.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="428.0" y="198.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#4A4339" text-anchor="start">C</text>
+<text x="452.0" y="198.0" font-family="Courier New, Courier, monospace" font-size="11" fill="#231F1A" text-anchor="start">analyze-requirements + brief</text>
+<rect x="414.0" y="218.0" width="316.0" height="34.0" rx="5" fill="#F9F3E5" stroke="#231F1A" stroke-width="2"/>
+<text x="428.0" y="240.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#231F1A" text-anchor="start">H</text>
+<text x="452.0" y="240.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#231F1A" text-anchor="start">approve the brief</text>
+<rect x="414.0" y="260.0" width="316.0" height="34.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="428.0" y="282.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#4A4339" text-anchor="start">C</text>
+<text x="452.0" y="282.0" font-family="Courier New, Courier, monospace" font-size="11" fill="#231F1A" text-anchor="start">create-test-cases</text>
+<rect x="414.0" y="302.0" width="316.0" height="34.0" rx="5" fill="#F9F3E5" stroke="#231F1A" stroke-width="2"/>
+<text x="428.0" y="324.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#231F1A" text-anchor="start">H</text>
+<text x="452.0" y="324.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#231F1A" text-anchor="start">review cases, save to TMS</text>
+<rect x="414.0" y="344.0" width="316.0" height="34.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="428.0" y="366.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#4A4339" text-anchor="start">C</text>
+<text x="452.0" y="366.0" font-family="Courier New, Courier, monospace" font-size="11" fill="#231F1A" text-anchor="start">automation-readiness</text>
+<rect x="414.0" y="386.0" width="316.0" height="34.0" rx="5" fill="#F9F3E5" stroke="#231F1A" stroke-width="2"/>
+<text x="428.0" y="408.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#231F1A" text-anchor="start">H</text>
+<text x="452.0" y="408.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#231F1A" text-anchor="start">approve candidate</text>
+<rect x="414.0" y="428.0" width="316.0" height="34.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="428.0" y="450.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#4A4339" text-anchor="start">C</text>
+<text x="452.0" y="450.0" font-family="Courier New, Courier, monospace" font-size="11" fill="#231F1A" text-anchor="start">create + review test</text>
+<rect x="414.0" y="470.0" width="316.0" height="34.0" rx="5" fill="#F9F3E5" stroke="#231F1A" stroke-width="2"/>
+<text x="428.0" y="492.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#231F1A" text-anchor="start">H</text>
+<text x="452.0" y="492.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#231F1A" text-anchor="start">review diff, merge</text>
+<rect x="414.0" y="512.0" width="316.0" height="34.0" rx="5" fill="#F1E7CF" stroke="#D9CDB0" stroke-width="1"/>
+<text x="428.0" y="534.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#4A4339" text-anchor="start">D</text>
+<text x="452.0" y="534.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#231F1A" text-anchor="start">CI run, results, evidence</text>
+<rect x="414.0" y="554.0" width="316.0" height="34.0" rx="5" fill="#F9F3E5" stroke="#231F1A" stroke-width="2"/>
+<text x="428.0" y="576.0" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="700" fill="#231F1A" text-anchor="start">H</text>
+<text x="452.0" y="576.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#231F1A" text-anchor="start">release decision</text>
+<text x="400.0" y="604.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">Manual testing runs in parallel and feeds the release decision.</text>
+<text x="400.0" y="618.0" font-family="Helvetica, Arial, sans-serif" font-size="9.5" fill="#4A4339" text-anchor="start">Source: docs/schemes/08-mvp-chain.md (working draft).</text>
+<text x="754.0" y="130.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#231F1A" text-anchor="start">Fill in (UNKNOWN until Discovery)</text>
+<rect x="754.0" y="146.0" width="333.0" height="40.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="764.0" y="162.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#4A4339" text-anchor="start">Environment to test on (DEV or SIT)</text>
+<line x1="764.0" y1="179.0" x2="991.0" y2="179.0" stroke="#4A4339" stroke-width="0.8"/>
+<rect x="1012.1" y="166.0" width="64.9" height="17.0" rx="3" fill="#F3D9D1" stroke="#8A2A1A" stroke-width="1"/>
+<text x="1019.1" y="178.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#8A2A1A" text-anchor="start">UNKNOWN</text>
+<rect x="754.0" y="192.0" width="333.0" height="40.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="764.0" y="208.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#4A4339" text-anchor="start">Test management and defect tracker</text>
+<line x1="764.0" y1="225.0" x2="991.0" y2="225.0" stroke="#4A4339" stroke-width="0.8"/>
+<rect x="1012.1" y="212.0" width="64.9" height="17.0" rx="3" fill="#F3D9D1" stroke="#8A2A1A" stroke-width="1"/>
+<text x="1019.1" y="224.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#8A2A1A" text-anchor="start">UNKNOWN</text>
+<rect x="754.0" y="238.0" width="333.0" height="40.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="764.0" y="254.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#4A4339" text-anchor="start">CI/CD tool and who can see runs</text>
+<line x1="764.0" y1="271.0" x2="991.0" y2="271.0" stroke="#4A4339" stroke-width="0.8"/>
+<rect x="1012.1" y="258.0" width="64.9" height="17.0" rx="3" fill="#F3D9D1" stroke="#8A2A1A" stroke-width="1"/>
+<text x="1019.1" y="270.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#8A2A1A" text-anchor="start">UNKNOWN</text>
+<rect x="754.0" y="284.0" width="333.0" height="40.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="764.0" y="300.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#4A4339" text-anchor="start">Test accounts and test data</text>
+<line x1="764.0" y1="317.0" x2="991.0" y2="317.0" stroke="#4A4339" stroke-width="0.8"/>
+<rect x="1012.1" y="304.0" width="64.9" height="17.0" rx="3" fill="#F3D9D1" stroke="#8A2A1A" stroke-width="1"/>
+<text x="1019.1" y="316.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#8A2A1A" text-anchor="start">UNKNOWN</text>
+<rect x="754.0" y="330.0" width="333.0" height="40.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="764.0" y="346.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#4A4339" text-anchor="start">Devices and builds for mobile</text>
+<line x1="764.0" y1="363.0" x2="991.0" y2="363.0" stroke="#4A4339" stroke-width="0.8"/>
+<rect x="1012.1" y="350.0" width="64.9" height="17.0" rx="3" fill="#F3D9D1" stroke="#8A2A1A" stroke-width="1"/>
+<text x="1019.1" y="362.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#8A2A1A" text-anchor="start">UNKNOWN</text>
+<rect x="754.0" y="376.0" width="333.0" height="40.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="764.0" y="392.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#4A4339" text-anchor="start">Who approves changes (AI QA Process Lead)</text>
+<line x1="764.0" y1="409.0" x2="991.0" y2="409.0" stroke="#4A4339" stroke-width="0.8"/>
+<rect x="1012.1" y="396.0" width="64.9" height="17.0" rx="3" fill="#F3D9D1" stroke="#8A2A1A" stroke-width="1"/>
+<text x="1019.1" y="408.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#8A2A1A" text-anchor="start">UNKNOWN</text>
+<rect x="754.0" y="422.0" width="333.0" height="40.0" rx="5" fill="#FFFBF0" stroke="#D9CDB0" stroke-width="1"/>
+<text x="764.0" y="438.0" font-family="Helvetica, Arial, sans-serif" font-size="10" fill="#4A4339" text-anchor="start">Where to send feedback</text>
+<line x1="764.0" y1="455.0" x2="991.0" y2="455.0" stroke="#4A4339" stroke-width="0.8"/>
+<rect x="1012.1" y="442.0" width="64.9" height="17.0" rx="3" fill="#F3D9D1" stroke="#8A2A1A" stroke-width="1"/>
+<text x="1019.1" y="454.2" font-family="Helvetica, Arial, sans-serif" font-size="9.5" font-weight="700" fill="#8A2A1A" text-anchor="start">UNKNOWN</text>
+<text x="754.0" y="482.0" font-family="Helvetica, Arial, sans-serif" font-size="14" font-weight="700" fill="#231F1A" text-anchor="start">Rules to keep in view</text>
+<rect x="754.0" y="498.0" width="333.0" height="114.0" rx="5" fill="#F1E7CF"/>
+<text x="766.0" y="520.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#9A5B0A" text-anchor="start">•</text>
+<text x="780.0" y="520.0" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#231F1A" text-anchor="start">DEV or approved non-production only. Production is prohibited.</text>
+<text x="766.0" y="541.6" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#9A5B0A" text-anchor="start">•</text>
+<text x="780.0" y="541.6" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#231F1A" text-anchor="start">A mobile build can open on PROD by default. Switch to test</text>
+<text x="780.0" y="555.3" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#231F1A" text-anchor="start">and confirm first.</text>
+<text x="766.0" y="576.9" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#9A5B0A" text-anchor="start">•</text>
+<text x="780.0" y="576.9" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#231F1A" text-anchor="start">A bug gets a failing test first (Iron Law).</text>
+<text x="766.0" y="598.6" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#9A5B0A" text-anchor="start">•</text>
+<text x="780.0" y="598.6" font-family="Helvetica, Arial, sans-serif" font-size="10.5" fill="#231F1A" text-anchor="start">Say which device or emulator produced the evidence.</text>
+</svg>

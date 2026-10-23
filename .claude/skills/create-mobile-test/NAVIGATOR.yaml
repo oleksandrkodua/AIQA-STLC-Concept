@@ -1,0 +1,11 @@
+# Navigator data for the skills index. `needs` was checked against the skill's access/precondition sections; if they change, the validator asks for a re-check.
+sector: automation
+intents:
+  - automate this approved case on mobile
+  - write an Appium or WebdriverIO test
+  - implement the approved mobile candidate
+needs: an approved case, approver and date, manual-pass evidence; Android (iOS is a scaffold only); test environment confirmed
+then:
+  - review-mobile-test
+access_checked: d8919740f2de
+# phrases:   (optional) real phrases collected from users, one per line, same format as intents
