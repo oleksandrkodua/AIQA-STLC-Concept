@@ -84,6 +84,28 @@ class T(unittest.TestCase):
         self.assertTrue(r[0]["note"].startswith("FAILED at step 1"))
         self.assertEqual(len(f.calls), 3)
 
+    def test_network_error_mid_run_still_reports_created(self):
+        posts = []
+        def script(req):
+            if "/search" in req.full_url: return 200, '{"issues":[]}'
+            if req.get_method() == "POST":
+                posts.append(1)
+                if len(posts) == 2: raise urllib.error.URLError("connection reset")
+                return 201, '{"key":"QA-9"}'
+            return 200, "ok"
+        two = dict(PLAN, cases=PLAN["cases"] + [dict(PLAN["cases"][0], summary="Second case")])
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as t:
+            json.dump(two, t)
+        out = io.StringIO(); old = (sys.stdout, x.urllib.request.urlopen)
+        sys.stdout, x.urllib.request.urlopen = out, Fake(script)
+        try:
+            h = x.plan_hash(x.validate(two))
+            self.assertEqual(x.main([t.name, "--apply", "--plan-hash", h, "--expect-host", "jira.example.test"]), 1)
+        finally:
+            sys.stdout, x.urllib.request.urlopen = old; os.unlink(t.name)
+        self.assertIn("QA-9 | Login with valid account | steps 2/2 | created", out.getvalue())
+        self.assertIn("- | Second case | steps 0/2 | FAILED: ", out.getvalue())
+
     def test_main_dry_run_then_gates(self):
         with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as t:
             json.dump(PLAN, t)

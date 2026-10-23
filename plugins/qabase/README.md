@@ -5,7 +5,7 @@ QA skills, one per stage. A neutral base: it carries no project facts. Web and m
 Layout:
 - `skills/`    — skills that go into the plugin build
 - `reserved/`  — kept in repo, NOT in the build (design-check, test-plan-and-regression)
-- `_base/`     — donor skills (manual-tester, exploratory-testing; each keeps its own MIT LICENSE), not loaded
+- `_base/`     — donor skills (manual-tester, exploratory-testing: each keeps its own MIT LICENSE; qa-test-planner: the owner's own, under the repository licence), not loaded
 - `_templates/SKILL-CONTRACT.md` — 13-section contract every skill must follow
 - `hooks/`     — hook scripts; `hooks.draft.json` is INACTIVE (rename to `hooks.json` only after firing test)
 

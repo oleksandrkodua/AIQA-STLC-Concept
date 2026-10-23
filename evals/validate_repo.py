@@ -6,6 +6,12 @@ import json, os, re, sys, glob
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(ROOT)
 problems, passed = [], 0
+# skill frontmatter: name and description first, one line each; other keys only from the documented Claude Code list,
+# because Claude Code ignores an unknown key without an error (a typo such as allowed_tools would do nothing)
+FM = re.compile(r"---\nname: (.+)\ndescription: (.+)\n((?:(?:[A-Za-z_-]+:.*|[ \t]+.*)\n)*)---\n")
+FM_KEYS = {"when_to_use", "argument-hint", "arguments", "disable-model-invocation", "user-invocable", "allowed-tools",
+           "disallowed-tools", "model", "effort", "context", "agent", "background", "hooks", "paths", "shell",
+           "metadata", "license", "compatibility"}
 
 def check(name, ok, detail=""):
     global passed
@@ -28,9 +34,11 @@ for d in sorted(glob.glob(".claude/skills/*/")):
     p = os.path.join(d, "SKILL.md")
     if not os.path.exists(p): check(f"skill {name}: SKILL.md exists", False); continue
     t = open(p, encoding="utf-8").read()
-    m = re.match(r"---\nname: (.+)\ndescription: (.+)\n---\n", t)
+    m = FM.match(t)
     check(f"skill {name}: frontmatter name matches folder", bool(m) and m.group(1).strip() == name)
     check(f"skill {name}: description present and < 1100 chars", bool(m) and 20 < len(m.group(2)) < 1100)
+    _extra = [k for k in re.findall(r"^([A-Za-z_-]+):", m.group(3), re.M) if k not in FM_KEYS] if m else []
+    check(f"skill {name}: other frontmatter keys are documented ones", not _extra, f"(unknown: {_extra})")
     if re.search(r"^STATUS: SKELETON", t, re.M):
         check(f"skill {name}: SKELETON, evals not required yet (not claimed as working)", True)
     else:
@@ -40,14 +48,14 @@ for d in sorted(glob.glob(".claude/skills/*/")):
 EXCL = r"\b(not for|not a|not an|do not use|never use)\b|\(use [a-z-]+\)|use [a-z-]+ instead"
 for p in sorted(glob.glob("plugins/qabase/skills/*/SKILL.md")):
     name = os.path.basename(os.path.dirname(p))
-    m = re.match(r"---\nname: (.+)\ndescription: (.+)\n---\n", open(p, encoding="utf-8").read())
+    m = FM.match(open(p, encoding="utf-8").read())
     check(f"plugin skill {name}: description says when NOT to use it", bool(m) and bool(re.search(EXCL, m.group(2), re.I)))
 
 # 3c a "(use X)" or "use X instead" pointer in a description names a skill that exists (a machine check, not a reader's check)
 _skill_names = {os.path.basename(os.path.dirname(p)) for p in glob.glob("plugins/qabase/skills/*/SKILL.md")}
 for p in sorted(glob.glob("plugins/qabase/skills/*/SKILL.md")):
     name = os.path.basename(os.path.dirname(p))
-    m = re.match(r"---\nname: (.+)\ndescription: (.+)\n---\n", open(p, encoding="utf-8").read())
+    m = FM.match(open(p, encoding="utf-8").read())
     refs = [(a or b).lower() for a, b in re.findall(r"\(use ([a-z][a-z-]*)\)|use ([a-z][a-z-]*) instead", m.group(2), re.I)] if m else []
     unknown = [r for r in refs if r not in _skill_names]
     check(f"plugin skill {name}: skills named in its description exist", not unknown, ("(unknown: " + ", ".join(unknown) + ")") if unknown else "")
@@ -56,6 +64,16 @@ for p in sorted(glob.glob("plugins/qabase/skills/*/SKILL.md")):
 for p in sorted(glob.glob("plugins/qabase/skills/*/SKILL.md")):
     name = os.path.basename(os.path.dirname(p))
     check(f"plugin skill {name}: has a Tools or Access section", bool(re.search(r"^## (?:\d+\.\s*)?(Access|Tools)\b", open(p, encoding="utf-8").read(), re.M)))
+
+# 3e .claude/skills holds generated copies of plugins/qabase/skills (tools/sync-skills.sh); a session uses the copies, so drift is silent
+import filecmp
+_drift = []
+for dp, dn, fn in os.walk("plugins/qabase/skills"):
+    dn[:] = [d for d in dn if d != "__pycache__"]
+    for n in fn:
+        src = os.path.join(dp, n); dst = os.path.join(".claude/skills", os.path.relpath(src, "plugins/qabase/skills"))
+        if not os.path.exists(dst) or not filecmp.cmp(src, dst, shallow=False): _drift.append(dst)
+check(".claude/skills copies equal plugins/qabase/skills (else run tools/sync-skills.sh)", not _drift, str(_drift[:5]))
 
 # 4 scoped rules carry paths
 for f, glob_ in ((".claude/rules/playwright-rules.md", "automation/web/**"), (".claude/rules/mobile-rules.md", "automation/mobile/**")):
@@ -118,7 +136,7 @@ for f in sorted(glob.glob(".claude/rules/*.md")):
 parts["rules without paths:"] = rules
 desc = 0
 for f in sorted(glob.glob("plugins/qabase/skills/*/SKILL.md")):
-    m = re.match(r"---\nname: (.+)\ndescription: (.+)\n---\n", open(f, encoding="utf-8").read())
+    m = FM.match(open(f, encoding="utf-8").read())
     if m: desc += _est(m.group(1) + m.group(2))
 parts["skill names+descriptions"] = desc
 total = sum(parts.values())

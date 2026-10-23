@@ -1,6 +1,6 @@
 # Working from a cloud session
 
-STATUS: DRAFT v0.1, 2026-10-23. Written from Anthropic's documentation ("Use Claude Code in the cloud" and "Configure cloud environments", read 2026-10-23). NOT RUN: no cloud session has been started against this repository yet. Labels: VERIFIED FACT (documentation read) / ASSUMPTION / UNKNOWN.
+STATUS: DRAFT v0.1, 2026-10-23. Written from Anthropic's documentation ("Use Claude Code in the cloud" and "Configure cloud environments", read 2026-10-23). First cloud session 2026-10-23: the repository was attached mid-session, `CLAUDE.md`, rules and skills then loaded, validator 232 passed. The Jira `--check` (section 4) is NOT RUN. Labels: VERIFIED FACT (documentation read) / ASSUMPTION / UNKNOWN.
 
 Goal: open this repository in a Claude Code cloud session and use the skills, including `bug-report` and `xray-test-create`, without the token ever being visible to the model.
 
@@ -11,7 +11,7 @@ Goal: open this repository in a Claude Code cloud session and use the skills, in
 | `CLAUDE.md`, `.claude/rules/` | yes | part of the clone |
 | `.claude/skills/` | yes | the copies made by `tools/sync-skills.sh`; keep them in sync before pushing |
 | `.claude/settings.json` permission rules | yes (a session with one repository) | `ask` on `xray_dc_create.py`, `deny` on commands that mention `JIRA_PAT` |
-| Hooks (`.claude/hooks/`, `settings.local.json`) | no | hooks are per machine here and are not committed; in the cloud the permission rules are the whole floor |
+| Claude Code hooks (scripts in `.claude/hooks/`, turned on by `settings.local.json`) | no | the scripts are committed; the config that turns them on is per machine and not committed. In the cloud the permission rules are the whole floor |
 | `.mcp.json` | yes | empty in this repository, see section 5 |
 | Your user skills, user `CLAUDE.md`, MCP added at user scope | no | nothing from your machine |
 | Plugins listed in `enabledPlugins` | no | skills come from `.claude/skills/` instead |
@@ -84,7 +84,8 @@ The repository on GitHub is the single meeting point. The same folder is used lo
 
 ## 8. What this does not give you
 
-- Hooks are not active in the cloud: `deny_prod_and_secrets` and the other guards do not run there.
+- Claude Code hooks are not active in the cloud: `deny_prod_and_secrets` and the other guards do not run there.
+- The git hooks (`pre-commit` runs the validator, `pre-push` stops blocked patterns from reaching this public repository) are off in a fresh cloud clone. Run `sh tools/install-git-hooks.sh` once in the session: it sets `core.hooksPath` for that clone only.
 - The permission rules are patterns: a renamed copy of the script or an unusual command shape can escape the `ask`. The plan hash and host confirmation inside the script are the real gates.
 - Production is prohibited. The skill cannot know which Jira is production; you confirm the host each time.
 - Evals for both skills are NOT RUN. Treat the first runs as trials on a test project.

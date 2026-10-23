@@ -16,11 +16,8 @@
     "ask": [
       "Edit(CLAUDE.md)",
       "Edit(.claude/**)",
-      "Write(.claude/**)",
       "Edit(policy/**)",
-      "Write(policy/**)",
       "Edit(evals/**)",
-      "Write(evals/**)",
       "Bash(git push:*)"
     ]
   },
