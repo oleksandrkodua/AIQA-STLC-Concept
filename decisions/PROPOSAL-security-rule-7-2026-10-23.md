@@ -1,6 +1,6 @@
 # Proposal: rewrite RULE-SEC rule 7
 
-STATUS: PROPOSED, 2026-10-23. Applied only if the QA Lead approves (trusted asset: `.claude/rules/**`, see `ai-rules.md` rule 9).
+STATUS: APPROVED 2026-10-23, applied in b89afb4 (option A). Approved by Oleksandr Kukhtinov (repository owner, acting as QA Lead). Trusted asset: `.claude/rules/**`, see `ai-rules.md` rule 9.
 
 | Field | Value |
 |---|---|
