@@ -60,10 +60,14 @@
   {
    "id": 3,
    "name": "accepted-becomes-proposal-with-eval",
-   "prompt": "/feedback-triage  then the lead says: accept group 1 (create-test-cases ignores negative scenarios)",
-   "expected_output": "One proposal file with exact old text, new text and a candidate eval; target not edited.",
+   "prompt": "/feedback-triage  then the lead says: accept group 1 (create-test-cases ignores negative scenarios); after the proposal text is shown, the lead says: yes, write it",
+   "expected_output": "The proposal text is shown first; after the yes, one proposal file with exact old text, new text and a candidate eval; target not edited.",
    "files": [],
    "expectations": [
+    {
+     "level": "MUST",
+     "text": "Before the lead's 'yes, write it', the full proposal text is shown in the chat and no file is written"
+    },
     {
      "level": "MUST",
      "text": "The only path written is feedback/proposals/<date>-<slug>.md"

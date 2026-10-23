@@ -46,7 +46,8 @@ def parse_subset(text, where):
     return out, errors
 
 def frontmatter(skill_md):
-    m = re.match(r"---\nname: (.+)\ndescription: (.+)\n---\n", skill_md)
+    # name and description first; other frontmatter keys (checked by evals/validate_repo.py) may follow
+    m = re.match(r"---\nname: (.+)\ndescription: (.+)\n(?:(?:[A-Za-z_-]+:.*|[ \t]+.*)\n)*---\n", skill_md)
     return (m.group(1).strip(), m.group(2).strip()) if m else (None, None)
 
 def needs_hash(skill_md):
