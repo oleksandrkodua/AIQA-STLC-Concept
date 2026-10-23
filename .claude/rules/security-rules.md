@@ -9,8 +9,8 @@
 | Owner / approver | QA Lead and the security owner of the employer or client (UNKNOWN until Discovery) |
 | Status | DRAFT — not approved |
 | Review date | not set |
-| Sources | A layered architecture design (security and trusted-asset sections); rules from earlier QA tooling (adapted; validity for a given employer UNCONFIRMED) |
-| Change history | v0.1 created 2026-10-07; neutral base 2026-10-20 |
+| Sources | A layered architecture design (security and trusted-asset sections); rules from earlier QA tooling (adapted; validity for a given employer UNCONFIRMED); rule 7: `decisions/PROPOSAL-security-rule-7-2026-10-23.md` |
+| Change history | v0.1 created 2026-10-07; neutral base 2026-10-20; rule 7 rewritten 2026-10-23 (approver: the QA Lead, recorded when approved) |
 
 ## Environments
 
@@ -29,8 +29,13 @@
    rotate it, escalate.
 6. No real customer or production data in tests or test data. Use synthetic or anonymised
    data only.
-7. Do not read `.env*`, key files, credential stores or token files. This is enforced by
-   permission deny rules, because hooks can fail open and `@` file references bypass hooks.
+7. Do not read `.env*`, key files, credential stores or token files. Permission deny rules are
+   the first layer, not a guarantee: the Claude Code documentation applies Read deny rules to
+   Grep, Glob, `@file` mentions and IDE context on a best-effort basis, and to Bash only for
+   the file commands it recognizes (not to a command or script that reads files without
+   naming them). Hooks are a second layer and let the action proceed on any exit code other
+   than 2. For a hard boundary use the OS sandbox where the project allows it. Never
+   `@`-mention a secret file. If one is read by mistake, follow rule 5.
 
 ## Trusted-asset protection
 
