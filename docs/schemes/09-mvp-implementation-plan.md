@@ -11,6 +11,13 @@ flowchart LR
   S3 --> S4["4 Automation workflows - CI and runner UNKNOWN"]
   S4 --> S5["5 Pilot and learning - not started"]
   AO["Always on: human approval for consequential changes, AI output is not evidence, production restricted, no secrets or PII"]
+  %% status colours: training/lessons/_design/README.md (always with the word on the node)
+  classDef ok fill:#E4EDDD,stroke:#4E7A3A,color:#1E4A2E
+  classDef draft fill:#F6E3B8,stroke:#E0A030,color:#231F1A
+  classDef fail fill:#F3D9D1,stroke:#8A2A1A,color:#8A2A1A
+  classDef off fill:#F9F3E5,stroke:#4A4339,stroke-dasharray:4 3,color:#4A4339
+  classDef gate fill:#FFFBF0,stroke:#231F1A,stroke-width:3px,color:#231F1A
+  class S3 draft
 ```
 
 | Stage | Design says | This base | Evidence / gap |

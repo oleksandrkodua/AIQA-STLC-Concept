@@ -7,6 +7,7 @@ Output next to this file: .svg (editable in Figma, Inkscape, a text editor), .pn
 Needs: PyMuPDF (fitz) and Pillow. Fonts are measured with Arial and Courier New from macOS.
 Status: DRAFT v0.1, 2026-10-14. Colour meaning: see training/lessons/_specs/2026-10-14-colors-design.md, section 5.
 """
+import json
 import os
 from xml.sax.saxutils import escape
 from PIL import ImageFont
@@ -15,11 +16,13 @@ import fitz
 HERE = os.path.dirname(os.path.abspath(__file__))
 W, H = 1123, 794  # A4 landscape at 96 dpi
 
-# palette (course palette; red pair is provisional, contrast not computed)
-PAPER, CARD, BAND, INK, MUTED, LINE = "#F9F3E5", "#FFFBF0", "#F1E7CF", "#231F1A", "#4A4339", "#D9CDB0"
-AMBER, AMBER_T, AMBER_BG = "#E0A030", "#9A5B0A", "#F6E3B8"
-FOREST, LEAF, GREEN_BG = "#1E4A2E", "#4E7A3A", "#E4EDDD"
-RED_T, RED_BG = "#8A2A1A", "#F3D9D1"
+# palette: the course tokens (../_design/tokens.json); edit colours there, not here
+with open(os.path.join(HERE, "..", "_design", "tokens.json"), encoding="utf-8") as _f:
+    _C = json.load(_f)["color"]
+PAPER, CARD, BAND, INK, MUTED, LINE = _C["paper"], _C["card"], _C["band"], _C["ink"], _C["muted"], _C["line"]
+AMBER, AMBER_T, AMBER_BG = _C["amber"], _C["amber-text"], _C["amber-tint"]
+FOREST, LEAF, GREEN_BG = _C["forest"], _C["leaf"], _C["green-tint"]
+RED_T, RED_BG = _C["red-text"], _C["red-tint"]
 
 SANS = "Helvetica, Arial, sans-serif"
 MONO = "Courier New, Courier, monospace"

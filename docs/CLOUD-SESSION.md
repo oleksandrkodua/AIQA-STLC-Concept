@@ -90,4 +90,46 @@ The repository on GitHub is the single meeting point. The same folder is used lo
 - Production is prohibited. The skill cannot know which Jira is production; you confirm the host each time.
 - Evals for both skills are NOT RUN. Treat the first runs as trials on a test project.
 
-Provenance: ai-generated, Sonnet 5.5, 2026-10-23; human-confirmed: pending.
+## 9. First run in a cloud session: checklist and prompt
+
+Two parts. Part A needs no credentials and writes nothing outside the session's clone. Part B needs the environment of section 3 and only reads (`--check`). Neither part creates anything in Jira or Xray.
+
+### 9.1 Before you start (you, once)
+
+- [ ] GitHub is connected: the Claude GitHub App is installed on the repository, or you ran `/web-setup` in a terminal. The repository is listed at claude.ai/code (section 2).
+- [ ] Everything the session should see is pushed: `git status -sb` shows no changes and no `[ahead N]`, and `git rev-parse HEAD` prints the same hash as `git ls-remote origin main`. A cloud session sees only pushed work.
+- [ ] Part B only: the environment has the two variables and the network secret of section 3. The token is typed into the secret form only: never a variable, never the chat.
+- [ ] Start the session with this repository selected, branch `main`, in that environment (for Part A alone the Default environment is enough). A session started without the repository loads none of `CLAUDE.md`, the rules or the skills (seen 2026-10-23); attaching the repository later loads them, but do not rely on that.
+
+### 9.2 Prompt to paste into the cloud session
+
+```
+First run of this repository in a cloud session. Short answers. Change no file in the repository.
+Part A (no credentials):
+A1. Name the repository and branch, and give `git log --oneline -1`.
+A2. List the project skills you have loaded (expected: the skills in CLAUDE.md, such as onboarding-check and xray-test-create). If none are loaded, stop and say so.
+A3. Read docs/HANDOFF-cloud.md and give its "State" commit in one line.
+A4. Run `sh tools/install-git-hooks.sh` (it sets core.hooksPath for this clone only), then `python3 evals/validate_repo.py | tail -1`.
+A5. Run `python3 plugins/qabase/skills/xray-test-create/scripts/test_xray_dc_create.py` (offline, fake HTTP).
+Part B (only after I say the environment has the Jira settings):
+B1. Say whether JIRA_BASE_URL and JIRA_AUTH are set: "set" or "not set" only.
+B2. Run: python3 .claude/skills/xray-test-create/scripts/xray_dc_create.py --check (it will ask for approval). Do not retry with other credentials.
+For each step write PASS, FAIL or NOT TESTED and the output line that shows it.
+```
+
+### 9.3 What counts as ready, and what to do with the result
+
+Part A is ready when A2 lists the project skills, A1 matches your laptop, and A4 and A5 pass. Part B is ready when B2 prints `CHECK <host>: HTTP 200 as <user>`.
+
+| Result | What it means | Next |
+|---|---|---|
+| A2 lists the project skills | the session loaded this repository's `CLAUDE.md`, rules and skills | go on |
+| A2 lists none | the session was started without the repository | start a new session with the repository selected (9.1) |
+| A1 commit differs from `git log --oneline -1` on your laptop | one side has work the other has not | push or pull until both match, then start again |
+| A4 `N passed, 0 failed` and A5 `OK` | the pushed tree passes its own checks in the cloud | Part A ready: use the session for the work in `docs/HANDOFF-cloud.md` |
+| A4 shows a FAIL line, or A5 is not OK | the pushed tree is broken, or the cloud differs from your laptop | fix it locally, push, start again |
+| B2 prints any result | see the table in section 4 | follow section 4 |
+
+A laptop can show one more passed check than the cloud: the validator also checks a local, git-ignored `.claude/settings.local.json`.
+
+Provenance: ai-generated, Sonnet 5.5, 2026-10-23; section 9 added 2026-10-23 in a cloud session (ai-generated); human-confirmed: pending.

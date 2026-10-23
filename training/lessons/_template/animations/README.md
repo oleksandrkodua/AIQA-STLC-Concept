@@ -3,21 +3,22 @@
 STATUS: DRAFT v0.1, 2026-10-07. Not yet used in any published lesson.
 
 - `gallery.html`: 18 animation ideas on one page (open in a browser). Set A = 10 general motion patterns. Set B = 8 ideas reconstructed from the static frames of a reference deck (the original motion was not observed).
-- Palette in the gallery is "Maple" (placeholder). The palette for the course is NOT decided yet (open: deep forest variant recommended).
+- Palette: the course palette (Paper/Amber, `../../_specs/2026-10-14-colors-design.md`), applied 2026-10-23. The earlier "Maple" placeholder values are kept in the table below as history.
 
-## Colour swap table (Maple placeholder → chosen palette)
+## Colour swap table (Maple placeholder → course palette, done 2026-10-23)
 
-| Role | Maple value in gallery |
-|---|---|
-| accent (key word, ring) | `#A93E17` |
-| gold (attention, gate) | `#C98A1B` |
-| green (ok, our repo) | `#5E6B2E` |
-| ink | `#2B1D14` |
-| muted text | `#6B5646` |
-| card | `#FFFAF0` |
-| line | `#C9B79A` |
+| Role | Maple value (old) | Course value (now) |
+|---|---|---|
+| accent (key word, ring), as a fill or line | `#A93E17` | `--amber` `#E0A030` |
+| accent used as text | `#A93E17` | `--amber-text` `#9A5B0A` (amber is never text, spec rule 1) |
+| gold (attention, gate) | `#C98A1B` | `--amber-text` `#9A5B0A` |
+| green (ok, our repo) | `#5E6B2E` | `--leaf` `#4E7A3A` |
+| ink | `#2B1D14` | `--ink` `#231F1A` |
+| muted text | `#6B5646` | `--muted` `#4A4339` |
+| card | `#FFFAF0` | `--card` `#FFFBF0` |
+| line | `#C9B79A` | `--line` `#D9CDB0` |
 
-Swapping the palette = replace these hex values in the file.
+The minor Maple shades (borders, track of the ring, captions, page background) were mapped to `--line`, `--band`, `--muted` and `--ground`. The gallery now uses only palette values.
 
 ## Where each animation is meant to be used
 
