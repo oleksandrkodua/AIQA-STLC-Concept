@@ -23,8 +23,6 @@ STATUS: DRAFT, 2026-10-23. Everything else in this repository is under the MIT l
 - Conference talks, courses and articles are summarized in `knowledge/register.md` as notes with a status; their text, slides and diagrams are not reproduced. The register says "do not copy; link" where reuse terms are not stated.
 - Skill candidates listed in `docs/ALIGNMENT-WITH-R-10.md` are names only; none was downloaded.
 
-## Removed before publication
-
-A skill copied from an account skill set without a licence file (`qa-test-planner`) was removed from the public tree because its author and terms are unknown.
+## Corrections and removals
 
 If you are an author of included material and want a change or a removal, open an issue in this repository.
