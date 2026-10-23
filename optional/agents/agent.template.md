@@ -26,6 +26,7 @@ Which outputs a person must approve before anything leaves the session.
 - CONTINUE: <inside scope and tolerances>
 - ESCALATE: <ambiguity, scope exceeded, conflicting sources, unexpected data: stop and hand to a human with what it saw>
 - STOP: <unpredictable behavior or damage: halt>
+- Limits: at most <n> tool calls and <n> iterations per run (a number is required; "unlimited" is not allowed). Reaching a limit is STOP, reported with what was done so far.
 
 ## 7. Autonomy rung and risk tier
 Rung (see `optional/agents/autonomy-ladder.md`) and the actions allowed at each tier. CRITICAL is never autonomous.

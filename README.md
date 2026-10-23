@@ -76,6 +76,7 @@ MIT, see [`LICENSE`](LICENSE): Copyright (c) 2026 Oleksandr Kukhtinov. Exception
 - [`portfolio/`](portfolio/NOTICE.md): personal materials, all rights reserved, for viewing.
 - `plugins/qabase/_base/manual-tester/` and `plugins/qabase/_base/exploratory-testing/`: donor skills by other authors, each under its own MIT `LICENSE` kept in its folder.
 - Embedded fonts in the lesson files (IBM Plex Sans) keep their own licence (SIL OFL).
+Third-party notices: [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
 This is a statement of the author's intent, not legal advice.
 
 ## Implementing on a project
