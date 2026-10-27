@@ -1,0 +1,14 @@
+{
+  "_comment": "PROPOSED user-level OS sandbox settings (injection defense R9, design 2026-10-23). NOT TESTED. Merge by hand into ~/.claude/settings.json on macOS, Linux or WSL2 after replacing the placeholder host. Key names follow the Claude Code settings page; check them against your version first. Native Windows has no OS sandbox: rely on W1.5 and the Xray script content checks.",
+  "sandbox": {
+    "enabled": true,
+    "allowUnsandboxedCommands": false,
+    "network": {
+      "allowedDomains": ["github.com", "REPLACE-WITH-YOUR-JIRA-HOST.invalid"]
+    },
+    "filesystem": {
+      "denyRead": ["~/.ssh", "~/.aws", "~/.config/gcloud", "**/.env", "**/.env.*", "**/*.pem", "**/*.key"],
+      "denyWrite": ["plugins/qabase/**"]
+    }
+  }
+}
