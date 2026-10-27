@@ -22,19 +22,38 @@ Goal: open this repository in a Claude Code cloud session and use the skills, in
 2. Open claude.ai/code, choose the repository, and create or edit a **cloud environment** (section 3).
 3. Start a session. First message: `/onboarding-check`, then ask for the `--check` below.
 
-## 3. Cloud environment for Jira and Xray
+## 3. Cloud environments for Jira and Xray (two, and the gate before the first connection)
 
-| Setting | Value | Why |
+STATUS: DRAFT, design 2026-10-23 (`docs/superpowers/specs/2026-10-23-injection-defense-design.md`, wave 1). Nothing below is connected yet; every item is NOT TESTED until the connection is made. Reason: an injected instruction in a ticket or page can make a session call Jira with whatever the environment can reach, so the environment, not the prompt, limits the damage.
+
+### 3.1 Gate: done before any Jira secret is added to a cloud environment
+| # | Precondition | Verified when |
 |---|---|---|
-| Environment variable `JIRA_BASE_URL` | `https://<your Jira host>` | not a secret; any command can read variables |
-| Environment variable `JIRA_AUTH` | `proxy` | tells the script not to look for a token |
-| **Network secret** | name: Jira PAT; allowed website: your Jira host; header `Authorization`, prefix `Bearer`, value: your Jira personal access token | the environment's proxy attaches the token to requests for that host; the token never enters the VM, an environment variable or a file |
-| Network access | the level that suits you; the secret's host is reachable regardless | |
+| W1.1 | No Jira secret is added to any cloud environment before W1.2 and W1.4 are done | the secret list of every environment is checked |
+| W1.2 | Two environments exist: `qa-read` and `qa-xray-write` (3.2) | claude.ai/code shows both; `qa-read` has no network secret |
+| W1.3 | The public repository is never attached to `qa-xray-write`; real project work uses a private repository created from this base | the rule is in this file and in onboarding |
+| W1.4 | The token belongs to a dedicated least-privilege Jira account: create and edit Test issues and steps in the QA project only; no delete, no admin, no customer-facing projects (needs the Jira admin; Discovery item 18) | `--check` prints `HTTP 200 as <service account>` |
+| W1.5 | Locally, `JIRA_PAT` is not set in the terminal that runs Claude: Claude prepares the plan and the dry run; the person runs `--apply` in their own terminal | in the Claude session `echo ${JIRA_PAT:+set}` prints nothing |
+| W1.6 | GitHub: no outside collaborator with write access; the raw diff of any outside pull request touching `CLAUDE.md`, `.claude/**`, `plugins/qabase/**`, `tools/**`, `policy/**` or `evals/**` is read; an unreviewed branch is never opened in a session that holds a secret; no AI GitHub workflow is added. With a second maintainer: 1 required approval and CODEOWNERS on those paths | the collaborator list is checked (can be done now) |
 
+If the Jira host is not reachable from the internet (Discovery item 19, UNKNOWN), W1.2 and W1.4 do not apply to the cloud, and W1.5 plus the Xray script's content checks become the main controls.
+
+### 3.2 The two environments
+| | `qa-read` (default) | `qa-xray-write` |
+|---|---|---|
+| Use | analysis, drafting, review, the dry run of a plan | an `--apply` run, only with the person present |
+| Secrets | none | only the Jira secret, for the Jira host only; deleted after the run |
+| Network access | None or Trusted | the level that suits you; the secret's host is reachable regardless |
+| Variables | none needed | `JIRA_BASE_URL=https://<your Jira host>` (not a secret), `JIRA_AUTH=proxy` (tells the script not to look for a token) |
+
+The secret is a network secret: name Jira PAT; allowed website your Jira host; header `Authorization`, prefix `Bearer`, value the token of the dedicated account (W1.4). The environment's proxy attaches it to requests for that host; the token never enters the VM, an environment variable or a file.
+
+### 3.3 Rules that stay
 - VERIFIED FACT (docs): variables set on an environment are readable by anyone who uses the environment and by every command Claude runs. Never put the token in a variable. That would break the rule "credentials never visible" (`security-rules.md` item 4).
 - VERIFIED FACT (docs): network secrets are available on Pro, Max, Team and Enterprise; on Enterprise adding one may need an organization admin role.
-- Use your own personal access token and revoke it when you stop. Never paste it into the chat, a file or a commit.
+- Revoke the token when you stop. Never paste it into the chat, a file or a commit.
 - Do not set a token for Xray separately: Xray Server/DC runs inside Jira on the same host.
+- Write sessions are split (R4): session 1 in `qa-read` drafts `runs/<id>/plan.json` from untrusted input; the person reads that file; session 2 in `qa-xray-write` reads only that file, runs the dry run, then applies.
 
 ## 4. Check before the first real use
 

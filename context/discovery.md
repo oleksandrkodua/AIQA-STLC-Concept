@@ -21,3 +21,7 @@ date). Until answered, rules and skills treat the item as UNKNOWN and ask rather
 | 14 | Existing regression size and its current state | Scope of regression automation; no promised percentage | | | |
 | 15 | Which product or customer configurations are in scope on the test environment, and how is one selected in a build (config, flag, separate build)? | Test matrix, rules scope, data | | | |
 | 16 | Locales, currencies, regions and regulations in scope | Test data, consent and legal checks | | | |
+| 17 | Where will Jira and Xray writes run: cloud, local, or both? | Decides which environments and which wave 1 preconditions apply (`docs/CLOUD-SESSION.md` 3) | | | |
+| 18 | Can a dedicated least-privilege Jira account for the API token be created? Who is the Jira admin? | W1.4: a hijacked session can do only what that account can | | | |
+| 19 | Is the Jira host reachable from the internet (cloud sessions) or only on VPN/intranet? | If not, the cloud environments do not apply to Jira (W1.2, W1.4) | | | |
+| 20 | Who has write access to the GitHub repository, and is there a second maintainer? | W1.6: outside changes to trusted paths | | | |
