@@ -28,7 +28,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/deny_prod_and_secrets.py\""
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/deny_prod_and_secrets.py\"",
+            "onFailure": "block"
           }
         ]
       },
@@ -37,7 +38,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/protect_trusted_assets.py\""
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/protect_trusted_assets.py\"",
+            "onFailure": "block"
           }
         ]
       }

@@ -4,11 +4,11 @@
     "PreToolUse": [
       {
         "matcher": "Bash|Read|Edit|Write|MultiEdit|NotebookEdit|Glob|Grep|WebFetch",
-        "hooks": [ { "type": "command", "command": "__PY__ \"$CLAUDE_PROJECT_DIR/.claude/hooks/deny_prod_and_secrets.py\"" } ]
+        "hooks": [ { "type": "command", "command": "__PY__ \"$CLAUDE_PROJECT_DIR/.claude/hooks/deny_prod_and_secrets.py\"", "onFailure": "block" } ]
       },
       {
         "matcher": "Edit|Write|MultiEdit|NotebookEdit|Bash",
-        "hooks": [ { "type": "command", "command": "__PY__ \"$CLAUDE_PROJECT_DIR/.claude/hooks/protect_trusted_assets.py\"" } ]
+        "hooks": [ { "type": "command", "command": "__PY__ \"$CLAUDE_PROJECT_DIR/.claude/hooks/protect_trusted_assets.py\"", "onFailure": "block" } ]
       }
     ],
     "PostToolUse": [

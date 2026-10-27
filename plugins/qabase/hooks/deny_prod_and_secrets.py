@@ -6,7 +6,7 @@ Protocol assumed (Claude Code hooks): JSON on stdin with tool_name and tool_inpu
 deny = JSON on stdout with hookSpecificOutput.permissionDecision = "deny", exit 0.
 That protocol is unverified until the hook is observed firing (`evals/hooks-firing.md`).
 
-Fail-open: on any internal error it allows and writes a note to stderr. The permission
+On any internal error it returns "ask" (a person decides) and writes a note to stderr. The permission
 deny rules in settings.draft.json are the floor under this hook.
 Limits: heuristic string matching; cannot see inside scripts or `@` file references.
 """
@@ -26,6 +26,11 @@ def allow():
 def deny(reason):
     print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse",
         "permissionDecision": "deny", "permissionDecisionReason": reason}}))
+    sys.exit(0)
+
+def ask(reason):
+    print(json.dumps({"hookSpecificOutput": {"hookEventName": "PreToolUse",
+        "permissionDecision": "ask", "permissionDecisionReason": reason}}))
     sys.exit(0)
 
 def prod_hosts():
@@ -61,7 +66,8 @@ def main():
     except SystemExit:
         raise
     except Exception as e:
-        sys.stderr.write(f"deny_prod_and_secrets: internal error, failing open: {e}\n")
+        sys.stderr.write(f"deny_prod_and_secrets: internal error, asking: {e}\n")
+        ask(f"deny_prod_and_secrets: internal error ({type(e).__name__}); the check did not run. Confirm the action.")
     allow()
 
 if __name__ == "__main__":
