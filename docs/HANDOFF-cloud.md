@@ -21,6 +21,7 @@ Purpose: the state a cloud session needs. Local-only files (run journals, test s
 4. Agent-layer audit 2026-10-23: proposals A-F approved and applied in PR #2 (`feedback/proposals/2026-10-23-agent-layer-audit.md`). Notes N1-N5 there stay open.
 5. Injection evals for the 7 skills that got section 0: one `injected-*` eval each, fixtures in `evals/fixtures/injection/` (tiers and how to run in its README). Run the MUST tier first: analyze-requirements, create-test-cases, automation-readiness-assessment (local, 3 runs each).
 6. First run checklist and prompt for a cloud session: `docs/CLOUD-SESSION.md` section 9. Part B (Jira `--check`) NOT RUN.
+7. Injection defense (wave 2, `docs/superpowers/specs/2026-10-23-injection-defense-design.md`): the wave 1 gate is written in `docs/CLOUD-SESSION.md` section 3 and Discovery items 17-20; nothing of it is connected or tested. Repository changes R1-R9 are in the wave 2 pull request; their local verification is wave 3 (NOT RUN).
 
 ## What a cloud session may do
 Read the repository, draft documents and proposals, write rubrics and candidate eval cases (text), review diffs, run the validator, work on a branch and open a pull request. Open it through the REST API (`gh api repos/<owner>/<repo>/pulls -f title=... -f head=<branch> -f base=main -F body=@<file>`): `gh pr create` fails in a cloud session because GitHub GraphQL is not available there (seen 2026-10-23).

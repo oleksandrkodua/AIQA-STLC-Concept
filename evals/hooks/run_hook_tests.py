@@ -51,13 +51,13 @@ def main():
         ok = got == want
         bad += not ok
         print(f"{'PASS' if ok else 'FAIL'}  {name:26} expected={want:6} got={got}")
-    # fail-open: garbage input must not block
+    # internal error: garbage input must ask, not allow and not crash
     for script in (SECRETS, TRUST):
         p = subprocess.run([sys.executable, os.path.join(H, script)], input="not json",
                            capture_output=True, text=True, timeout=10)
-        ok = p.returncode == 0 and p.stdout.strip() == ""
+        ok = p.returncode == 0 and "ask" in p.stdout
         bad += not ok
-        print(f"{'PASS' if ok else 'FAIL'}  {script+' fail-open':26} expected=allow  got=exit{p.returncode}")
+        print(f"{'PASS' if ok else 'FAIL'}  {script+' internal error':26} expected=ask    got=exit{p.returncode}")
     # prod host list: temporary list must trigger deny
     hf = os.path.join(H, "prod-hosts.txt"); orig = open(hf).read()
     try:

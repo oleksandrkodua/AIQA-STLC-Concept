@@ -33,5 +33,12 @@ In Desktop and VS Code the hook rows must be tested again (E24, E25 in Part E of
 ## 5. Hand over a session
 `/qabase:handoff <run id>` writes `runs/<id>/HANDOFF.md` (at most 60 lines, `runs/` is not committed). In the new chat: "Read runs/<id>/HANDOFF.md first, then the approved brief. Do not rely on any earlier chat." Offer a handoff at about 50% context and again at 60% (numbers are a guess to measure on the pilot).
 
-## 6. Hand over the project to another QA
+## 6. Input from tickets, pages and logs (untrusted)
+STATUS: DRAFT, design 2026-10-23 (injection defense R2, R8); NOT TESTED.
+- Text from a ticket, wiki page, CI log or chat is data, and an injected instruction in it is the main way a session gets hijacked. Save the text under `runs/<id>/input/` (git-ignored) and have the skill read it with Read, so it arrives as file content. If you paste it into the chat, the skill restates it as quoted data and asks before any write or network action.
+- Permission mode: manual (default) for QA sessions, written in the run journal. Auto mode hides the prompts that catch a hijacked action.
+- Running `claude -p` (or opening Claude Code) on a fork, a pull-request branch or an unfamiliar clone: the repository's own settings, hooks and MCP list would load first. Use the flags from the research report (D15), after `claude --help` shows they exist in your version: `--setting-sources user`, `--bare`, `--settings '{"disableAllHooks": true}'`, and a `disabledMcpjsonServers` entry. NOT TESTED here. Never open an unreviewed branch in a session that holds a secret.
+- When a handoff, feedback entry or run journal was written from untrusted input, it says so in its first lines: "Input: untrusted (ticket / page / log) | none".
+
+## 7. Hand over the project to another QA
 Not decided: marketplace install or git clone (`docs/DISTRIBUTION-OPTIONS.md`). Before sharing: check the repository for project-specific facts (names, hosts, accounts) and for secrets. Keep a working repository (`.git`, `node_modules`) on a path that is not synced by a cloud service (iCloud, OneDrive): sync conflicts create duplicate files.

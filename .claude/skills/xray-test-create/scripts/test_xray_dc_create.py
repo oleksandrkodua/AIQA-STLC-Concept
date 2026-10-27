@@ -34,7 +34,7 @@ class T(unittest.TestCase):
     def test_validate_adds_label_and_hash_is_stable(self):
         p = x.validate(PLAN)
         self.assertIn("ai-drafted", p["cases"][0]["labels"])
-        self.assertEqual(x.plan_hash(p), x.plan_hash(x.validate(json.loads(json.dumps(PLAN)))))
+        self.assertEqual(x.plan_hash(p, "jira.example.test"), x.plan_hash(x.validate(json.loads(json.dumps(PLAN))), "jira.example.test"))
 
     def test_validate_rejects_bad_input(self):
         bad = [dict(PLAN, project="qa lower"), dict(PLAN, cases=[]),
@@ -99,7 +99,7 @@ class T(unittest.TestCase):
         out = io.StringIO(); old = (sys.stdout, x.urllib.request.urlopen)
         sys.stdout, x.urllib.request.urlopen = out, Fake(script)
         try:
-            h = x.plan_hash(x.validate(two))
+            h = x.plan_hash(x.validate(two), "jira.example.test")
             self.assertEqual(x.main([t.name, "--apply", "--plan-hash", h, "--expect-host", "jira.example.test"]), 1)
         finally:
             sys.stdout, x.urllib.request.urlopen = old; os.unlink(t.name)
@@ -112,12 +112,82 @@ class T(unittest.TestCase):
         out = io.StringIO(); old = sys.stdout; sys.stdout = out
         try:
             self.assertEqual(x.main([t.name]), 0)
-            h = x.plan_hash(x.validate(PLAN))
+            h = x.plan_hash(x.validate(PLAN), "jira.example.test")
             self.assertIn(h, out.getvalue())
             self.assertEqual(x.main([t.name, "--apply", "--plan-hash", "0000", "--expect-host", "jira.example.test"]), 2)
             self.assertEqual(x.main([t.name, "--apply", "--plan-hash", h, "--expect-host", "other.test"]), 2)
         finally:
             sys.stdout = old; os.unlink(t.name)
+
+    # R3 (injection defense): links, images and mentions in text fields are listed and rejected unless --allow-links;
+    # the plan hash covers the plan and the host together.
+    def _plan_with(self, text, field="result"):
+        steps = [{"step": "Open login", "result": "Form shown"}, {"step": "Submit", "result": "Home shown"}]
+        steps[1][field] = text
+        return dict(PLAN, cases=[dict(PLAN["cases"][0], steps=steps)])
+
+    def _run_main(self, plan, *extra):
+        with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as t:
+            json.dump(plan, t)
+        out = io.StringIO(); old = (sys.stdout, x.urllib.request.urlopen)
+        fake = Fake(lambda req: (200, '{"issues":[]}'))
+        sys.stdout, x.urllib.request.urlopen = out, fake
+        try:
+            code = x.main([t.name, *extra])
+        finally:
+            sys.stdout, x.urllib.request.urlopen = old; os.unlink(t.name)
+        return code, out.getvalue(), fake
+
+    def test_find_links_kinds(self):
+        for text in ["see https://evil.invalid/x", "[click](http://a.invalid)", "![img](http://a.invalid/i.png)",
+                     "[text|http://a.invalid]", "!shot.png!", "[~admin] please look", "ping @admin", "go to www.evil.invalid"]:
+            self.assertTrue(x.find_links(text), text)
+        for text in ["Open the login page and press Submit", "Total is 10 (ten) items", "mail qa@example.test", "Wow! Done!"]:
+            self.assertEqual(x.find_links(text), [], text)
+
+    def test_content_findings_name_the_field(self):
+        f = x.content_findings(x.validate(self._plan_with("open https://evil.invalid/p")))
+        self.assertEqual(len(f), 1)
+        self.assertIn("case 1 step 2 result", f[0])
+        self.assertIn("https://evil.invalid/p", f[0])
+        d = dict(PLAN, cases=[dict(PLAN["cases"][0], summary="Login [~admin]", description="see www.evil.invalid")])
+        self.assertEqual(len(x.content_findings(x.validate(d))), 2)
+
+    def test_dry_run_lists_links_and_stops(self):
+        code, out, fake = self._run_main(self._plan_with("open https://evil.invalid/p"))
+        self.assertEqual(code, 2)
+        self.assertIn("LINKS FOUND", out)
+        self.assertIn("https://evil.invalid/p", out)
+        self.assertEqual(fake.calls, [])
+
+    def test_allow_links_still_lists_them(self):
+        code, out, _ = self._run_main(self._plan_with("open https://evil.invalid/p"), "--allow-links")
+        self.assertEqual(code, 0)
+        self.assertIn("LINKS FOUND", out)
+
+    def test_apply_rejects_links_even_with_the_right_hash(self):
+        plan = self._plan_with("open https://evil.invalid/p")
+        h = x.plan_hash(x.validate(plan), "jira.example.test")
+        code, out, fake = self._run_main(plan, "--apply", "--plan-hash", h, "--expect-host", "jira.example.test")
+        self.assertEqual(code, 2)
+        self.assertEqual(fake.calls, [])
+        code, out, fake = self._run_main(plan, "--apply", "--plan-hash", h, "--expect-host", "jira.example.test", "--allow-links")
+        self.assertIn(code, (0, 1))
+        self.assertTrue(fake.calls)
+
+    def test_hash_covers_the_host(self):
+        p = x.validate(PLAN)
+        self.assertNotEqual(x.plan_hash(p, "jira.example.test"), x.plan_hash(p, "other.example.test"))
+        os.environ["JIRA_BASE_URL"] = "https://other.example.test"
+        code, out, fake = self._run_main(PLAN, "--apply", "--plan-hash", x.plan_hash(p, "jira.example.test"), "--expect-host", "other.example.test")
+        self.assertEqual(code, 2)
+        self.assertEqual(fake.calls, [])
+
+    def test_dry_run_needs_the_host(self):
+        os.environ["JIRA_BASE_URL"] = ""
+        code, out, _ = self._run_main(PLAN)
+        self.assertEqual(code, 2)
+        self.assertIn("JIRA_BASE_URL", out)
 
     def test_proxy_mode_sends_no_token(self):
         os.environ.pop("JIRA_PAT", None); os.environ["JIRA_AUTH"] = "proxy"

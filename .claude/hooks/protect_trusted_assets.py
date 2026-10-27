@@ -4,7 +4,7 @@
 
 Decision = "ask" (the user sees a prompt). Bash is checked heuristically: a write-like
 command that names a trusted path asks too. Heuristic only; the permission rules are the floor.
-Fail-open on internal errors.
+On an internal error it asks (the check did not run).
 """
 import json, re, sys
 
@@ -31,7 +31,8 @@ def main():
     except SystemExit:
         raise
     except Exception as e:
-        sys.stderr.write(f"protect_trusted_assets: internal error, failing open: {e}\n")
+        sys.stderr.write(f"protect_trusted_assets: internal error, asking: {e}\n")
+        ask(f"protect_trusted_assets: internal error ({type(e).__name__}); the check did not run. Confirm the action.")
     sys.exit(0)
 
 if __name__ == "__main__":

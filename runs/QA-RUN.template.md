@@ -4,6 +4,7 @@
 
 ## Why this run exists
 <one paragraph: the request, what is at stake, who asked>
+Input: <untrusted: ticket / page / log | none> · Permission mode: <manual | other, why>
 
 ## Build fingerprint
 Environment: <DEV | other approved> · Platform: <web | android | ios> · Device: <EMULATOR name | DEVICE model>

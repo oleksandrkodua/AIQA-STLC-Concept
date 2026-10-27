@@ -1,5 +1,5 @@
 {
-  "_note": "MAINTAINER profile: ask on trusted paths. QA machines use tools/settings.qa.json (deny). Shared permission floor (committed). No hooks here: hooks are per-machine because the Python launcher differs by OS; see hooks.template.json and apply-trusted-changes.sh. Source: .claude/settings.draft.json.",
+  "_note": "MAINTAINER profile: ask on trusted paths. QA machines use tools/settings.qa.json (deny). Shared permission floor (committed). No hooks here: hooks are per-machine because the Python launcher differs by OS; see hooks.template.json and apply-trusted-changes.sh. Source: .claude/settings.draft.json.; curl, wget and REST-path rules match command text only: /usr/bin/curl, a script or another binary can evade them (M1 records the limit)",
   "permissions": {
     "deny": [
       "Read(./.env)",
@@ -24,7 +24,11 @@
       "Edit(policy/**)",
       "Edit(evals/**)",
       "Bash(git push:*)",
-      "Bash(*xray_dc_create.py*)"
+      "Bash(*xray_dc_create.py*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(*rest/api*)",
+      "Bash(*rest/raven*)"
     ]
   }
 }

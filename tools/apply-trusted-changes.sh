@@ -72,4 +72,8 @@ for line in ".claude/settings.local.json" ".claude/*.proposed"; do
   fi
 done
 
+echo; echo "== 5. OS sandbox (macOS, Linux, WSL2): user-level settings, never written by this script"
+echo "  Proposed keys: tools/sandbox.user.json (network allowlist, no unsandboxed commands, credential deny entries, denyWrite on plugins/qabase/**)."
+echo "  Merge them by hand into ~/.claude/settings.json after replacing the placeholder host. NOT TESTED. Native Windows: no OS sandbox."
+
 echo; echo "Done. NOT VERIFIED: that Claude Code fires these hooks. Next: restart Claude Code in this folder and run /onboarding-check hooks (it includes the firing test)."

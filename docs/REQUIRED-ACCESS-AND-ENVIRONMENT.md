@@ -226,6 +226,13 @@ Result per row: PASS / FAIL / NOT CHECKED, with the next step. "Claude" = Claude
 
 Output of the skill: a table of the rows above with PASS / FAIL / NOT CHECKED, a list of what the person has to do themselves, and a line "not checked: ...". It never prints a token, never logs in, never installs.
 
+## Part G. OS sandbox for Claude Code (proposal)
+STATUS: DRAFT, design 2026-10-23 (injection defense R9); NOT TESTED. Why: permission rules and hooks are best-effort (`security-rules.md` item 7); an OS sandbox is the boundary that still holds when a session is hijacked.
+- Where: macOS, Linux and WSL2, in the user-level `~/.claude/settings.json` (not in the repository, because project settings can be changed by whoever changes the repository). Proposed keys are in `tools/sandbox.user.json`: `sandbox.enabled`, `allowUnsandboxedCommands: false`, a network allowlist, `denyRead` for credential files, `denyWrite` on `plugins/qabase/**`. `tools/apply-trusted-changes.sh` prints the pointer and writes nothing there.
+- Native Windows: no OS sandbox; the main controls are W1.5 (`docs/CLOUD-SESSION.md` 3.1) and the Xray script content checks.
+- Check on a real machine (M1): a sandboxed command cannot reach a host outside the allowlist; `plugins/qabase/**` cannot be written by a command. Record the result as k of N in `decisions/verification-log.md`.
+- Limit: the sandbox constrains commands, not what the model writes in the chat or into allowed files.
+
 ## Part F. Open questions
 
 1. Which MCP servers does the client allow, and under what names (Jira, Xray, Figma, Slack, Confluence)? UNKNOWN.

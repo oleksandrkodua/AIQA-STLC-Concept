@@ -1,5 +1,8 @@
 {
-  "_note": "STRICT profile for QA machines. Repository files, skills, rules, hooks and evals cannot be edited by Claude: deny, not ask. Allowed writes are everything not listed here, in practice runs/**, feedback/inbox/**, feedback/proposals/** and automation/** (through the create-* skills with review). Edit rules cover every built-in file-editing tool, the file commands Claude Code recognizes in Bash (sed, tee) and redirect targets, but NOT a script or command that writes files without naming them; git pre-commit is the backstop. Write(path) rules never match (Claude Code documentation, permissions page, read 2026-10-23), so none are listed. Maintainer profile = tools/settings.shared.json (ask). Install with: bash tools/apply-trusted-changes.sh --profile qa. NOT VERIFIED that deny blocks as expected; see docs/REQUIRED-ACCESS-AND-ENVIRONMENT.md row E29.",
+  "_note": "STRICT profile for QA machines. Repository files, skills, rules, hooks and evals cannot be edited by Claude: deny, not ask. Allowed writes are everything not listed here, in practice runs/**, feedback/inbox/**, feedback/proposals/** and automation/** (through the create-* skills with review). Edit rules cover every built-in file-editing tool, the file commands Claude Code recognizes in Bash (sed, tee) and redirect targets, but NOT a script or command that writes files without naming them; git pre-commit is the backstop. Write(path) rules never match (Claude Code documentation, permissions page, read 2026-10-23), so none are listed. Maintainer profile = tools/settings.shared.json (ask). Install with: bash tools/apply-trusted-changes.sh --profile qa. NOT VERIFIED that deny blocks as expected; see docs/REQUIRED-ACCESS-AND-ENVIRONMENT.md row E29.; curl, wget and REST-path rules match command text only: /usr/bin/curl, a script or another binary can evade them (M1 records the limit)",
+  "env": {
+    "CLAUDE_CODE_DISABLE_WEB_FETCH": "1"
+  },
   "permissions": {
     "deny": [
       "Read(./.env)",
@@ -24,13 +27,18 @@
       "Edit(decisions/**)",
       "Edit(docs/**)",
       "Edit(mods/**)",
+      "WebFetch",
       "Edit(.claude-plugin/**)",
       "Edit(feedback/README.md)",
       "Bash(*JIRA_PAT*)"
     ],
     "ask": [
       "Bash(git push:*)",
-      "Bash(*xray_dc_create.py*)"
+      "Bash(*xray_dc_create.py*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(*rest/api*)",
+      "Bash(*rest/raven*)"
     ]
   }
 }
