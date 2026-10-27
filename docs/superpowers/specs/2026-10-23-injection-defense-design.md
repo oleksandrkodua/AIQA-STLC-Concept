@@ -1,6 +1,6 @@
 # Prompt-injection defense: design of the execution plan
 
-STATUS: DRAFT v0.1, 2026-10-23. Approved in chat by the author section by section (approach A, waves 1-3, MCP as a gate). Not approved by the QA Lead. Nothing here is implemented yet; every check is NOT TESTED until it runs locally.
+STATUS: DRAFT v0.1, 2026-10-23. Approved in chat by the author section by section (approach A, waves 1-3, MCP as a gate). Not approved by the QA Lead. Wave 2 was implemented on branch `wave2/injection-defense` on 2026-10-27 (status per item below); wave 1 is a gate for the owner and is not done. Every check is NOT TESTED until it runs locally.
 Provenance: ai-generated (Claude Code, cloud session; model and version not recorded), 2026-10-23; human-confirmed: pending.
 Evidence: `docs/research/2026-10-23-injection-defense/report.md` (findings 1-15, defenses D1-D18, L1-L4, SKIP tier) and its five note files.
 
@@ -13,7 +13,7 @@ Assume an injection will sometimes succeed, and limit what a hijacked session ca
 - A protective hook that fails asks a person: `onFailure: block` for a hook that cannot start, `ask` for an internal error of the two protective scripts; the advisory `qa_gate` keeps failing open.
 - Scope: waves 1-3; MCP only as a list of conditions.
 - Approach A: contain (wave 1), harden (wave 2), measure (wave 3). Rejected: repository changes first (most of them only lower the odds while the main risk sits outside the repository), measuring first (spends local limits on gaps known to be open).
-- All of wave 2 is approved; nothing of it is implemented yet. Each item below says how it will be verified locally.
+- All of wave 2 is approved and implemented in a branch (2026-10-27), not merged; its local verification is wave 3 and is NOT RUN. Each item below says how it is verified locally.
 
 ## Wave 1: gate before the first tool connection (owner, outside the repository)
 Written into `docs/CLOUD-SESSION.md` and `context/discovery.md` as preconditions. Status of each: NOT TESTED until the connection is made.
@@ -29,8 +29,8 @@ Written into `docs/CLOUD-SESSION.md` and `context/discovery.md` as preconditions
 
 If the Jira host is not reachable from the internet (report finding 15, UNKNOWN), W1.2 and W1.4 do not apply to the cloud, and W1.5 plus R9 become the main controls.
 
-## Wave 2: repository changes (approved; not implemented; verified locally after implementation)
-MUST: R1, R2, R3, R10. SHOULD: the rest. All are approved for the next round; none is implemented.
+## Wave 2: repository changes (approved; implemented in a branch 2026-10-27; not merged; verification NOT RUN)
+MUST: R1, R2, R3, R10. SHOULD: the rest. Implemented: R1 (hook scripts, tests, drafts; the hooks README and the `.claude/hooks` copies are applied by the owner with `tools/apply-trusted-changes.sh`), R2, R3, R4, R5, R6, R7, R8 (docs and handoff), R9 (a proposal file only, not applied to any machine), R10. None of it is verified by a run.
 
 | # | Change | Files | Local verification | Report |
 |---|---|---|---|---|
