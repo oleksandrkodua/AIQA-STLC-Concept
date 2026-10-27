@@ -1,0 +1,30 @@
+name: validate
+
+# Runs the repository validator on every pull request and on pushes to main.
+# No secrets, no AI step, no pull_request_target: a pull request from a fork runs
+# with a read-only token and cannot reach anything the owner holds.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # TODO before merging: pin both actions to a full commit SHA (security-rules 10); a tag can move.
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Python version
+        run: python3 --version
+      - name: Validate the repository
+        run: python3 evals/validate_repo.py
