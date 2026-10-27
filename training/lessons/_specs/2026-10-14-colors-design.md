@@ -79,7 +79,7 @@ Answers the second open point above. Applied in `training/lessons/_mockups/diagr
 ## 6. Beyond colour (added 2026-10-23)
 
 - Tokens: `../_design/tokens.json` is the source of truth (colours of section 1, fonts, type scale, radius, stage 1920x1080); `tokens.css` is its `:root`; `check_tokens.py` fails on drift.
-- Type scale (12 steps): 24, 28, 32, 36, 40, 44, 48, 56, 76, 88, 104, 128 px as `--fs-label` ... `--fs-display`. Lesson 1 was moved onto it by rounding every size down by at most 4 px (22 px went up to 24), so no line grows and no title wraps; checked by screenshots of all 23 slides before and after.
+- Type scale (12 steps): 24, 28, 32, 36, 40, 44, 48, 56, 76, 88, 104, 128 px as `--fs-label` ... `--fs-display`. Lesson 1 was moved onto it by rounding every size down by at most 4 px, with two exceptions: two 84 px titles went to 76 px (-8 px) and 22 px went up to 24 px (+2 px), so only that one size grows and no title wraps; checked by screenshots of all 23 slides before and after.
 - Radius: `--r-s` 6 px, `--r-m` 16 px, `--r-l` 20 px, `--r-pill`; circles stay `50%`.
 - Component names: `eyebrow`, `title`, `lead`, `card`, `card-label`, `chip`, `numbered-item`, `step-number`, `footer` (lesson 1: `kick` became `eyebrow`, `lab` became `card-label`, `ccard` became `card`).
 - Diagrams (mermaid): the status classes `ok`, `draft`, `fail`, `off`, `gate` in `../_design/README.md` use these colours with `--ink` labels (small text), always next to the status word.

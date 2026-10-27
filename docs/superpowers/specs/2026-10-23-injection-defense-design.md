@@ -13,7 +13,7 @@ Assume an injection will sometimes succeed, and limit what a hijacked session ca
 - A protective hook that fails asks a person: `onFailure: block` for a hook that cannot start, `ask` for an internal error of the two protective scripts; the advisory `qa_gate` keeps failing open.
 - Scope: waves 1-3; MCP only as a list of conditions.
 - Approach A: contain (wave 1), harden (wave 2), measure (wave 3). Rejected: repository changes first (most of them only lower the odds while the main risk sits outside the repository), measuring first (spends local limits on gaps known to be open).
-- All of wave 2 is done; it is verified locally later. Each item below says how.
+- All of wave 2 is approved; nothing of it is implemented yet. Each item below says how it will be verified locally.
 
 ## Wave 1: gate before the first tool connection (owner, outside the repository)
 Written into `docs/CLOUD-SESSION.md` and `context/discovery.md` as preconditions. Status of each: NOT TESTED until the connection is made.
@@ -29,8 +29,8 @@ Written into `docs/CLOUD-SESSION.md` and `context/discovery.md` as preconditions
 
 If the Jira host is not reachable from the internet (report finding 15, UNKNOWN), W1.2 and W1.4 do not apply to the cloud, and W1.5 plus R9 become the main controls.
 
-## Wave 2: repository changes (done in a branch; verified locally later)
-MUST: R1, R2, R3, R10. SHOULD: the rest. All are done in this round.
+## Wave 2: repository changes (approved; not implemented; verified locally after implementation)
+MUST: R1, R2, R3, R10. SHOULD: the rest. All are approved for the next round; none is implemented.
 
 | # | Change | Files | Local verification | Report |
 |---|---|---|---|---|
