@@ -50,6 +50,7 @@ No run id → ask once; if none is given use `unnamed-<date>`.
 ```
 HANDOFF <run id> <date>
 GOAL: <one or two sentences>
+INPUT: untrusted (ticket / page / log) | none
 DECISIONS: <decision> | by <who> | source <where it is written>
 ACCEPTANCE CRITERIA: <AC ids from the approved brief, or "no approved brief">
 PROGRESS: DONE (observed): ...  | NOT VERIFIED: ...
