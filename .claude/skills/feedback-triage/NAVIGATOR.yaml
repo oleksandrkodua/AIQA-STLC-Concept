@@ -5,5 +5,5 @@ intents:
   - turn feedback into change proposals
   - decide what feedback becomes a rule or eval
 needs: none; reads feedback/inbox/, writes feedback/proposals/ after you confirm
-access_checked: 160251491bd7
+access_checked: 0713eee9caef
 # phrases:   (optional) real phrases collected from users, one per line, same format as intents

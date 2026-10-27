@@ -56,6 +56,10 @@ def frontmatter(skill_md):
 def needs_hash(skill_md):
     """Hash of the sections that define what the skill needs (whitespace-normalised)."""
     parts = []
+    fm = re.match(r"---\n(.*?)\n---\n", skill_md, re.S)
+    for key in ("allowed-tools", "disallowed-tools"):  # tool limits are part of what the skill needs
+        km = re.search(r"^" + key + r":[ \t]*(.*)$", fm.group(1) if fm else "", re.M)
+        if km: parts.append(key + ":" + " ".join(km.group(1).split()))
     for h in NEEDS_SECTIONS:
         m = re.search(r"^## (?:\d+\.\s*)?" + h + r".*?\n(.*?)(?=^## |\Z)", skill_md, re.M | re.S)
         if m: parts.append(h + ":" + " ".join(m.group(1).split()))
