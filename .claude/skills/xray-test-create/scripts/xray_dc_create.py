@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Create approved test cases in Xray Server / Data Center. DRAFT, NOT RUN against a real instance.
 
-Default is a dry run: validates the plan, prints it and a plan hash, sends nothing.
+Default is a dry run: validates the plan, prints it and a plan hash, sends nothing. The hash covers the
+plan and the Jira host, so the dry run needs JIRA_BASE_URL. URLs, links, images and mentions in the text
+fields are listed (LINKS FOUND) and stop the run unless --allow-links is given.
 --apply sends requests and needs --plan-hash (from the dry run) and --expect-host.
 
 Credentials: JIRA_BASE_URL and JIRA_PAT are read from the environment only. They are never
@@ -26,6 +28,14 @@ PROJECT_RE = re.compile(r"^[A-Z][A-Z0-9_]{1,19}$")
 KEY_RE = re.compile(r"^[A-Z][A-Z0-9_]+-[0-9]+$")
 LABEL_RE = re.compile(r"^[A-Za-z0-9_.-]{1,50}$")
 CTRL_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
+# Text that can carry data out or pull a person in: URLs, Markdown and wiki links/images, mentions.
+LINK_PATTERNS = (
+    ("url", re.compile(r"(?i)\b(?:https?|ftp|file|data|javascript)://|\bwww\.|\bdata:[a-z]+/[a-z]")),
+    ("markdown link", re.compile(r"!?\[[^\]\n]*\]\([^)\n]*\)")),
+    ("wiki link", re.compile(r"\[[^\]\n|]*\|[^\]\n]+\]")),
+    ("wiki image", re.compile(r"(?<![\w!])![^\s!|]+\.(?:png|jpe?g|gif|svg|webp)(?:\|[^!\n]*)?!", re.I)),
+    ("mention", re.compile(r"\[~[^\]\n]+\]|(?<![\w.])@[A-Za-z][\w.-]*")),
+)
 
 
 class PlanError(Exception):
@@ -97,8 +107,30 @@ def validate(plan):
     return {"project": project, "issue_type": issue_type, "cases": out}
 
 
-def plan_hash(plan):
-    blob = json.dumps(plan, sort_keys=True, ensure_ascii=False).encode("utf-8")
+def find_links(text):
+    """Return [(kind, snippet)] for every URL, link, image or mention in the text."""
+    found = []
+    for kind, rx in LINK_PATTERNS:
+        for m in rx.finditer(text):
+            found.append((kind, text[m.start():m.start() + 60]))
+    return found
+
+
+def content_findings(plan):
+    """One line per link, image or mention in a normalised plan, naming the field it sits in."""
+    out = []
+    for i, c in enumerate(plan["cases"], 1):
+        fields = [("case %d summary" % i, c["summary"]), ("case %d description" % i, c["description"])]
+        for j, s in enumerate(c["steps"], 1):
+            fields += [("case %d step %d %s" % (i, j, k), s[k]) for k in ("step", "data", "result")]
+        for where, text in fields:
+            out += ["%s: %s '%s'" % (where, kind, snip) for kind, snip in find_links(text)]
+    return out
+
+
+def plan_hash(plan, host):
+    """Hash of the plan and the host together: a plan previewed for one host cannot be applied to another."""
+    blob = json.dumps({"host": host, "plan": plan}, sort_keys=True, ensure_ascii=False).encode("utf-8")
     return hashlib.sha256(blob).hexdigest()[:16]
 
 
@@ -214,6 +246,7 @@ def main(argv=None):
     ap.add_argument("--apply", action="store_true", help="send requests (default: dry run)")
     ap.add_argument("--plan-hash", help="hash printed by the dry run; required with --apply")
     ap.add_argument("--expect-host", help="Jira host the human confirmed; required with --apply")
+    ap.add_argument("--allow-links", action="store_true", help="accept URLs, links, images and mentions found in the text fields (they are still listed)")
     ap.add_argument("--allow-duplicates", action="store_true", help="skip the exact-summary duplicate check")
     args = ap.parse_args(argv)
     try:
@@ -226,7 +259,15 @@ def main(argv=None):
             raise PlanError("plan_file is required unless --check is used")
         with open(args.plan_file, encoding="utf-8") as f:
             plan = validate(json.load(f))
-        h = plan_hash(plan)
+        base, host = base_url()
+        h = plan_hash(plan, host)
+        findings = content_findings(plan)
+        if findings:
+            print("LINKS FOUND (%d): URLs, links, images or mentions in the text fields" % len(findings))
+            for line in findings:
+                print("  " + line)
+        if findings and not args.allow_links:
+            raise PlanError("remove them from the plan, or run again with --allow-links after a person has read each one")
         if not args.apply:
             print("DRY RUN: nothing sent")
             print("project: %s   issue type: %s   cases: %d" % (plan["project"], plan["issue_type"], len(plan["cases"])))
@@ -236,7 +277,6 @@ def main(argv=None):
             return 0
         if args.plan_hash != h:
             raise PlanError("plan hash does not match the previewed plan (expected %s); run the dry run again" % h)
-        base, host = base_url()
         if args.expect_host != host:
             raise PlanError("host %s was not confirmed with --expect-host" % host)
         results = []
