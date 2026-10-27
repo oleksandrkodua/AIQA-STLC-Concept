@@ -32,7 +32,7 @@ The logic-test column counts only what `evals/hooks/` runs in a sandbox (re-run 
 2. Deterministic `command` hooks for prohibitions. No model-judged hook blocks anything.
 3. Every blocking hook has a permission rule underneath, because hooks fail open and
    `@` file references bypass PreToolUse. The permission rule is the floor.
-4. A hook that errors allows and logs to stderr (fail-open). It must never trap a session.
+4. A hook that errors asks and logs to stderr; it never allows silently. A hook that cannot start is blocked (`onFailure: block`). Hooks run per machine (`.claude/settings.local.json`); cloud sessions have none.
 5. Hook scripts and their lists (`prod-hosts.txt`) are trusted assets: changes need approval.
 
 ## Known gaps
