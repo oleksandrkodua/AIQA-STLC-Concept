@@ -48,11 +48,18 @@ def parse_subset(text, where):
 def frontmatter(skill_md):
     # name and description first; other frontmatter keys (checked by evals/validate_repo.py) may follow
     m = re.match(r"---\nname: (.+)\ndescription: (.+)\n(?:(?:[A-Za-z_-]+:.*|[ \t]+.*)\n)*---\n", skill_md)
-    return (m.group(1).strip(), m.group(2).strip()) if m else (None, None)
+    if not m: return None, None
+    desc = m.group(2).strip()
+    if re.fullmatch(r"[>|][+-]?", desc): return None, None  # block scalar: the description would be recorded as ">" or "|"
+    return m.group(1).strip(), desc
 
 def needs_hash(skill_md):
     """Hash of the sections that define what the skill needs (whitespace-normalised)."""
     parts = []
+    fm = re.match(r"---\n(.*?)\n---\n", skill_md, re.S)
+    for key in ("allowed-tools", "disallowed-tools"):  # tool limits are part of what the skill needs
+        km = re.search(r"^" + key + r":[ \t]*(.*)$", fm.group(1) if fm else "", re.M)
+        if km: parts.append(key + ":" + " ".join(km.group(1).split()))
     for h in NEEDS_SECTIONS:
         m = re.search(r"^## (?:\d+\.\s*)?" + h + r".*?\n(.*?)(?=^## |\Z)", skill_md, re.M | re.S)
         if m: parts.append(h + ":" + " ".join(m.group(1).split()))

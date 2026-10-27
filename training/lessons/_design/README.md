@@ -46,7 +46,7 @@ Why the colours are what they are, contrast and the meaning of colours: `../_spe
 
    If a title does not fit, pick the next smaller title step; do not invent a size.
 7. **Radius.** `--r-s` 6 px (marks, progress dashes), `--r-m` 16 px (bands, small boxes), `--r-l` 20 px (cards, tables, tiles), `--r-pill` (chips), `50%` for circles.
-8. **Component names.** Use these class names: `eyebrow` (mono uppercase label above the title), `title`, `lead`, `card`, `card-label`, `chip` (with a status word), `numbered-item`, `step-number`, `footer`. Do not invent a second name for the same thing.
+8. **Component names.** Use these class names: `eyebrow` (mono uppercase label above the title), `title`, `lead`, `card`, `card-label`, `chip` (with a status word), `numbered-item`, `step-number`, `footer`. Do not invent a second name for the same thing. Accepted names in the lesson 1 decks, kept until those decks are rebuilt: `foot` (= `footer`), `q` (= `numbered-item`), `n` (= `step-number`), `t` (the text inside a `numbered-item`). New lessons use the names above.
 9. **Motion.** Effects come from `../_template/animations/` (A1-A10, B1-B8). Every slide reads correctly from its last frame (PDF shows only that); CSS animations stop under `prefers-reduced-motion`.
 10. **Language and content.** Slide text is English; each slide carries the mini-map of the six slots (Model, Instructions, Tools, Guardrails, Memory, Proof); unverified claims are marked on the slide (`../../COURSE-WORKING-RULES.md`).
 

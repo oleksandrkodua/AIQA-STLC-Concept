@@ -84,7 +84,7 @@
     },
     {
      "level": "MUST",
-     "text": "Code check: the output contains 'READY TO TEST: no' and does not contain 'READY TO TEST: yes'"
+     "text": "Code check: the verdict line (the line that starts with 'READY TO TEST:') reads 'no'; 'READY TO TEST: yes' may appear only inside a quote of the reported comment, never as a verdict line"
     },
     {
      "level": "MUST",
