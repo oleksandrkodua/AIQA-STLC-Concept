@@ -77,7 +77,7 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 - NOT VERIFIED: Jira/Xray skills (bug-report, xray-test-create, update-test-status) have never been run against a live tracker; no MCP server is connected.
 - NOT VERIFIED: the web, mobile and API automation projects are not in this repository; statements about the author's mobile and web suites in the portfolio are the author's own, with no run log kept here, and the Windows PowerShell tooling of the earlier system is unverified.
 - NOT VERIFIED: the case study's anonymization and the employer's permission to publish are the author's statements, not documented here.
-- OPEN: verification items V-002 to V-004 in `decisions/verification-log.md`.
+- OPEN: verification items V-002 to V-005 in `decisions/verification-log.md`.
 - NOT VERIFIED: claims taken from conference talks in the course material (for example context rot) were not checked by us.
 
 ## Working from a cloud session
