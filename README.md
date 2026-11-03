@@ -58,7 +58,7 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 | `context/` | project context templates | TEMPLATE |
 | `knowledge/` | intake process (`INTAKE.md`) and source register (`register.md`) | TEMPLATE |
 | `automation/`, `ci/` | registry stubs | OPTIONAL, empty |
-| `runs/` | run journal template; `eval-kit/` with recorded eval runs | template + recorded runs |
+| `runs/` | run journal template; local eval-kit with recorded eval runs (git-ignored, not in the public repo) | template + recorded runs |
 | `feedback/` | feedback loop: README and change proposals in `proposals/` | proposals exist |
 | `decisions/` | decision log | stubs |
 | `optional/` | agent layer (off by default), user-level mods | OPTIONAL |
