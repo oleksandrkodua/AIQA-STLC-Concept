@@ -73,11 +73,11 @@ First time here or on a new machine: run `/onboarding-check` (tools, MCP, access
 | `/create-mobile-test`, `/review-mobile-test` | mobile automation (DRAFT, optional) | draft |
 | `/xray-test-create` | create approved cases in Xray (dry run first) | draft |
 | `/exploratory-testing-web`, `-mobile`, `/update-test-status`, `/bug-report`, `/qa-reporting`, `/ci-failure-analysis`, `/ci-fix` | stages 4, 6, 7, 8, 12, 13 | SKELETON, ON HOLD |
-| `/onboarding-check`; `/handoff`, `/feedback`, `/feedback-triage` | start-up checklist; session handoff; AI feedback loop | SKELETON; DRAFT |
+| `/onboarding-check`; `/handoff`, `/feedback` | start-up checklist; session handoff; AI feedback loop | SKELETON; DRAFT |
+| `/feedback-triage` | group inbox entries and write change proposals | DRAFT, eval 2 PASS (V-001), V-003 OPEN, evals 1, 3, 4 NOT RUN |
 
 Web and mobile skills are optional: use only those whose automation project is registered above.
-Reserved, not in the build: design-check, test-plan-and-regression. Workflow skills and routines
-come after the core loop is proven.
+Reserved, not in the build: design-check, test-plan-and-regression. Workflow skills and routines come after the core loop is proven.
 
 ## Approval model
 
