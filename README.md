@@ -4,7 +4,7 @@ An AI-assisted QA process across the software lifecycle: from requirements to re
 
 STATUS: DRAFT v0.1. Nothing here is approved by anyone. Labels used throughout: VERIFIED FACT / EVIDENCE-SUPPORTED INFERENCE / ASSUMPTION / UNKNOWN.
 
-**Author:** Oleksandr Kukhtinov, Senior Manual QA Engineer (13 years), AI-assisted QA. [LinkedIn](https://linkedin.com/in/akukhtinov) · alexx9006@gmail.com
+**Author:** Oleksandr Kukhtinov, Senior Manual QA Engineer (13 years), AI-assisted QA. [LinkedIn](https://linkedin.com/in/akukhtinov)
 I am a manual QA engineer, not an automation engineer. Claude Code generated the tooling from my specification; I designed the QA logic and verified the results. Generated code is not evidence of automation expertise, and I do not list Selenium, Playwright or Appium as my skills.
 
 ## For a reviewer: five minutes
