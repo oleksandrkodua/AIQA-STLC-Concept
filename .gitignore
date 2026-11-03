@@ -8,7 +8,8 @@ node_modules/
 evidence/
 *.log
 __pycache__/
-evals/runs/
+evals/runs/*
+!evals/runs/*.md
 
 .claude/settings.local.json
 .claude/*.proposed
