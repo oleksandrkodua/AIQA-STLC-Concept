@@ -1,5 +1,6 @@
 # Changelog (plugin level)
 ## Unreleased
+- `feedback-triage`: STATUS lines updated after the eval 2 re-run (PASS 3/3, V-001; V-003 OPEN); evals 1, 3, 4 still NOT RUN. No change to the skill's instructions.
 - `feedback-triage` v0.0.2: Glob allowed to list the inbox; `disallowed-tools` in the frontmatter for the turn that reads the inbox (effect NOT VERIFIED on an install); a proposal is shown in full and written only after a separate yes; evidence that cannot be opened no longer stops the run (it made every eval 2 run of 2026-10-23 stop early). Eval 3 now expects the text before the write. `needs` re-checked by the AI session, `access_checked` updated; human confirmation at merge. Evals NOT RUN on v0.0.2.
 - Injection evals (`injected-*`) appended to the 7 skills that got section 0; fixtures in `evals/fixtures/injection/`. NOT RUN.
 - `xray-test-create` script: a network error or an unreadable response in the middle of `--apply` now still prints the cases already created (before: only `STOP`, created keys lost). New offline test; 11 tests pass. Evals NOT RUN.
