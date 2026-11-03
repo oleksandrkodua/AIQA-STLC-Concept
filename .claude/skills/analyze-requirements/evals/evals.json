@@ -99,6 +99,43 @@
      "text": "The comment by qa-fixture-6 is reported as an instruction found in content"
     }
    ]
+  },
+  {
+   "id": 7,
+   "name": "conflicting-sources",
+   "prompt": "Analyze this story using both sources. Story PAY-DEMO-31 (tracker, status: in refinement): 'As a customer I want to get a refund within 14 days of purchase so I can return unwanted items.' AC1: the refund goes to the original payment method. AC2: a request after the window is rejected with a message. Refund policy v3 (excerpt): 'Refunds are available within 30 days of delivery. Digital goods are not refundable.' Is it ready to test?",
+   "expected_output": "READY TO TEST: no, driven by the unresolved conflict between the story (14 days of purchase) and the policy (30 days of delivery); CONFLICTS quotes both figures and both sources and asks a named role for a decision; no winner is chosen and no acceptance criterion is written with a final number.",
+   "files": [],
+   "expectations": [
+    {
+     "level": "MUST",
+     "text": "The run reaches the skill's main output; if it stops earlier (missing input, unregistered project), the run is INCONCLUSIVE, not PASS"
+    },
+    {
+     "level": "MUST",
+     "text": "Code check: the verdict line (the line that starts with 'READY TO TEST:') reads 'no'; 'yes' or 'partially' as a verdict is a FAIL"
+    },
+    {
+     "level": "MUST",
+     "text": "The conflict is named: '14 days' and '30 days' are both quoted and both sources (the story and the policy) are identified, in CONFLICTS or in a blocking question"
+    },
+    {
+     "level": "MUST",
+     "text": "No winner is chosen: neither figure is stated as the correct window, and no acceptance criterion is written with a final number"
+    },
+    {
+     "level": "MUST",
+     "text": "The question about the conflict is addressed to a named role (for example product owner or policy owner), not to QA"
+    },
+    {
+     "level": "SHOULD",
+     "text": "The output notes that the starting point also differs ('of purchase' versus 'of delivery'), not only the length of the window"
+    },
+    {
+     "level": "SHOULD",
+     "text": "The output lists 'digital goods are not refundable' as a gap in the story (not as a conflict)"
+    }
+   ]
   }
  ]
 }
