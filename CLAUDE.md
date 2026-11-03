@@ -66,7 +66,7 @@ First time here or on a new machine: run `/onboarding-check` (tools, MCP, access
 
 | Skill | Use it for | Status |
 |---|---|---|
-| `/analyze-requirements` | gaps, ambiguities, risks, testability, missing states and permissions | pilot; DRAFT, evals NOT RUN |
+| `/analyze-requirements` | gaps, ambiguities, risks, testability, missing states and permissions | pilot; DRAFT, eval 6 run (V-002 OPEN), other evals NOT RUN |
 | `/create-test-cases` | cases from approved requirements (web checklist, mobile Xray) | DRAFT, evals NOT RUN |
 | `/automation-readiness-assessment` | should this case be automated now | DRAFT, evals NOT RUN |
 | `/create-playwright-test`, `/review-playwright-test` | web automation: implement, review | DRAFT, evals NOT RUN |
