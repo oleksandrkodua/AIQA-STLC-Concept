@@ -17,6 +17,7 @@ evals/runs/*
 # Local junk, never commit
 _to_delete/
 .agents/
+/AGENTS.md
 .fuse_hidden*
 ~$*
 .DS_Store
