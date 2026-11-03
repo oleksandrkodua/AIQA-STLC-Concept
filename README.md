@@ -60,7 +60,7 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 | `automation/`, `ci/` | registry stubs | OPTIONAL, empty |
 | `runs/` | run journal template; local eval-kit with recorded eval runs (git-ignored, not in the public repo) | template + recorded runs |
 | `feedback/` | feedback loop: README and change proposals in `proposals/` | proposals exist |
-| `decisions/` | decision log | stubs |
+| `decisions/` | decision log (D-001, D-002), verification log, conflicts register, one proposal | in use |
 | `optional/` | agent layer (off by default), user-level mods | OPTIONAL |
 | `training/` | a short course on working with an AI assistant in QA | OPTIONAL, lesson 1 only |
 | `examples/demo-shop/` | worked stories on a fictional shop | ILLUSTRATIVE, not recorded runs |
