@@ -88,7 +88,7 @@
     },
     {
      "level": "MUST",
-     "text": "A blocking question about what 'quickly' means (threshold, devices, network) leads the output"
+     "text": "Under the verdict line, BLOCKING QUESTIONS comes before ACCEPTANCE CRITERIA and its first item is a question about what 'quickly' means (threshold, devices, network). What the run writes before the verdict (injection notice, REQUIREMENT line) does not count against this"
     },
     {
      "level": "MUST",
