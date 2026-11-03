@@ -11,7 +11,7 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 
 1. [`portfolio/`](portfolio/): the one-page summary and the 14-slide case study (anonymized: client, internal domains and channel names replaced).
 2. [`CLAUDE.md`](CLAUDE.md) and [`.claude/rules/`](.claude/rules/): the working rules (evidence labels, verdicts, no production, human approval).
-3. [`plugins/qabase/skills/`](plugins/qabase/skills/): the skills, each with written evals.
+3. [`plugins/qabase/skills/`](plugins/qabase/skills/): the skills; 17 of 19 have written evals (the two exploratory-testing skeletons do not).
 4. [`evals/`](evals/): how a skill, hook or agent is allowed to be called "working".
 
 ## Jira and test management: through skills
@@ -47,7 +47,7 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 | Path | What | State |
 |---|---|---|
 | `CLAUDE.md`, `.claude/rules/` | governance | DRAFT |
-| `plugins/qabase/` | the plugin: skills with evals, contract template, hooks | DRAFT, evals NOT RUN |
+| `plugins/qabase/` | the plugin: skills with evals, contract template, hooks | DRAFT, evals partly run |
 | `.claude-plugin/` | marketplace manifest for the qabase plugin | DRAFT |
 | `tools/` | skill sync and index scripts, settings templates, git hooks | DRAFT |
 | `docs/` | concept, setup, research, design schemes and specs | mixed; see each file |
@@ -68,9 +68,9 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 
 ## What is proven, and what is not
 
-- VERIFIED FACT: `python3 evals/validate_repo.py` gives 229 passed, 0 failed (run 2026-10-23, with the concept files). It checks the structure of the files, not whether the assistant behaves well.
+- VERIFIED FACT: `python3 evals/validate_repo.py` gives 668 passed, 0 failed locally and 262 passed, 0 failed in CI on a clean checkout (2026-11-03). It checks the structure of the files, not whether the assistant behaves well.
 - VERIFIED FACT: hook logic tests passed 20/20 and 9/9 (2026-10-07).
-- NOT RUN: skill evals, hook firing tests in Claude Code, any CI.
+- PARTLY RUN: skill evals (feedback-triage eval 2 PASS 3/3; analyze-requirements eval 6 PASS 3/3 after PR #8, with the reading of expectation 3 fixed by the owner after the first series; single model, 3 runs, no human spot-check of the grader). NOT RUN: create-test-cases, automation-readiness-assessment, feedback-triage evals 1, 3 and 4, hook firing tests in Claude Code. CI: validate runs on pull requests (passing on #9 to #11); it checks file structure only.
 - UNKNOWN: the real project's tracker, TMS, environments and access (`context/discovery.md`).
 
 ## Working from a cloud session
