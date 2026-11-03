@@ -11,14 +11,23 @@
       "Read(**/secrets/**)",
       "Bash(git push --force:*)",
       "Bash(git push -f:*)",
-      "Bash(rm -rf:*)"
+      "Bash(rm -rf:*)",
+      "Read(**/.secrets/**)",
+      "Read(**/.gitlab_token)",
+      "Bash(*JIRA_PAT*)"
     ],
     "ask": [
       "Edit(CLAUDE.md)",
       "Edit(.claude/**)",
       "Edit(policy/**)",
       "Edit(evals/**)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Edit(plugins/qabase/**)",
+      "Bash(*xray_dc_create.py*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(*rest/api*)",
+      "Bash(*rest/raven*)"
     ]
   },
   "hooks": {
