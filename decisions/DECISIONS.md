@@ -6,3 +6,4 @@ Every decision has a status: STATED (the owner said it), PROPOSED (suggested, no
 
 | ID | Decision | Status | Basis |
 |---|---|---|---|
+| D-001 | The author email stays in `portfolio/Oleksandr_Kukhtinov_AI_QA_One_Pager.html`; `README.md` author line keeps LinkedIn only (email removed, commit 2f179db). The email remains in earlier git history on origin. | STATED | Owner, 2026-11-03 |

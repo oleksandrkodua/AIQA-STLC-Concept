@@ -4,7 +4,7 @@ An AI-assisted QA process across the software lifecycle: from requirements to re
 
 STATUS: DRAFT v0.1. Nothing here is approved by anyone. Labels used throughout: VERIFIED FACT / EVIDENCE-SUPPORTED INFERENCE / ASSUMPTION / UNKNOWN.
 
-**Author:** Oleksandr Kukhtinov, Senior Manual QA Engineer (13 years), AI-assisted QA. [LinkedIn](https://linkedin.com/in/akukhtinov) · alexx9006@gmail.com
+**Author:** Oleksandr Kukhtinov, Senior Manual QA Engineer (13 years), AI-assisted QA. [LinkedIn](https://linkedin.com/in/akukhtinov)
 I am a manual QA engineer, not an automation engineer. Claude Code generated the tooling from my specification; I designed the QA logic and verified the results. Generated code is not evidence of automation expertise, and I do not list Selenium, Playwright or Appium as my skills.
 
 ## For a reviewer: five minutes
@@ -48,12 +48,19 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 |---|---|---|
 | `CLAUDE.md`, `.claude/rules/` | governance | DRAFT |
 | `plugins/qabase/` | the plugin: skills with evals, contract template, hooks | DRAFT, evals NOT RUN |
-| `.claude/hooks/`, `.claude/settings*.json` | hook scripts and settings | DRAFT, settings NOT ACTIVE |
+| `.claude-plugin/` | marketplace manifest for the qabase plugin | DRAFT |
+| `tools/` | skill sync and index scripts, settings templates, git hooks | DRAFT |
+| `docs/` | concept, setup, research, design schemes and specs | mixed; see each file |
+| `.github/workflows/` | CI: runs `evals/validate_repo.py` | DRAFT |
+| `.claude/hooks/`, `.claude/settings*.json` | hook scripts and settings | hooks: DRAFT; settings.json: ACTIVE, approved 2026-11-03 by QA Lead; settings.draft.json: DRAFT, full mirror of settings.json rules, not active |
 | `evals/` | eval plan, hook tests, validator | partly runnable |
 | `policy/` | AI usage and agents policy templates | DRAFT |
-| `context/`, `knowledge/` | project context templates, intake process | TEMPLATE |
+| `context/` | project context templates | TEMPLATE |
+| `knowledge/` | intake process (`INTAKE.md`) and source register (`register.md`) | TEMPLATE |
 | `automation/`, `ci/` | registry stubs | OPTIONAL, empty |
-| `runs/`, `feedback/`, `decisions/` | journal template, feedback loop, decision log | stubs |
+| `runs/` | run journal template; local eval-kit with recorded eval runs (git-ignored, not in the public repo) | template + recorded runs |
+| `feedback/` | feedback loop: README and change proposals in `proposals/` | proposals exist |
+| `decisions/` | decision log | stubs |
 | `optional/` | agent layer (off by default), user-level mods | OPTIONAL |
 | `training/` | a short course on working with an AI assistant in QA | OPTIONAL, lesson 1 only |
 | `examples/demo-shop/` | worked stories on a fictional shop | ILLUSTRATIVE, not recorded runs |
