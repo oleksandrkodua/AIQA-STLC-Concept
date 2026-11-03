@@ -7,6 +7,8 @@ STATUS: DRAFT v0.1. Nothing here is approved by anyone. Labels used throughout: 
 **Author:** Oleksandr Kukhtinov, Senior Manual QA Engineer (13 years), AI-assisted QA. [LinkedIn](https://linkedin.com/in/akukhtinov)
 I am a manual QA engineer, not an automation engineer. Claude Code generated the tooling from my specification; I designed the QA logic and verified the results. Generated code is not evidence of automation expertise, and I do not list Selenium, Playwright or Appium as my skills.
 
+**Skills and provenance.** The skills here are analogues of my working implementation of skills, not that implementation. Some were copied or adapted from an earlier version (analyze-requirements, create-test-cases, create-playwright-test, review-playwright-test, create-mobile-test); each skill's origin is stated in its SKILL.md STATUS line and, where present, its PROVENANCE.md. This is the author's statement (ASSUMPTION): the working implementation is not in this repository and cannot be checked here.
+
 ## For a reviewer: five minutes
 
 1. [`portfolio/`](portfolio/): the one-page summary and the 14-slide case study (anonymized: client, internal domains and channel names replaced).
@@ -72,6 +74,11 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 - VERIFIED FACT: hook logic tests passed 20/20 and 9/9 (2026-10-07).
 - PARTLY RUN: skill evals (feedback-triage eval 2 PASS 3/3; analyze-requirements eval 6 PASS 3/3 after PR #8, with the reading of expectation 3 fixed by the owner after the first series; single model, 3 runs, no human spot-check of the grader). NOT RUN: create-test-cases, automation-readiness-assessment, feedback-triage evals 1, 3 and 4, hook firing tests in Claude Code. CI: validate runs on pull requests (passing on #9 to #11); it checks file structure only.
 - UNKNOWN: the real project's tracker, TMS, environments and access (`context/discovery.md`).
+- NOT VERIFIED: Jira/Xray skills (bug-report, xray-test-create, update-test-status) have never been run against a live tracker; no MCP server is connected.
+- NOT VERIFIED: the web, mobile and API automation projects are not in this repository; statements about the author's mobile and web suites in the portfolio are the author's own, with no run log kept here, and the Windows PowerShell tooling of the earlier system is unverified.
+- NOT VERIFIED: the case study's anonymization and the employer's permission to publish are the author's statements, not documented here.
+- OPEN: verification items V-002 to V-004 in `decisions/verification-log.md`.
+- NOT VERIFIED: claims taken from conference talks in the course material (for example context rot) were not checked by us.
 
 ## Working from a cloud session
 
