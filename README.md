@@ -53,6 +53,7 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 | `.claude-plugin/` | marketplace manifest for the qabase plugin | DRAFT |
 | `tools/` | skill sync and index scripts, settings templates, git hooks | DRAFT |
 | `docs/` | concept, setup, research, design schemes and specs | mixed; see each file |
+| `docs/PLAN-next-steps.md` | next-steps plan for Codex and Claude: tasks, hard rules, open items | DRAFT, not approved by QA Lead |
 | `.github/workflows/` | CI: runs `evals/validate_repo.py` | DRAFT |
 | `.claude/hooks/`, `.claude/settings*.json` | hook scripts and settings | hooks: DRAFT; settings.json: ACTIVE, approved 2026-11-03 by QA Lead; settings.draft.json: DRAFT, full mirror of settings.json rules, not active |
 | `evals/` | eval plan, hook tests, validator | partly runnable |
