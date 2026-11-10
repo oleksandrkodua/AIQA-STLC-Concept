@@ -59,6 +59,7 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 | `policy/` | AI usage and agents policy templates | DRAFT |
 | `context/` | project context templates | TEMPLATE |
 | `knowledge/` | intake process (`INTAKE.md`) and source register (`register.md`) | TEMPLATE |
+| `knowledge/INDEX.md` | index of `docs/`, `context/`, `decisions/`, `knowledge/`: path, topic, tags, date, status | DRAFT, kept by hand |
 | `automation/`, `ci/` | registry stubs | OPTIONAL, empty |
 | `runs/` | run journal template; local eval-kit with recorded eval runs (git-ignored, not in the public repo) | template + recorded runs |
 | `feedback/` | feedback loop: README and change proposals in `proposals/` | proposals exist |
