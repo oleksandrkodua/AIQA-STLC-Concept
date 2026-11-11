@@ -9,55 +9,11 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 
 **Skills and provenance.** The skills here are analogues of my working implementation of skills, not that implementation. Some were copied or adapted from an earlier version (analyze-requirements, create-test-cases, create-playwright-test, review-playwright-test, create-mobile-test); each skill's origin is stated in its SKILL.md STATUS line and, where present, its PROVENANCE.md. This is the author's statement (ASSUMPTION): the working implementation is not in this repository and cannot be checked here.
 
-## The repository at a glance
+## The path of a change
 
-```mermaid
-flowchart TB
-  EV["evals: skill evals (partly run), hook logic tests,<br/>validator (CI check on every pull request)"]
+![The QA lifecycle drawn as a pirate treasure map: seven islands in a ring, a dashed trail, a red X wherever a person decides, and a small pirate who walks the trail. A caption under the map follows him. Illustrative, no data.](docs/img/stlc-map.svg)
 
-  subgraph GOV["Governance: what must hold"]
-    direction LR
-    CM["CLAUDE.md and .claude/rules (DRAFT)"]
-    POL["policy (DRAFT, not agreed)"]
-    PERM["permission floor: settings.json (ACTIVE)"]
-    HK["hooks (DRAFT, firing tests NOT RUN)"]:::off
-  end
-
-  subgraph CTX["Project layer: filled per project"]
-    direction LR
-    CX["context (TEMPLATE, Discovery open)"]
-    KN["knowledge (intake, register, index)"]
-    DEC["decisions (decision and verification logs)"]
-  end
-
-  subgraph SK["Skills by stage: plugins/qabase/skills (19, AI drafts). On each arrow: the human decision"]
-    direction TB
-    S1["1 Requirements<br/>analyze-requirements"]
-    S2["2 Test design<br/>create-test-cases, xray-test-create"]
-    S3["3 Manual testing<br/>exploratory-testing-web, exploratory-testing-mobile,<br/>bug-report, update-test-status"]
-    S4["4 Automation (optional, no project present)<br/>automation-readiness-assessment,<br/>create-playwright-test, review-playwright-test,<br/>create-mobile-test, review-mobile-test"]
-    S5["5 CI: deterministic, no AI, no skill (tool UNKNOWN)"]
-    S6["6-7 Analysis and release<br/>ci-failure-analysis, ci-fix, qa-reporting"]
-    S9["9-10 Feedback and improvement<br/>feedback, feedback-triage"]
-    S8["8 Production: no access"]:::off
-    SUP["Any stage<br/>onboarding-check, handoff"]
-    S1 -->|"answers the questions, approves the brief"| S2
-    S2 -->|"reviews every case, saves to the TMS"| S3
-    S3 -->|"decides pass or fail, confirms each bug"| S4
-    S4 -->|"approves the candidate, reviews the pull request"| S5
-    S5 -->|"defect, test or environment?"| S6
-    S6 -->|"the release decision"| S9
-    S9 -->|"QA Lead approves any rule, skill, hook or eval change"| S1
-  end
-
-  GOV --> SK
-  CTX --> SK
-  EV -.checks.-> GOV
-  EV -.checks.-> SK
-  classDef off stroke-dasharray: 4 3;
-```
-
-Reading it: governance and the project layer feed the skills; each skill produces a draft; the text on each arrow is the decision a person makes before the next stage starts; stage 5 runs without AI. Dashed boxes: hooks are not counted as a control yet, and production is off limits. Stage numbers follow [`docs/CONCEPT.md`](docs/CONCEPT.md). Drawn by hand from the files, 2026-11-11 (ai-generated; human-confirmed: pending); the state of each part is in the Map below.
+One change goes through seven stages. AI only prepares a draft; a red X is where a person decides before the next stage starts. Stage 5 (CI) runs without AI. Automation (stage 4) is optional and no automation project is present here. Production is off limits. The compass is the governance layer (`CLAUDE.md`, rules, policy, permissions), the map itself is the project layer, the ruler is the evals. The numbers are the order on the map, not the stage numbers in [`docs/CONCEPT.md`](docs/CONCEPT.md); the state of each part is in the Map below. Download [stlc-map.html](docs/img/stlc-map.html) and open it locally to touch each island. Drawn with [Minicharts](https://april-zhu.com/minicharts) by April Zhu, 2026-11-11 (ai-generated; human-confirmed: pending); rebuild with `python3 tools/build_stlc_map.py` (needs node and a local Minicharts copy, neither is a repository dependency).
 
 ## For a reviewer: five minutes
 
