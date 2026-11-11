@@ -2851,8 +2851,10 @@ card({id:'stlcmap',name:'Flowchart',of:'the QA lifecycle with AI, as a treasure 
   note:'Follow the dashed trail from the scroll. The pirate stops at every red X: that is where a person decides. Touch an island.',
   draw(){
   const S = [[78,100],[214,80],[352,100],[446,184],[352,244],[216,266],[80,250]];
-  const M = [[146,74],[283,96],[399,142],[414,224],[286,266],[148,274],[46,172]];
-  const ring = []; S.forEach((s,i) => { ring.push(s, M[i]); });
+  /* the red X, in trail order: one between every two stages, and none after island 6.
+     The release decision is the X before island 6; the last X (QA Lead) closes the loop */
+  const M = [[146,74],[283,96],[399,142],[414,224],[282,262],[46,172]];
+  const ring = [S[0],M[0],S[1],M[1],S[2],M[2],S[3],M[3],S[4],M[4],S[5],[148,274],S[6],M[5]];
   const tr = spline(ring,true,5); tr.push(tr[0]);
 
   /* the parchment, with its own project layer */
@@ -2915,18 +2917,18 @@ card({id:'stlcmap',name:'Flowchart',of:'the QA lifecycle with AI, as a treasure 
     r0.part([[cx-10,cy+4],[cx-6.5,cy-34],[cx+6.5,cy-34],[cx+10,cy+4]],'#efe9dd',1.1,tmI);
     r0.sol([[cx-9,cy-8],[cx-8.2,cy-16],[cx+8.2,cy-16],[cx+9,cy-8]],'#a5b5c2',.9); r0.sol([[cx-7.6,cy-24],[cx-7,cy-30],[cx+7,cy-30],[cx+7.6,cy-24]],'#a5b5c2',.9);
     r0.part(rrect(cx-8,cy-45,16,11,2),'#e0cb97',1,tmI); r0.part([[cx-10,cy-45],[cx,cy-55],[cx+10,cy-45]],'#8b949d',1,tmI);
-    tmCoin(cx-31,cy+6,5);
+    tmCoin(cx+31,cy+6,5);
   },{lift:[0,-4]});
 
   /* 6 release: the treasure */
-  PT('6 analysis and release: AI reads CI failures and drafts the report and risk summary. The release decision is yours',() => {
+  PT('6 analysis and release: AI reads CI failures and drafts the report and risk summary. The release decision is made at the red X before it',() => {
     const [cx,cy] = S[5]; tmSand(cx,cy,32,17,10);
     r0.shadow(cx,cy+8,24,4,.16);
     r0.part([[cx-19,cy-16],[cx-16,cy-34],[cx+16,cy-34],[cx+19,cy-16]],'#b09469',1.1,tmI);
     r0.part(rrect(cx-19,cy-16,38,22,2),'#bc9e70',1.1,tmI); rule([[[cx-19,cy-8],[cx+19,cy-8]]],tmI,.8,.8);
     r0.part(rrect(cx-3.5,cy-12,7,9,1.5),'#d8bd82',.8,tmI);
     for (const [dx,dy] of [[-12,-17],[-4,-19],[5,-18],[12,-16],[-8,-14],[2,-15]]) { r0.part(r0.el(cx+dx,cy+dy,4.6,3.2,12),'#ddbe74',.7,'#b08d49'); }
-    tmCoin(cx+31,cy+10,6);
+    tmCoin(cx-31,cy+10,6);
   },{lift:[0,-4]});
 
   /* 7 feedback: a bottle that sails back */
@@ -2952,13 +2954,13 @@ card({id:'stlcmap',name:'Flowchart',of:'the QA lifecycle with AI, as a treasure 
 
   /* the compass rose: governance */
   PT('the compass: rules, policy and permissions. It sits in the middle because every leg is steered by it',() => {
-    const cx = 262, cy = 172;
+    const cx = 262, cy = 166;
     rim(r0.el(cx,cy,34,34,36),1,tmI,.85); rim(r0.el(cx,cy,29,29,36),.5,'#a89e8b');
     for (let k = 0; k < 16; k++) { const a = k*Math.PI/8, r2 = k%2 ? 29 : 34; r0.ln([[cx+Math.cos(a)*29,cy+Math.sin(a)*29],[cx+Math.cos(a)*r2,cy+Math.sin(a)*r2]],tmI,.6); }
     r0.part([[cx,cy-30],[cx+5,cy],[cx,cy+30],[cx-5,cy]],'#e3d5b4',1,tmI);
     r0.part([[cx-30,cy],[cx,cy-5],[cx+30,cy],[cx,cy+5]],'#cebe99',1,tmI);
     r0.sol([[cx,cy-30],[cx+5,cy],[cx-5,cy]],'#ba7261',.9); r0.dot(cx,cy,2.4,tmI);
-    TXC(cx,cy+50,'rules, policy,\npermissions',{size:13.5,col:LN});
+    TXC(cx-84,cy-2,'rules, policy,\npermissions',{size:13.5,col:LN});
   },{lift:[0,-2]});
 
   /* the ruler: evals */
@@ -2975,25 +2977,24 @@ card({id:'stlcmap',name:'Flowchart',of:'the QA lifecycle with AI, as a treasure 
     [1,'reviews\nthe cases',[272,68],'reviews every case, saves it to the test management system'],
     [2,'pass or\nfail',[366,170],'decides pass or fail, confirms each bug'],
     [3,'approves\nthe PR',[460,236],'approves the candidate, reviews the pull request'],
-    [4,'defect or\nenvironment?',[286,294],'decides: defect, test or environment?'],
-    [5,'release\ndecision',[148,302],'makes the release decision'],
-    [6,'QA Lead\napproves',[94,176],'QA Lead approves any change to a rule, skill, hook or eval']];
+    [4,'release\ndecision',[282,296],'triages the CI result (defect, test or environment?) and makes the release decision'],
+    [5,'QA Lead\napproves',[94,176],'QA Lead approves any change to a rule, skill, hook or eval']];
   D.forEach(([i,t,[lx,ly],note]) => { PT('red X: '+note,() => { tmX(M[i][0],M[i][1]); TXC(lx,ly,t,{size:13.5,col:'#a45e4e'}); },{lift:[0,-2]}); });
 
   /* island names, outside the ring */
-  const NM = [['requirements',78,50],['test design',226,122],['manual testing',376,50],['automation\n(optional)',452,122],['CI, no AI',376,292],['release',216,312],['feedback',80,298]];
+  const NM = [['requirements',78,50],['test design',226,122],['manual testing',376,50],['automation\n(optional)',452,122],['CI, no AI',382,296],['release',200,316],['feedback',80,298]];
   for (const [n,x,y] of NM) PT(n.replace('\n',' '),() => TXC(x,y,n,{size:13.5,cap:false,col:'#847251'}),{deco:true});
 
   /* the walk: to each red X, then a pause there. kt and kp are the timeline, shared by the pirate and the SVG captions */
   const cum = [0]; for (let i = 1; i < tr.length; i++) cum.push(cum[i-1]+Math.hypot(tr[i][0]-tr[i-1][0],tr[i][1]-tr[i-1][1]));
-  const tot = cum.at(-1), idx = M.map(m => { let b = 0, bd = 1e9; tr.forEach((q,i) => { const d = Math.hypot(q[0]-m[0],q[1]-m[1]); if (d < bd) { bd = d; b = i; } }); return b; });
+  const tot = cum.at(-1), idx = [M[0],M[1],M[2],M[3],M[4],S[5],M[5]].map(m => { let b = 0, bd = 1e9; tr.forEach((q,i) => { const d = Math.hypot(q[0]-m[0],q[1]-m[1]); if (d < bd) { bd = d; b = i; } }); return b; });
   const pause = .05; let tt = 0, prev = 0; const kp = [0], kt = [0];
   idx.forEach(ix => { const f = cum[ix]/tot; tt += f-prev; kp.push(f); kt.push(tt); tt += pause; kp.push(f); kt.push(tt); prev = f; });
   tt += 1-prev; kp.push(1); kt.push(tt);
   const T = kt.map(v => v/tt), DUR = 30;
 
   /* the pirate: the reviewer, walking the trail and waiting at every red X */
-  PT('the pirate is the reviewer. He walks the trail and waits at every red X until a person has decided',() => {
+  PT('the pirate is the reviewer. He walks the trail and waits at every red X until a person has decided, and rests on the treasure',() => {
     const d = 'M'+tr.map(q => n1(q[0])+' '+n1(q[1])).join('L');
     out.push('<g><g transform="translate(0 -3) scale(1.05)">');
     r0.ln([[-2.5,-6],[-3.2,0]],tmI,2); r0.ln([[2.5,-6],[2.6,0]],'#a48b62',2.2);
@@ -3013,10 +3014,12 @@ card({id:'stlcmap',name:'Flowchart',of:'the QA lifecycle with AI, as a treasure 
     ['2 test design: AI drafts the cases from the brief.','A person reviews every case and saves it to the TMS.'],
     ['3 manual testing: a person runs the cases,','decides pass or fail and confirms each bug.'],
     ['4 automation, optional: only for a case already confirmed.','A person approves it and reviews the pull request.'],
-    ['5 CI: runs the same way every time, no AI.','A person decides: defect, test or environment?'],
-    ['6 analysis and release: AI reads the CI failures and','drafts the report. A person makes the release decision.'],
+    ['5 CI: runs the same way every time, no AI.','A person triages the result and makes the release decision.'],
+    ['6 analysis and release: AI reads the CI failures and drafts','the report and the risk summary for the release.'],
     ['7 feedback: every miss becomes an entry, then a proposal.','QA Lead approves any change to a rule, skill, hook or eval.']];
-  const WIN = CAP.map((c,k) => [k === 0 ? 0 : T[2+2*(k-1)], k === 6 ? 1 : T[2+2*k]]);
+  /* a stage's text is shown from the moment the pirate leaves the previous stop until he leaves this stage's own stop.
+     The stops are the six red X and island 6 (he rests on the treasure: stage 6 has no X after it) */
+  const WIN = [[0,T[2]],[T[2],T[4]],[T[4],T[6]],[T[6],T[8]],[T[8],T[10]],[T[10],T[12]],[T[12],1]];
   if (typeof SVGMODE !== 'undefined') {
     rule([[[40,428],[480,428]]],'#c3af86',.8,.9);
     CAP.forEach((c,k) => {
