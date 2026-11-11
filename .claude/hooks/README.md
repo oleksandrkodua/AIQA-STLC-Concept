@@ -1,8 +1,10 @@
 # Hooks
 
-STATUS: DRAFT. Nothing here is active. `.claude/settings.draft.json` is not read by Claude
-Code. Activating = renaming it to `settings.json` after QA Lead approval AND after the
-firing checks below are run. A hook is counted as a control only after the firing checks pass.
+STATUS: DRAFT. No hook is active by default. `.claude/settings.json` (permission floor only,
+no hooks) is ACTIVE, approved 2026-11-03. `.claude/settings.draft.json` is not read by Claude
+Code. Hooks are installed per machine into `.claude/settings.local.json` from
+`tools/hooks.template.json`, after QA Lead approval. A hook is counted as a control only
+after the firing checks below pass.
 
 ## Maturity
 

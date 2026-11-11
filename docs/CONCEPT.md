@@ -1,6 +1,6 @@
 # AIQA STLC Concept
 
-STATUS: DRAFT v0.1, 2026-10-23. A concept, not a product. Nothing here is approved by anyone; no skill has been evaluated in this repository (evals NOT RUN).
+STATUS: DRAFT v0.1, 2026-10-23. A concept, not a product. Nothing here is approved by anyone; two skill evals have a recorded run (V-001, V-002); the rest are NOT RUN.
 
 ## The idea
 
@@ -39,7 +39,7 @@ Legend: rounded boxes are stages, hexagons are human gates, text on arrows is th
 
 | Stage | Skill (draft) | Human decision | State in this repository |
 |---|---|---|---|
-| 1 Requirements | `analyze-requirements` | answers the open questions; approves the brief | pilot; evals NOT RUN |
+| 1 Requirements | `analyze-requirements` | answers the open questions; approves the brief | pilot; eval 6 run (V-002 OPEN), other evals NOT RUN |
 | 2 Test design | `create-test-cases`, `xray-test-create` | reviews each case (KEEP, MODIFY or REJECT); confirms project, plan hash and host before anything is written | DRAFT; Xray not connected |
 | 3 Manual testing | `exploratory-testing-web`, `-mobile`, `bug-report`, `update-test-status` | pass or fail; confirms each bug draft | SKELETON, on hold |
 | 4 Automation | `automation-readiness-assessment`, `create-playwright-test`, `review-playwright-test`, mobile pair | approves the candidate; reviews and merges | existing / DRAFT; mobile optional |
@@ -59,7 +59,7 @@ Legend: rounded boxes are stages, hexagons are human gates, text on arrows is th
 
 - VERIFIED FACT (run 2026-10-23): `python3 evals/validate_repo.py` gives 229 passed, 0 failed. It checks the structure of the files, not whether an assistant behaves well.
 - VERIFIED FACT: the script behind `xray-test-create` passes 10 offline unit tests (fake HTTP). It has never been run against a real Xray instance.
-- NOT RUN: skill evals, hook firing tests, any CI, any cloud session.
+- PARTLY RUN: skill evals (2 cases, see `decisions/verification-log.md`). NOT RUN: hook firing tests.
 - UNKNOWN: the tracker, the test management system, the environments and the access of a real project (`context/discovery.md`).
 
 ## See it in use
