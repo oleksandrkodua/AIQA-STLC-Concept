@@ -13,7 +13,7 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 
 ```mermaid
 flowchart TB
-  HUM{{"Humans decide: QA reviews every draft; QA Lead approves rule, skill, hook and eval changes"}}
+  EV["evals: skill evals (partly run), hook logic tests,<br/>validator (CI check on every pull request)"]
 
   subgraph GOV["Governance: what must hold"]
     direction LR
@@ -30,31 +30,34 @@ flowchart TB
     DEC["decisions (decision and verification logs)"]
   end
 
-  subgraph SK["Skills: plugins/qabase/skills (19, AI drafts)"]
-    direction LR
+  subgraph SK["Skills by stage: plugins/qabase/skills (19, AI drafts). On each arrow: the human decision"]
+    direction TB
     S1["1 Requirements<br/>analyze-requirements"]
     S2["2 Test design<br/>create-test-cases, xray-test-create"]
-    S3["3 Manual testing<br/>exploratory-testing-web and -mobile,<br/>bug-report, update-test-status"]
-    S4["4 Automation<br/>automation-readiness-assessment,<br/>create and review playwright and mobile test"]
+    S3["3 Manual testing<br/>exploratory-testing-web, exploratory-testing-mobile,<br/>bug-report, update-test-status"]
+    S4["4 Automation (optional, no project present)<br/>automation-readiness-assessment,<br/>create-playwright-test, review-playwright-test,<br/>create-mobile-test, review-mobile-test"]
+    S5["5 CI: deterministic, no AI, no skill (tool UNKNOWN)"]
     S6["6-7 Analysis and release<br/>ci-failure-analysis, ci-fix, qa-reporting"]
-    S9["9 Feedback<br/>feedback, feedback-triage"]
-    SUP["Support<br/>onboarding-check, handoff"]
-    S1 --> S2 --> S3 --> S4 --> S6 --> S9
+    S9["9-10 Feedback and improvement<br/>feedback, feedback-triage"]
+    S8["8 Production: no access"]:::off
+    SUP["Any stage<br/>onboarding-check, handoff"]
+    S1 -->|"answers the questions, approves the brief"| S2
+    S2 -->|"reviews every case, saves to the TMS"| S3
+    S3 -->|"decides pass or fail, confirms each bug"| S4
+    S4 -->|"approves the candidate, reviews the pull request"| S5
+    S5 -->|"defect, test or environment?"| S6
+    S6 -->|"the release decision"| S9
+    S9 -->|"QA Lead approves any rule, skill, hook or eval change"| S1
   end
-
-  EV["evals: skill evals (partly run), hook logic tests, validator"]
-  DET["Deterministic, no AI: CI validate; automation projects (optional, not present)"]
 
   GOV --> SK
   CTX --> SK
-  SK -->|drafts| HUM
-  HUM -->|approved cases| DET
   EV -.checks.-> GOV
   EV -.checks.-> SK
   classDef off stroke-dasharray: 4 3;
 ```
 
-Reading it: governance and the project layer feed the skills; the skills produce drafts; a person decides at every gate; what runs in CI is deterministic. The dashed box is not counted as a control yet. Drawn by hand from the files, 2026-11-11 (ai-generated; human-confirmed: pending); the state of each part is in the Map below, the stages and gates in [`docs/CONCEPT.md`](docs/CONCEPT.md).
+Reading it: governance and the project layer feed the skills; each skill produces a draft; the text on each arrow is the decision a person makes before the next stage starts; stage 5 runs without AI. Dashed boxes: hooks are not counted as a control yet, and production is off limits. Stage numbers follow [`docs/CONCEPT.md`](docs/CONCEPT.md). Drawn by hand from the files, 2026-11-11 (ai-generated; human-confirmed: pending); the state of each part is in the Map below.
 
 ## For a reviewer: five minutes
 
