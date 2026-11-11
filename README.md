@@ -9,6 +9,53 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 
 **Skills and provenance.** The skills here are analogues of my working implementation of skills, not that implementation. Some were copied or adapted from an earlier version (analyze-requirements, create-test-cases, create-playwright-test, review-playwright-test, create-mobile-test); each skill's origin is stated in its SKILL.md STATUS line and, where present, its PROVENANCE.md. This is the author's statement (ASSUMPTION): the working implementation is not in this repository and cannot be checked here.
 
+## The repository at a glance
+
+```mermaid
+flowchart TB
+  HUM{{"Humans decide: QA reviews every draft; QA Lead approves rule, skill, hook and eval changes"}}
+
+  subgraph GOV["Governance: what must hold"]
+    direction LR
+    CM["CLAUDE.md and .claude/rules (DRAFT)"]
+    POL["policy (DRAFT, not agreed)"]
+    PERM["permission floor: settings.json (ACTIVE)"]
+    HK["hooks (DRAFT, firing tests NOT RUN)"]:::off
+  end
+
+  subgraph CTX["Project layer: filled per project"]
+    direction LR
+    CX["context (TEMPLATE, Discovery open)"]
+    KN["knowledge (intake, register, index)"]
+    DEC["decisions (decision and verification logs)"]
+  end
+
+  subgraph SK["Skills: plugins/qabase/skills (19, AI drafts)"]
+    direction LR
+    S1["1 Requirements<br/>analyze-requirements"]
+    S2["2 Test design<br/>create-test-cases, xray-test-create"]
+    S3["3 Manual testing<br/>exploratory-testing-web and -mobile,<br/>bug-report, update-test-status"]
+    S4["4 Automation<br/>automation-readiness-assessment,<br/>create and review playwright and mobile test"]
+    S6["6-7 Analysis and release<br/>ci-failure-analysis, ci-fix, qa-reporting"]
+    S9["9 Feedback<br/>feedback, feedback-triage"]
+    SUP["Support<br/>onboarding-check, handoff"]
+    S1 --> S2 --> S3 --> S4 --> S6 --> S9
+  end
+
+  EV["evals: skill evals (partly run), hook logic tests, validator"]
+  DET["Deterministic, no AI: CI validate; automation projects (optional, not present)"]
+
+  GOV --> SK
+  CTX --> SK
+  SK -->|drafts| HUM
+  HUM -->|approved cases| DET
+  EV -.checks.-> GOV
+  EV -.checks.-> SK
+  classDef off stroke-dasharray: 4 3;
+```
+
+Reading it: governance and the project layer feed the skills; the skills produce drafts; a person decides at every gate; what runs in CI is deterministic. The dashed box is not counted as a control yet. Drawn by hand from the files, 2026-11-11 (ai-generated; human-confirmed: pending); the state of each part is in the Map below, the stages and gates in [`docs/CONCEPT.md`](docs/CONCEPT.md).
+
 ## For a reviewer: five minutes
 
 1. [`portfolio/`](portfolio/): the one-page summary and the 14-slide case study (anonymized: client, internal domains and channel names replaced).
