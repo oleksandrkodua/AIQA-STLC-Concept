@@ -15,6 +15,12 @@ I am a manual QA engineer, not an automation engineer. Claude Code generated the
 
 One change goes through seven stages. AI only prepares a draft; a red X is where a person decides before the next stage starts. Stage 5 (CI) runs without AI. Automation (stage 4) is optional and no automation project is present here. Production is off limits. The compass is the governance layer (`CLAUDE.md`, rules, policy, permissions), the map itself is the project layer, the ruler is the evals. The numbers are the order on the map, not the stage numbers in [`docs/CONCEPT.md`](docs/CONCEPT.md); the state of each part is in the Map below. Download [stlc-map.html](docs/img/stlc-map.html) and open it locally to touch each island. Drawn with [Minicharts](https://april-zhu.com/minicharts) by April Zhu, 2026-11-11 (ai-generated; human-confirmed: pending); rebuild with `python3 tools/build_stlc_map.py` (needs node and a local Minicharts copy, neither is a repository dependency).
 
+## The improvement loop
+
+![The improvement loop drawn as a pirate treasure map: nine islands in a ring (observe, analyze, recommend, approve, act, audit, learn, evaluate, improve), a dashed trail, one red X where QA Lead decides, and a small pirate who walks the trail. A caption under the map follows him. Illustrative, no data.](docs/img/loop-map.svg)
+
+This is how a rule, skill, hook or eval of the repository itself changes: a miss is observed, AI analyzes it and drafts a proposal, QA Lead approves (the red X), the change is applied, audited, learned from and evaluated, and the next version starts the loop again. Audit and learn have no skill of their own yet. The same flow as a diagram is in [`docs/schemes/02-workflow.md`](docs/schemes/02-workflow.md); an interactive version is [`docs/img/loop-map.html`](docs/img/loop-map.html). Rebuild both maps with `python3 tools/build_stlc_map.py`.
+
 ## For a reviewer: five minutes
 
 1. [`portfolio/`](portfolio/): the one-page summary and the 14-slide case study (anonymized: client, internal domains and channel names replaced).
