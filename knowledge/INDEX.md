@@ -25,6 +25,7 @@ Covers `docs/`, `context/`, `decisions/`, `knowledge/`. Not covered: `.claude/`,
 | `docs/GETTING-STARTED.md` | Getting started and handing over | onboarding,handoff | 2026-10-27 | DRAFT v0.1 |
 | `docs/HANDOFF-cloud.md` | Cloud handoff | cloud,handoff | 2026-10-27 | DRAFT |
 | `docs/MODEL-AND-EFFORT.md` | Model and effort per skill (proposal table) | models,effort,skills | 2026-10-23 | proposal, not in any SKILL.md |
+| `docs/TEST-DESIGN-TECHNIQUES.md` | Catalogue of test design techniques (unverified) and task: adaptive technique choice in create-test-cases | test-design,techniques,create-test-cases,codex | 2026-11-12 | DRAFT, not approved |
 | `docs/PLAN-next-steps.md` | Next-steps plan: tasks A-F, hard rules, open items | plan,next-steps,codex,ci,evals | 2026-11-10 | DRAFT, not approved |
 | `docs/PLAYWRIGHT-SETUP.md` | Playwright setup and daily use | playwright,web,setup | 2026-10-23 | not stated |
 | `docs/REQUIRED-ACCESS-AND-ENVIRONMENT.md` | Required access and environment for the qabase plugin | access,environment,onboarding | 2026-10-27 | DRAFT v0.1 |
